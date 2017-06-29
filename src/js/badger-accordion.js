@@ -15,14 +15,14 @@ class BadgerAccordion {
     constructor(options) {
 
         const defaults = {
-            container:         '.js-mrb-accordion',
+            container:         '.js-badger-accordion',
             header:            '.js-accordion-header',
             panel:             '.js-accordion-panel',
             panelInner:        '.js-accordion-panel-inner',
             activeClass:       'is-active',
             hidenClass:        'is-hidden',
-            initalisedClass:   'mrb-accordion--initalised',
-            headerDataAttr:    'data-mrb-accordion-header-id',
+            initalisedClass:   'badger-accordion--initalised',
+            headerDataAttr:    'data-badger-accordion-header-id',
             openAllPanels:     false,
             openHeadersOnLoad: []
         };
@@ -123,14 +123,13 @@ class BadgerAccordion {
      *  Adds click event to each header
      */
     addListeners() {
-        // So we can reference the mrb-accordion object inside out eventListener
+        // So we can reference the badger-accordion object inside out eventListener
         const _this = this;
 
         // Adding click event to accordion
         document.querySelector(this.settings.container).addEventListener('click', function(event) {
             // Getting the target of the click
             let clickedEl = event.target;
-            console.log(this);
 
             _this.handleClick(clickedEl);
         });
