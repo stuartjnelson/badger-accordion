@@ -1,0 +1,42 @@
+.badger-accordion__header {
+  align-content: space-between;
+  align-items: center;
+  background-color: #d5d5d5;
+  border-bottom: solid 2px color-get(grey);
+  display: flex;
+  padding: 20px; }
+
+.badger-accordion__header-icon {
+  margin-left: auto; }
+
+.test-icon {
+  background-color: #ffffff;
+  display: block;
+  height: 40px;
+  width: 40px; }
+
+.badger-accordion__panel {
+  background-color: #fafafa;
+  overflow: hidden;
+  position: relative; }
+  .js .badger-accordion__panel {
+    max-height: 0; }
+    .js .badger-accordion__panel.is-active {
+      max-height: 75vh; }
+    .js .badger-accordion__panel.is-hidden {
+      max-height: 0 !important; }
+  .badger-accordion--initalised .badger-accordion__panel {
+    transition: all ease-in-out 0.25s; }
+  .badger-accordion__panel:after {
+    background-color: #a8a8a8;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%; }
+
+.badger-accordion__panel-inner {
+  padding: 20px; }
+
+/*# sourceMappingURL=badger-accordion.css.map */
