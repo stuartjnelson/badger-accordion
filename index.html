@@ -2,12 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Badger Accordion</title>
 
+    <link rel="stylesheet" href="src/css/badger-accordion-demo.css">
     <link rel="stylesheet" href="src/css/badger-accordion.css">
 </head>
 <body>
-    <h1>Badger Accordion</h1>
+    <section>
+        <div class="container">
+            <h1 class="heading--alpha">Badger Accordion</h1>
+
+            <dl class="badger-accordion js-badger-accordion">
+                <dt>
+                    <button id="badger-accordion-header-<?= esc_attr($i); ?>" class="badger-accordion__header js-accordion-header" aria-controls="badger-accordion-panel-<?= esc_attr($i); ?>">
+                        <div class="badger-accordion__header-title">
+                            Accordion Header
+                        </div>
+                        <div class="badger-accordion__header-icon">
+                            <!-- something aria? -->
+                        </div>
+                    </button>
+                </dt>
+                <dd id="badger-accordion-panel-<?= esc_attr($i); ?>" class="badger-accordion__panel js-accordion-panel" aria-labeledby="badger-accordion-header-<?= esc_attr($i); ?>">
+                    <div class="badger-accordion__panel-inner text-module js-accordion-panel-inner">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+    </section>
 
     <!-- <script src="src/js/behaviour.js" charset="utf-8"></script> -->
     <script src="src/js/badger-accordion.js" charset="utf-8"></script>

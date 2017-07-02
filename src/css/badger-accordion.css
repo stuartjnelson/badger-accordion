@@ -1,30 +1,69 @@
+@keyframes icon-left {
+  0% {
+    transform: rotate(45deg) translate3d(8px, 22px, 0); }
+  40% {
+    transform: rotate(90deg) translate3d(24px, 10px, 0); }
+  60% {
+    transform: rotate(90deg) translate3d(24px, 10px, 0); }
+  100% {
+    transform: rotate(45deg) translate3d(14px, 14px, 0); } }
+@keyframes icon-right {
+  0% {
+    transform: rotate(-45deg) translate3d(-8px, 22px, 0); }
+  40% {
+    transform: rotate(-90deg) translate3d(-24px, 10px, 0); }
+  60% {
+    transform: rotate(-90deg) translate3d(-24px, 10px, 0); }
+  100% {
+    transform: rotate(-45deg) translate3d(-14px, 14px, 0); } }
 .badger-accordion__header {
   align-content: space-between;
   align-items: center;
   background-color: #d5d5d5;
-  border-bottom: solid 2px color-get(grey);
+  border-bottom: solid 2px #d5d5d5;
   display: flex;
   padding: 20px; }
+  .badger-accordion__header[aria-expanded=true] .badger-accordion__header-icon:before {
+    animation: 1s icon-left 1 forwards; }
+  .badger-accordion__header[aria-expanded=true] .badger-accordion__header-icon:after {
+    animation: 1s icon-right 1 forwards; }
 
 .badger-accordion__header-icon {
   margin-left: auto; }
 
-.test-icon {
-  background-color: #ffffff;
+.badger-accordion__header-icon {
+  background-color: #fff;
   display: block;
   height: 40px;
+  position: relative;
   width: 40px; }
+  .badger-accordion__header-icon:after, .badger-accordion__header-icon:before {
+    background-color: #333;
+    content: "";
+    height: 3px;
+    position: absolute;
+    top: 10px;
+    transition: all ease-in-out 0.25s;
+    width: 30px; }
+  .badger-accordion__header-icon:before {
+    background-color: red;
+    left: 0;
+    transform: rotate(45deg) translate3d(8px, 22px, 0);
+    transform-origin: 100%; }
+  .badger-accordion__header-icon:after {
+    transform: rotate(-45deg) translate3d(-8px, 22px, 0);
+    right: 0;
+    transform-origin: 0%; }
 
 .badger-accordion__panel {
   background-color: #fafafa;
   overflow: hidden;
-  position: relative; }
-  .js .badger-accordion__panel {
-    max-height: 0; }
-    .js .badger-accordion__panel.is-active {
-      max-height: 75vh; }
-    .js .badger-accordion__panel.is-hidden {
-      max-height: 0 !important; }
+  position: relative;
+  max-height: 0; }
+  .badger-accordion__panel.is-active {
+    max-height: 75vh; }
+  .badger-accordion__panel.is-hidden {
+    max-height: 0 !important; }
   .badger-accordion--initalised .badger-accordion__panel {
     transition: all ease-in-out 0.25s; }
   .badger-accordion__panel:after {

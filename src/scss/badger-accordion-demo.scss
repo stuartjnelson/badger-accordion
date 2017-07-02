@@ -1,0 +1,97 @@
+// ==========================================================================
+//
+// BADGER ACCORDION DEMO
+//
+// Description: Styles for the demo page. Including reset.css
+//
+// ==========================================================================
+
+// ==========================================================================
+// # IMPORTS
+// ==========================================================================
+
+
+
+$mq-breakpoints: (
+    tiny:   320px,
+    medium: 768px,
+    large:  980px,
+);
+
+@import "mq";
+@import "reset";
+
+
+
+
+
+// ==========================================================================
+// # VARIABLES
+// ==========================================================================
+
+// COLORS
+$black: #333;
+$grey:              #a8a8a8;
+$grey-light:        #d5d5d5;
+$off-white:         #fafafa;
+
+// UNITS
+$spacing-unit:      40px;
+$half-spacing-unit: $spacing-unit / 2;
+
+
+
+
+// ==========================================================================
+// # BASE
+// ==========================================================================
+
+body {
+    color: $black;
+    font-size: 16px;
+    line-height: 1.25;
+}
+
+
+
+
+
+// ==========================================================================
+// # ELEMENTS
+// ==========================================================================
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: $spacing-unit 0;
+    width: 90%;
+}
+
+
+.heading--alpha {
+    font-size: 2.25rem;
+    line-height: 1.5;
+    margin-bottom: $spacing-unit;
+
+    @include mq(medium) {
+        font-size: 3.5rem;
+        line-height: 1.4;
+    }
+}
+
+
+button {
+    border: 0;
+    width: 100%;
+    font-size: 1em;
+}
+
+
+p {
+    line-height: 1.25;
+
+    &:not(:last-of-type) { margin-bottom: $half-spacing-unit; }
+}
