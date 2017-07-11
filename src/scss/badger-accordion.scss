@@ -12,8 +12,9 @@
 
 // COLORS
 $off-white:         #fafafa;
-$grey:              #a8a8a8;
-$grey-light:        #d5d5d5;
+$grey:              #6C7A89;
+$grey-light:        #95A5A6;
+$blue:              #2574A9;
 
 // UNITS
 $spacing-unit:      40px;
@@ -37,9 +38,9 @@ $accordion-border:  solid 2px $grey-light;
     align-content: space-between;
     align-items: center;
     background-color: $grey-light;
-    border-bottom: $accordion-border;
     display: flex;
     padding: $half-spacing-unit;
+    transition: all ease-in-out .15s;
 
     &[aria-expanded=true] {
         .badger-accordion__header-icon {
@@ -52,18 +53,28 @@ $accordion-border:  solid 2px $grey-light;
             }
         }
     }
-}
 
+    &:focus,
+    &:hover {
+        background-color: $blue;
+        outline: none;
 
-.badger-accordion__header-icon {
-    margin-left: auto;
+        .badger-accordion__header-title { color: #fff; }
+
+        .badger-accordion__header-icon {
+            &:before,
+            &:after { background-color: #fff; }
+        }
+    }
 }
 
 
 .badger-accordion__header-icon {
     display: block;
     height: $spacing-unit;
+    margin-left: auto;
     position: relative;
+    transition: all ease-in-out .15s;
     width: $spacing-unit;
 
     &:after,
