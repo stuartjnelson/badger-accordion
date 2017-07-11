@@ -16,9 +16,9 @@ class BadgerAccordion {
 
         const defaults = {
             container:         '.js-badger-accordion',
-            header:            '.js-accordion-header',
-            panel:             '.js-accordion-panel',
-            panelInner:        '.js-accordion-panel-inner',
+            header:            '.js-badger-accordion-header',
+            panel:             '.js-badger-accordion-panel',
+            panelInner:        '.js-badger-accordion-panel-inner',
             activeClass:       'is-active',
             hidenClass:        'is-hidden',
             initalisedClass:   'badger-accordion--initalised',
@@ -69,14 +69,10 @@ class BadgerAccordion {
         this.setPanelHeight();
 
 
-        // Inserting data-attribute onto each `header`
-        this.insertDataAttrs();
-
-
         // Adding listeners to headers
         this.addListeners();
 
-        //
+
         this.finishInitalisation();
     }
 
@@ -208,6 +204,11 @@ class BadgerAccordion {
      */
     renderDom() {
         let states = this.getState();
+
+
+        // Sets up ID, aria attrs & data-attrs
+        this.setupAttributes();
+
 
         // Filter through all open headers and open them
         this.states.filter( (state, index) => {
@@ -400,6 +401,35 @@ class BadgerAccordion {
 
             return panel.style.maxHeight = `${activeHeight}px`;
         });
+    }
+
+
+    setupHeaders() {
+        this.headers.forEach( (header, index) => {
+            header.setAttribute('id', `badger-accordion-header-${index}`);
+            header.setAttribute('aria-controls', `badger-accordion-panel-${index}`);
+        });
+    }
+
+
+
+    setupPanels() {
+        this.panels.forEach( (panel, index) => {
+            panel.setAttribute('id', `badger-accordion-panel-${index}`);
+            panel.setAttribute('aria-labeledby', `badger-accordion-header-${index}`);
+        });
+    }
+
+
+    setupAttributes() {
+        // Adding ID & aria-controls
+        this.setupHeaders();
+
+        // Adding ID & aria-labeledby
+        this.setupPanels();
+
+        // Inserting data-attribute onto each `header`
+        this.insertDataAttrs();
     }
 }
 
