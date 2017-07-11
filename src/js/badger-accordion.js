@@ -127,11 +127,18 @@ class BadgerAccordion {
         const _this = this;
 
         // Adding click event to accordion
-        document.querySelector(this.settings.container).addEventListener('click', function(event) {
-            // Getting the target of the click
-            let clickedEl = event.target;
+        // document.querySelector(this.settings.container).addEventListener('click', function(event) {
+        //     // Getting the target of the click
+        //     let clickedEl = event.target;
+        //
+        //     _this.handleClick(clickedEl);
+        // });
+        this.headers.forEach(header => {
+            header.addEventListener('click', e => {
+                e.preventDefault();
 
-            _this.handleClick(clickedEl);
+                this.handleClick(header);
+            });
         });
     }
 
@@ -145,10 +152,10 @@ class BadgerAccordion {
     handleClick(targetHeader) {
         // Removing current `.` from `this.settings.header` class so it can
         // be checked against the `targetHeader` classList
-        let targetHeaderClass = this.settings.header.substr(1);
+        //let targetHeaderClass = this.settings.header.substr(1);
 
         // Checking that the thing that was clicked on was the accordions header
-        if( targetHeader.classList.contains(this.settings.header.substr(1)) ) {
+        //if( targetHeader.classList.contains(this.settings.header.substr(1)) ) {
             // Getting data-ID of the header that has been clicked on
             let headerId = this.getHeaderId(targetHeader);
 
@@ -157,9 +164,9 @@ class BadgerAccordion {
 
             // Render DOM as per the updates `this.states` object
             this.renderDom();
-        } else {
+        //} else {
             // console.log('it isnt the header!');
-        }
+        //}
     }
 
 
