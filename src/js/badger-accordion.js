@@ -4,8 +4,8 @@
  * A lightwight vanilla JS accordion with an exstensible API
  */
 
-// import applyMixins from 'apply-mixins';
-// import triggerCallback from 'mixins/trigger-callback';
+import '../node_modules/uuid/v4';
+// const uuidV4 = require('uuid/v4');
 
 /**
  * CONSTRUCTOR
@@ -13,9 +13,14 @@
  */
 class BadgerAccordion {
     constructor(options) {
+        const container = document.querySelector(el);
+
+        // If el is not defined
+        if (container == null) {
+            return;
+        }
 
         const defaults = {
-            container:         '.js-badger-accordion',
             header:            '.js-badger-accordion-header',
             panel:             '.js-badger-accordion-panel',
             panelInner:        '.js-badger-accordion-panel-inner',
@@ -24,21 +29,27 @@ class BadgerAccordion {
             initalisedClass:   'badger-accordion--initalised',
             headerDataAttr:    'data-badger-accordion-header-id',
             openAllPanels:     false,
-            openHeadersOnLoad: []
+            openHeadersOnLoad: [],
+            // toggleEl:            // If you want to use a different element to trigger the accordion
         };
 
         // Options
         this.settings = Object.assign({}, defaults, options);
 
         // Setting getting elements
-        this.container = document.querySelector(this.settings.container) !== undefined ? document.querySelector(this.settings.container) : undefined;
-        this.headers   = document.querySelectorAll(this.settings.header);
-        this.panels    = document.querySelectorAll(this.settings.panel);
+        this.container = container;
+        this.headers = Array.from( this.container.querySelectorAll(this.settings.header) );
+        this.panels = Array.from( this.container.querySelectorAll(this.settings.panel) );
+        this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers;
 
         // This is for managing state of the accordion. It by default sets
         // all accordion panels to be closed
-        this.states = [].map.call(this.headers, (header) => {
-            return {state: 'closed'};
+        this.states = [].map.call(this.headers, header => {
+            return { state: 'closed' };
+        });
+
+        this.ids = [].map.call(this.headers, header => {
+            return { id: uuidV4() };
         });
 
         // This is to ensure that once an opne/close event has been fired
@@ -47,7 +58,7 @@ class BadgerAccordion {
         this.toggling = false;
 
         // Initiating the accordion
-        if( this.container !== null ) {
+        if( this.container ) {
             this.init();
         } else {
             console.log('Something is wrong with you markup...');
@@ -56,25 +67,29 @@ class BadgerAccordion {
 
 
     /**
-     *  INSERT DATA ATTRS
+     *  INIT
      *
-     *  Updates state object for the inital loading of the accordion
+     *  Initalises the accordion
      */
-    init() {
-        // Setting up the inital view of the accordion
-        this.initalState();
+     init() {
+         // Sets up ID, aria attrs & data-attrs
+         this.setupAttributes();
 
+         // Setting up the inital view of the accordion
+         this.initalState();
 
-        // Setting the height of each panel
-        this.setPanelHeight();
+         // Setting the height of each panel
+         this.setPanelHeight();
 
+         // Inserting data-attribute onto each `header`
+         this.insertDataAttrs();
 
-        // Adding listeners to headers
-        this.addListeners();
+         // Adding listeners to headers
+         this.addListeners();
 
-
-        this.finishInitalisation();
-    }
+         //
+         this.finishInitalisation();
+     }
 
 
     /**
@@ -82,9 +97,13 @@ class BadgerAccordion {
      *
      *  Updates state object for inital loading of the accordion
      */
-    initalState() {
+    _initalState() {
         // Sets state object as per `this.settings.openHeadersOnLoad`
-        this.openHeaders(this.settings.openHeadersOnLoad);
+        const headersToOpen = this.settings.openHeadersOnLoad;
+
+        if (headersToOpen.length) {
+            this.openHeadersOnLoad(headersToOpen);
+        }
 
         // Render DOM as per the updates `this.states` object
         this.renderDom();
