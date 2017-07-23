@@ -5,7 +5,7 @@ An accessible vanilla JS accordion with extensible API
 ## The Idea
  - To make an accessible, animated, accordion with an extensible API
  - Make it using just plain vanilla JS
- - Ensure that it has just plain simple css
+ - Ensure that it has just plain simple css. Enough to get it to work. Not too much that you have to spend ages overwriting it.
 
 
 ## Basic Setup
@@ -56,7 +56,7 @@ I have created some basic vanilla CSS styles to help you with creating an accord
 ```
 
 
-Add Javascript & CSS
+Add Javascript & CSS source files
 ```
 <script type="text/javascript" src="path/to/accordion.js"></script>
 
@@ -65,45 +65,36 @@ Add Javascript & CSS
 
 Just need to initalise a new instance of the accordion.
 ```
+<script type="text/javascript">
     const accordion = new
+</script>    
 ```
 
 
+## Methods
 
-```
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Badger Accordion</title>
+The accordion has a series of methods allowing you to have full control over extending the plugin.
 
-    <link rel="stylesheet" href="src/css/badger-accordion.css">
-</head>
-<body>
-    <dl class="badger-accordion js-badger-accordion">
-        <dt>
-            <button class="badger-accordion__header js-badger-accordion-header">
-                <div class="badger-accordion__header-title">
-                    Accordion Header
-                </div>
-                <div class="badger-accordion__header-icon">
-                </div>
-            </button>
-        </dt>
-        <dd class="badger-accordion__panel js-badger-accordion-panel">
-            <div class="badger-accordion__panel-inner js-badger-accordion-panel-inner">
-                <p>Panel content</p>
-            </div>
-        </dd>
-    </dl>
+ - _addListeners()
+ - _finishInitalisation()
+ - _initalState()
 
-    <!-- <script src="src/js/behaviour.js" charset="utf-8"></script> -->
-    <script src="src/js/badger-accordion.js" charset="utf-8"></script>
-    <script type="text/javascript">
-        new BadgerAccordion();
-    </script>
-</body>
-</html>
-```
+ - checkState(headerId)
+ - getState(headerIds)
+ - getHeaderId(header)
+
+ - open(header)
+ - close(header)
+ - openAll()
+ - closeAll()
+ - togglePanel(animationAction, header)
+ - toggleState(currentState)
+
+ - insertDataAttrs()
+ - setPanelHeight()
+ - setStates(targetHeaderId)
+ - setupHeaders()
+ - setupPanels()
+ - setupAttributes()
+ - openHeadersOnLoad(headersToOpen)
+ - renderDom()
