@@ -4,15 +4,15 @@
  * A lightwight vanilla JS accordion with an exstensible API
  */
 
-import '../node_modules/uuid/v4';
-// const uuidV4 = require('uuid/v4');
+import uuid from 'uuid/v4';
+const uuidV4 = uuid;
 
 /**
  * CONSTRUCTOR
  * initialises the object
  */
 class BadgerAccordion {
-    constructor(options) {
+    constructor(el, options) {
         const container = document.querySelector(el);
 
         // If el is not defined
