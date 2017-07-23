@@ -108,7 +108,7 @@ class BadgerAccordion {
      *
      *  Adds in `initalisedClass` to accordion
      */
-    finishInitalisation() {
+    _finishInitalisation() {
         document.querySelector(this.settings.container).classList.add(this.settings.initalisedClass);
     }
 
@@ -118,22 +118,17 @@ class BadgerAccordion {
      *
      *  Adds click event to each header
      */
-    addListeners() {
+    _addListeners() {
         // So we can reference the badger-accordion object inside out eventListener
         const _this = this;
 
         // Adding click event to accordion
-        // document.querySelector(this.settings.container).addEventListener('click', function(event) {
-        //     // Getting the target of the click
-        //     let clickedEl = event.target;
-        //
-        //     _this.handleClick(clickedEl);
-        // });
-        this.headers.forEach(header => {
-            header.addEventListener('click', e => {
-                e.preventDefault();
+        this.headers.forEach((header, index) => {
+            header.addEventListener('click', function(event) {
+                // Getting the target of the click
+                // const clickedEl = event.target;
 
-                this.handleClick(header);
+                _this.handleClick(header, index);
             });
         });
     }
@@ -145,24 +140,19 @@ class BadgerAccordion {
      *  //TODO - Add comment
      *  @param {object} targetHeader - The header node you want to open
      */
-    handleClick(targetHeader) {
+    handleClick(targetHeader, headerIndex) {
         // Removing current `.` from `this.settings.header` class so it can
         // be checked against the `targetHeader` classList
-        //let targetHeaderClass = this.settings.header.substr(1);
+        const targetHeaderClass = this.settings.header.substr(1);
 
         // Checking that the thing that was clicked on was the accordions header
-        //if( targetHeader.classList.contains(this.settings.header.substr(1)) ) {
-            // Getting data-ID of the header that has been clicked on
-            let headerId = this.getHeaderId(targetHeader);
-
+        if (targetHeader.classList.contains(targetHeaderClass)) {
             // Updating states
-            this.setStates(headerId);
+            this.setState(headerIndex);
 
             // Render DOM as per the updates `this.states` object
             this.renderDom();
-        //} else {
-            // console.log('it isnt the header!');
-        //}
+        }
     }
 
 
@@ -173,25 +163,26 @@ class BadgerAccordion {
      *  @param {object} targetHeaderId - The header node you want to open
      */
     setStates(targetHeaderId) {
-        let states = this.getState();
+        const states = this.getState();
 
         // TODO - improve this comment
         // If `this.settings.openAllPanels` is false we need to ensure only one panel
         // be can open at once. This will the state on all but the target header to 'closed'
-        if(!this.settings.openAllPanels) {
-            states.filter( (state, index) => {
-                if(index != targetHeaderId) {
+        if (!this.settings.openAllPanels) {
+            states.filter((state, index) => {
+                if (index != targetHeaderId) {
                     state.state = 'closed';
                 }
             });
         }
 
-        // Toggles the state value of the target header
-        states.find( (state, index) => {
-            if(index == targetHeaderId) {
+        // Toggles the state value of the target header. This was `array.find` but `find`
+        // isnt supported in IE11
+        states.filter((state, index) => {
+            if (index == targetHeaderId) {
                 // TODO - is this a `const` or `let`?
                 const newState = this.toggleState(state.state);
-                return state.state = newState;
+                return (state.state = newState);
             }
         });
     }
@@ -203,7 +194,7 @@ class BadgerAccordion {
      *  Renders the accordion in the DOM using the `this.states` object
      */
     renderDom() {
-        let states = this.getState();
+        const states = this.getState();
 
 
         // Sets up ID, aria attrs & data-attrs
@@ -240,7 +231,7 @@ class BadgerAccordion {
      *  Closes a specific panel
      *  @param {object} header - The header node you want to open
      */
-    open(header, headerId) {
+    open(header) {
         this.togglePanel('open', header);
     }
 
@@ -377,11 +368,11 @@ class BadgerAccordion {
      *  @param {array} headersToOpen - Array of ID's for the headers to be open
      */
     openHeaders(headersToOpen = []) {
-        if(headersToOpen.length && Array.isArray(headersToOpen)) {
-            let headers = headersToOpen.filter( header => header != undefined);
+        if (headersToOpen.length && Array.isArray(headersToOpen)) {
+            let headers = headersToOpen.filter(header => header != undefined);
 
-            headersToOpen.forEach( header => {
-                return this.states[header].state = 'open';
+            headersToOpen.forEach(header => {
+                return (this.states[header].state = 'open');
             });
         }
     }
@@ -406,8 +397,8 @@ class BadgerAccordion {
 
     setupHeaders() {
         this.headers.forEach( (header, index) => {
-            header.setAttribute('id', `badger-accordion-header-${index}`);
-            header.setAttribute('aria-controls', `badger-accordion-panel-${index}`);
+            header.setAttribute('id', `badger-accordion-header-${this.ids[index].id}`);
+            header.setAttribute('aria-controls', `badger-accordion-panel-${this.ids[index].id}`);
         });
     }
 
@@ -415,8 +406,8 @@ class BadgerAccordion {
 
     setupPanels() {
         this.panels.forEach( (panel, index) => {
-            panel.setAttribute('id', `badger-accordion-panel-${index}`);
-            panel.setAttribute('aria-labeledby', `badger-accordion-header-${index}`);
+            panel.setAttribute('id', `badger-accordion-panel-${this.ids[index].id}`);
+            panel.setAttribute('aria-labeledby', `badger-accordion-header-${this.ids[index].id}`);
         });
     }
 
@@ -434,9 +425,5 @@ class BadgerAccordion {
 }
 
 
-// Apply Mixins
-// applyMixins(VideoPlayer, triggerCallback);
-
-
 // Export
-// export default BadgerAccordion;
+export default BadgerAccordion;
