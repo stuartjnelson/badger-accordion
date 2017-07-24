@@ -1,9 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 module.exports = {
-    context: path.resolve(__dirname, './lib'),
+    context: path.resolve(__dirname, './js'),
     entry: {
-        app: './badger-accordion.js',
+        app: './behaviour.js',
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -17,7 +17,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env'],
+                        presets: ['es2015'],
                         plugins: [
                             'transform-object-assign',
                             'syntax-dynamic-import'
