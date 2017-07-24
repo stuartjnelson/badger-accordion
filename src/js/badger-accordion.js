@@ -76,7 +76,7 @@ class BadgerAccordion {
          this.setupAttributes();
 
          // Setting up the inital view of the accordion
-         this.initalState();
+         this._initalState();
 
          // Setting the height of each panel
          this.setPanelHeight();
@@ -85,10 +85,10 @@ class BadgerAccordion {
          this.insertDataAttrs();
 
          // Adding listeners to headers
-         this.addListeners();
+         this._addListeners();
 
          //
-         this.finishInitalisation();
+         this._finishInitalisation();
      }
 
 
@@ -128,7 +128,7 @@ class BadgerAccordion {
      *  Adds in `initalisedClass` to accordion
      */
     _finishInitalisation() {
-        document.querySelector(this.settings.container).classList.add(this.settings.initalisedClass);
+        this.container.classList.add(this.settings.initalisedClass);
     }
 
 
@@ -181,7 +181,7 @@ class BadgerAccordion {
      *  Sets the state for all headers. The 'target header' will have its state toggeled
      *  @param {object} targetHeaderId - The header node you want to open
      */
-    setStates(targetHeaderId) {
+    setState(targetHeaderId) {
         const states = this.getState();
 
         // TODO - improve this comment
