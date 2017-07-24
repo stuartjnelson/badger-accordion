@@ -1,6 +1,7 @@
 'use strict';
 
 // Importing accordion
+import pollyfill from '../js/array-from-pollyfill';
 import BadgerAccordion from '../js/badger-accordion';
 
 // Creating a new instance of the accordion
