@@ -18,6 +18,7 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: ['es2015'],
+                        // npm install --save-dev babel-plugin-transform-es3-member-expression-literals
                         plugins: [
                             'transform-object-assign',
                             'syntax-dynamic-import'
