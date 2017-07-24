@@ -98,3 +98,7 @@ The accordion has a series of methods allowing you to have full control over ext
  - setupAttributes()
  - openHeadersOnLoad(headersToOpen)
  - renderDom()
+
+
+### To Dos
+ - Create IE9 compaitbale version
