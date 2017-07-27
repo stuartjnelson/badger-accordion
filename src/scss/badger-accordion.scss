@@ -10,6 +10,9 @@
 // # VARIABLES
 // ==========================================================================
 
+// SETUP
+$class-prefix:      "badger-accordion";
+
 // COLORS
 $off-white:         #fafafa;
 $grey:              #6C7A89;
@@ -23,8 +26,52 @@ $half-spacing-unit: $spacing-unit / 2;
 // BORDER
 $accordion-border:  solid 2px $grey-light;
 
+// ANIMATION
+$transition-time:   0.2s;
 
 
+
+// ==========================================================================
+// # MIXINS
+// ==========================================================================
+
+@mixin accordion-header($class: $class-prefix, $spacing: $spacing-unit) {
+    .#{$class}__header {
+        align-content: space-between;
+        align-items: center;
+        // background-color: $grey-light;
+        display: flex;
+        padding: $spacing;
+        transition: all ease-in-out 0.15s;
+
+        // &:focus,
+        // &:hover {
+        //     background-color: $blue;
+        //     outline: none;
+        // }
+    }
+}
+
+@mixin accordion-panel() {
+    .badger-accordion__panel {
+        // border-bottom: $accordion-border;
+        overflow: hidden;
+        position: relative;
+        // transition is added via `badger-accordion--initalised` to stop animation on initalition
+
+        // .js & {
+            max-height: 0;
+
+            // Closing all pannels
+            // scss-lint:disable ImportantRule
+            &.is-active { max-height: 75vh; } // This should be set with JS ideally so that the transition is smoother
+
+            &.is-hidden { max-height: 0 !important; }
+        // }
+
+        .badger-accordion--initalised & { transition: all ease-in-out 0.25s; }
+    }
+}
 
 
 // ==========================================================================
@@ -40,7 +87,7 @@ $accordion-border:  solid 2px $grey-light;
     background-color: $grey-light;
     display: flex;
     padding: $half-spacing-unit;
-    transition: all ease-in-out .15s;
+    transition: all ease-in-out $transition-time;
 
     &[aria-expanded=true] {
         .badger-accordion__header-icon {
@@ -74,7 +121,7 @@ $accordion-border:  solid 2px $grey-light;
     height: $spacing-unit;
     margin-left: auto;
     position: relative;
-    transition: all ease-in-out .15s;
+    transition: all ease-in-out $transition-time;
     width: $spacing-unit;
 
     &:after,
@@ -84,7 +131,7 @@ $accordion-border:  solid 2px $grey-light;
         height: 3px;
         position: absolute;
         top: 10px;
-        transition: all ease-in-out 0.1s;
+        transition: all ease-in-out (($transition-time / 3) * 2);
         width: 30px;
     }
 
@@ -119,7 +166,7 @@ $accordion-border:  solid 2px $grey-light;
         &.is-hidden { max-height: 0 !important; }
     // }
 
-    .badger-accordion--initalised & { transition: all ease-in-out 0.25s; }
+    .badger-accordion--initalised & { transition: all ease-in-out $transition-time; }
 
     &:after {
         background-color: $grey;

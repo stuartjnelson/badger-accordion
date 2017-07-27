@@ -1,5 +1,5 @@
 # Badger Accordion
-An accessible vanilla JS accordion with extensible API
+An accessible vanilla JS accordion with an extensible API
 
 
 ## The Idea
@@ -8,14 +8,19 @@ An accessible vanilla JS accordion with extensible API
  - Ensure that it has just plain simple css. Enough to get it to work. Not too much that you have to spend ages overwriting it.
 
 
+## Key terminologies
+ - `header` - The button that opens an accordion panel
+ - `panel`  - The section of the accordion than opens and closes
+
+
 ## Basic Setup
 
 Firstly create the markup for your accordion. As a bare minimum you will need to create;
 
- * A container with your accordion class. Eg `js-badger-accordion`
- * A button (you could use another element but you should use a `button`) with your accordion header class. Eg `js-badger-accordion-header`
- * A panel with your accordion panel class. Eg `js-badger-accordion-panel`. This panel will need to have as a bare minimum `overflow: hidden` set.
- * A inner panel element. Eg `js-badger-accordion-panel-inner`
+ * A container with your accordion class. Default: `js-badger-accordion`. This is required and will be passed into your accordion instance.
+ * A button (you could use another element but you should use a `button`) with your accordion header class. Default: `js-badger-accordion-header`
+ * A panel with your accordion panel class. Default: `js-badger-accordion-panel`. This panel will need to have as a bare minimum css of having `overflow: hidden` set.
+ * A inner panel element. Default: `js-badger-accordion-panel-inner`
 
 ```
 <dl class="js-badger-accordion">
@@ -34,7 +39,7 @@ Firstly create the markup for your accordion. As a bare minimum you will need to
 </dl>
 ```
 
-I have created some basic vanilla CSS styles to help you with creating an accordion. Using them will save some time!
+I have created some basic vanilla CSS styles to help you with creating an accordion. Using this will save you some time! You can use the `scss`; this way you can take advantage of the `scss variables` and `mixins`.
 
 ```
 <dl class="badger-accordion js-badger-accordion">
@@ -66,9 +71,7 @@ Add Javascript & CSS source files
 Just need to initalise a new instance of the accordion.
 ```
 <script type="text/javascript">
-    const accordion = new BadgerAccordion('.js-badger-accordion', {
-
-        });
+    const accordion = new BadgerAccordion('.js-badger-accordion');
 </script>    
 ```
 
