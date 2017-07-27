@@ -21,14 +21,14 @@ class BadgerAccordion {
         }
 
         const defaults = {
-            headerClass:            '.js-badger-accordion-header',
-            panelClass:             '.js-badger-accordion-panel',
-            panelInnerClass:        '.js-badger-accordion-panel-inner',
-            hidenClass:             'is-hidden',
-            initalisedClass:        'badger-accordion--initalised',
-            headerDataAttr:         'data-badger-accordion-header-id',
-            openAllPanelsInitially: false,
-            openHeadersOnLoad: [],
+            headerClass:        '.js-badger-accordion-header',
+            panelClass:         '.js-badger-accordion-panel',
+            panelInnerClass:    '.js-badger-accordion-panel-inner',
+            hidenClass:         'is-hidden',
+            initalisedClass:    'badger-accordion--initalised',
+            headerDataAttr:     'data-badger-accordion-header-id',
+            openMultiplePanels: false,
+            openHeadersOnLoad:  [],
             // toggleEl:            // If you want to use a different element to trigger the accordion
         };
 
@@ -184,9 +184,9 @@ class BadgerAccordion {
         const states = this.getState();
 
         // TODO - improve this comment
-        // If `this.settings.openAllPanels` is false we need to ensure only one panel
+        // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
         // be can open at once. This will the state on all but the target header to 'closed'
-        if (!this.settings.openAllPanelsInitially) {
+        if (!this.settings.openMultiplePanels) {
             states.filter((state, index) => {
                 if (index != targetHeaderId) {
                     state.state = 'closed';
