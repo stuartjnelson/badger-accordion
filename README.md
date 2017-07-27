@@ -71,25 +71,59 @@ Just need to initalise a new instance of the accordion.
 ```
 
 
-## Methods
+## Options ##
 
-The accordion has a series of methods allowing you to have full control over extending the plugin.
+| Option             | Type    | Default                            | Description |
+| ---                | ---     | ---                                | ---   |
+| headerClass        | String  | `.js-badger-accordion-header`      | Class for panel's header  |
+| panelClass         | String  | `.js-badger-accordion-panel`       | Class for panel  |
+| panelInnerClass    | String  | `.js-badger-accordion-panel-inner` | Class for panel inner container  |
+| hidenClass         | String  | `is-hidden`                        | Class added to panels that are hidden  |
+| initalisedClass    | String  | `badger-accordion--initalised`     | Class add to accordion when it has initalised   |
+| headerDataAttr     | String  | `data-badger-accordion-header-id`  | Data attribute on each header   |
+| openMultiplePanels | Boolean | `false`                              | Give you the ability to have mutiple panels open at one time. By default this is disabled  |
+| openHeadersOnLoad  | Array   | `[] `                                | Give you ability to specify a panel/s on initalisation  |
 
+
+## Methods ##
+
+The accordion has a series of methods allowing you to have full control over extending the plugin. For example if you wanted to close all your accordion's panels;
+
+```
+accordion.closeAll();
+```
+
+
+### Questions ###
+1. Is my table logical below?
+2. The id's are pretty crazy. Should you be able to target a panel/header by just its number in the node list. Say to open a panel just write `accordion.open(2)`. Should I document my _private_methods_?
+
+| Method          | Arguments            | Description |
+|---              |---                   |---          |
+| `getState()`    | headerId/s - `array` | Returns the state of a panel/s by passing in the _node list id_.|
+| `getHeaderId()` | header               |             |
+| `open()`        | header               |
+| `close()`       | header               | Closes a header
+| `openAll()`     |                      | Opens all accordion panels
+| `closeAll()`    |                      | Closes all accordion panels
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+
+
+
+### Private methods ###
  - _addListeners()
  - _finishInitalisation()
  - _initalState()
 
- - checkState(headerId)
- - getState(headerIds)
- - getHeaderId(header)
-
- - open(header)
- - close(header)
- - openAll()
- - closeAll()
- - togglePanel(animationAction, header)
- - toggleState(currentState)
-
+### Should be private methods? ###
  - insertDataAttrs()
  - setPanelHeight()
  - setStates(targetHeaderId)
@@ -98,7 +132,10 @@ The accordion has a series of methods allowing you to have full control over ext
  - setupAttributes()
  - openHeadersOnLoad(headersToOpen)
  - renderDom()
+ - | `togglePanel()` | animationAction, header |
+ - | `toggleState()`                      | state      
+
 
 
 ### To Dos
- - Create IE9 compaitbale version
+ - Create IE9 compaitable version
