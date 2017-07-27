@@ -21,14 +21,13 @@ class BadgerAccordion {
         }
 
         const defaults = {
-            header:            '.js-badger-accordion-header',
-            panel:             '.js-badger-accordion-panel',
-            panelInner:        '.js-badger-accordion-panel-inner',
-            activeClass:       'is-active',
-            hidenClass:        'is-hidden',
-            initalisedClass:   'badger-accordion--initalised',
-            headerDataAttr:    'data-badger-accordion-header-id',
-            openAllPanels:     false,
+            headerClass:            '.js-badger-accordion-header',
+            panelClass:             '.js-badger-accordion-panel',
+            panelInnerClass:        '.js-badger-accordion-panel-inner',
+            hidenClass:             'is-hidden',
+            initalisedClass:        'badger-accordion--initalised',
+            headerDataAttr:         'data-badger-accordion-header-id',
+            openAllPanelsInitially: false,
             openHeadersOnLoad: [],
             // toggleEl:            // If you want to use a different element to trigger the accordion
         };
@@ -38,8 +37,8 @@ class BadgerAccordion {
 
         // Setting getting elements
         this.container = container;
-        this.headers = Array.from( this.container.querySelectorAll(this.settings.header) );
-        this.panels = Array.from( this.container.querySelectorAll(this.settings.panel) );
+        this.headers = Array.from( this.container.querySelectorAll(this.settings.headerClass) );
+        this.panels = Array.from( this.container.querySelectorAll(this.settings.panelClass) );
         this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers;
 
         // This is for managing state of the accordion. It by default sets
@@ -160,9 +159,9 @@ class BadgerAccordion {
      *  @param {object} targetHeader - The header node you want to open
      */
     handleClick(targetHeader, headerIndex) {
-        // Removing current `.` from `this.settings.header` class so it can
+        // Removing current `.` from `this.settings.headerClass` class so it can
         // be checked against the `targetHeader` classList
-        const targetHeaderClass = this.settings.header.substr(1);
+        const targetHeaderClass = this.settings.headerClass.substr(1);
 
         // Checking that the thing that was clicked on was the accordions header
         if (targetHeader.classList.contains(targetHeaderClass)) {
@@ -187,7 +186,7 @@ class BadgerAccordion {
         // TODO - improve this comment
         // If `this.settings.openAllPanels` is false we need to ensure only one panel
         // be can open at once. This will the state on all but the target header to 'closed'
-        if (!this.settings.openAllPanels) {
+        if (!this.settings.openAllPanelsInitially) {
             states.filter((state, index) => {
                 if (index != targetHeaderId) {
                     state.state = 'closed';
@@ -326,15 +325,15 @@ class BadgerAccordion {
 
 
     // @TODO - is this needed anymore?
-    checkState(headerId) {
-        let state = this.states[headerId].state;
-
-        if(state === 'closed') {
-            return state;
-        } else if(state === 'open') {
-            return state;
-        }
-    }
+    // checkState(headerId) {
+    //     let state = this.states[headerId].state;
+    //
+    //     if(state === 'closed') {
+    //         return state;
+    //     } else if(state === 'open') {
+    //         return state;
+    //     }
+    // }
 
 
     /**
@@ -405,7 +404,7 @@ class BadgerAccordion {
     setPanelHeight() {
         // [].forEach.(this.panels, (panel) => {
         this.panels.forEach(panel => {
-            const panelInner = panel.querySelector(this.settings.panelInner);
+            const panelInner = panel.querySelector(this.settings.panelInnerClass);
 
             let activeHeight = panelInner.offsetHeight;
 
