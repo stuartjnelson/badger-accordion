@@ -66,12 +66,22 @@ Add Javascript & CSS source files
 Just need to initalise a new instance of the accordion.
 ```
 <script type="text/javascript">
-    const accordion = new
+    const accordion = new BadgerAccordion('.js-badger-accordion', {
+
+        });
 </script>    
 ```
 
 
 ## Options ##
+
+The accordion has a selection of options. For example if you wanted to open the first and 4th panel when the accordion is initalised;
+
+```
+new BadgerAccordion('.js-badger-accordion', {
+    openHeadersOnLoad: [0, 3]    
+});
+```
 
 | Option             | Type    | Default                            | Description |
 | ---                | ---     | ---                                | ---   |
@@ -97,6 +107,7 @@ accordion.closeAll();
 ### Questions ###
 1. Is my table logical below?
 2. The id's are pretty crazy. Should you be able to target a panel/header by just its number in the node list. Say to open a panel just write `accordion.open(2)`. Should I document my _private_methods_?
+3. At the top should I have a list of terminologies?
 
 | Method          | Arguments            | Description |
 |---              |---                   |---          |
