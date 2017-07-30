@@ -70,26 +70,25 @@ class BadgerAccordion {
      *
      *  Initalises the accordion
      */
-     init() {
-         debugger;
-         // Sets up ID, aria attrs & data-attrs
-         this.setupAttributes();
+    init() {
+        // Sets up ID, aria attrs & data-attrs
+        this.setupAttributes();
 
-         // Setting up the inital view of the accordion
-         this._initalState();
+        // Setting up the inital view of the accordion
+        this._initalState();
 
-         // Setting the height of each panel
-         this.setPanelHeight();
+        // Setting the height of each panel
+        this.setPanelHeight();
 
-         // Inserting data-attribute onto each `header`
-         this.insertDataAttrs();
+        // Inserting data-attribute onto each `header`
+        this.insertDataAttrs();
 
-         // Adding listeners to headers
-         this._addListeners();
+        // Adding listeners to headers
+        this._addListeners();
 
-         //
-         this._finishInitalisation();
-     }
+        //
+        this._finishInitalisation();
+    }
 
 
     /**
@@ -166,12 +165,12 @@ class BadgerAccordion {
 
         // Checking that the thing that was clicked on was the accordions header
         if (targetHeader.classList.contains(targetHeaderClass)) {
-            debugger;
             // Updating states
             this.setState(headerIndex);
 
             // Render DOM as per the updates `this.states` object
-            this.renderDom();
+            // this.renderDom();
+            this.open(1);
         }
     }
 
@@ -304,9 +303,6 @@ class BadgerAccordion {
                 // Getting ID of panel that we want to close
                 const header        = this.headers[headerIndex];
                 const panelToClose  = this.panels[headerIndex];
-                // let panelId      = header.getAttribute('aria-controls'),
-                //     panelToClose = document.getElementById(panelId);
-                    // refactor this by accessing panle by node list number
 
                 // Closeing panel
                 panelToClose.classList.add(this.settings.hidenClass);
@@ -318,8 +314,6 @@ class BadgerAccordion {
                 // Getting ID of panel that we want to open
                 const header      = this.headers[headerIndex];
                 const panelToOpen = this.panels[headerIndex];
-                // let panelId       = header.getAttribute('aria-controls'),
-                //     panelToOpen   = document.getElementById(panelId);
 
                 // Closeing panel
                 panelToOpen.classList.remove(this.settings.hidenClass);
