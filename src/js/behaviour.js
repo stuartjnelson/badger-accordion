@@ -9,4 +9,5 @@ const accordion = new BadgerAccordion('.js-badger-accordion');
 
 // API Examples
 // accordion.open( document.querySelector('[data-badger-accordion-header-id="1"]') );
-console.log(accordion.getState( [0] ));
+accordion.close( 1 );
+// console.log(accordion.getState( [0] ));

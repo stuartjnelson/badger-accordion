@@ -71,6 +71,7 @@ class BadgerAccordion {
      *  Initalises the accordion
      */
      init() {
+         debugger;
          // Sets up ID, aria attrs & data-attrs
          this.setupAttributes();
 
@@ -165,6 +166,7 @@ class BadgerAccordion {
 
         // Checking that the thing that was clicked on was the accordions header
         if (targetHeader.classList.contains(targetHeaderClass)) {
+            debugger;
             // Updating states
             this.setState(headerIndex);
 
@@ -198,7 +200,6 @@ class BadgerAccordion {
         // isnt supported in IE11
         states.filter((state, index) => {
             if (index == targetHeaderId) {
-                // TODO - is this a `const` or `let`?
                 const newState = this.toggleState(state.state);
                 return (state.state = newState);
             }
@@ -224,16 +225,16 @@ class BadgerAccordion {
             if(state.state === 'open') {
                 let header = this.headers[index];
 
-                this.open(header);
+                this.open(index);
             }
         });
 
         // Filter through all closed headers and closes them
         this.states.filter( (state, index) => {
             if(state.state === 'closed') {
-                let header = this.headers[index];
+                const header = this.headers[index];
 
-                this.close(header);
+                this.close(index);
             }
         });
 
@@ -249,8 +250,8 @@ class BadgerAccordion {
      *  Closes a specific panel
      *  @param {object} header - The header node you want to open
      */
-    open(header) {
-        this.togglePanel('open', header);
+    open(headerIndex) {
+        this.togglePanel('open', headerIndex);
     }
 
 
@@ -260,8 +261,9 @@ class BadgerAccordion {
      *  Closes a specific panel
      *  @param {object} header - The header node you want to close
      */
-    close(header) {
-        this.togglePanel('closed', header);
+    close(headerIndex) {
+        console.log(headerIndex + ' I am close method');
+        this.togglePanel('closed', headerIndex);
     }
 
 
@@ -296,12 +298,15 @@ class BadgerAccordion {
      *  @param {string} animationAction - The animation you want to invoke
      *  @param {object} header          - The header node you want to animate
      */
-    togglePanel(animationAction, header) {
-        if(animationAction && header) {
+    togglePanel(animationAction, headerIndex) {
+        if(animationAction && headerIndex) {
             if(animationAction === 'closed') {
                 // Getting ID of panel that we want to close
-                let panelId      = header.getAttribute('aria-controls'),
-                    panelToClose = document.getElementById(panelId);
+                const header        = this.headers[headerIndex];
+                const panelToClose  = this.panels[headerIndex];
+                // let panelId      = header.getAttribute('aria-controls'),
+                //     panelToClose = document.getElementById(panelId);
+                    // refactor this by accessing panle by node list number
 
                 // Closeing panel
                 panelToClose.classList.add(this.settings.hidenClass);
@@ -311,10 +316,12 @@ class BadgerAccordion {
             } else if(animationAction === 'open') {
                 // 1.
                 // Getting ID of panel that we want to open
-                let panelId     = header.getAttribute('aria-controls'),
-                    panelToOpen = document.getElementById(panelId);
+                const header      = this.headers[headerIndex];
+                const panelToOpen = this.panels[headerIndex];
+                // let panelId       = header.getAttribute('aria-controls'),
+                //     panelToOpen   = document.getElementById(panelId);
 
-                // Opening panel
+                // Closeing panel
                 panelToOpen.classList.remove(this.settings.hidenClass);
 
                 // Set aria attrs
