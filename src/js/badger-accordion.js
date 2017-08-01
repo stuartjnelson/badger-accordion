@@ -293,7 +293,7 @@ class BadgerAccordion {
      *  @param {object} header          - The header node you want to animate
      */
     togglePanel(animationAction, headerIndex) {
-        if(animationAction && headerIndex) {
+        if(animationAction !== undefined && headerIndex !== undefined) {
             if(animationAction === 'closed') {
                 // Getting ID of panel that we want to close
                 const header        = this.headers[headerIndex];
