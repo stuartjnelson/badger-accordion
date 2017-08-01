@@ -1,1 +1,887 @@
-!function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var n={};e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=0)}([function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var i=n(1);r(i);new(r(n(3)).default)(".js-badger-accordion").close(0)},function(t,e,n){"use strict";(function(t){Object.defineProperty(e,"__esModule",{value:!0}),Array.from||(Array.from=function(){var t=Object.prototype.toString,e=function(e){return"function"==typeof e||"[object Function]"===t.call(e)},n=function(t){var e=Number(t);return isNaN(e)?0:0!==e&&isFinite(e)?(e>0?1:-1)*Math.floor(Math.abs(e)):e},r=Math.pow(2,53)-1,i=function(t){var e=n(t);return Math.min(Math.max(e,0),r)};return function(t){var n=this,r=Object(t);if(null==t)throw new TypeError("Array.from requires an array-like object - not null or undefined");var a,s=arguments.length>1?arguments[1]:void 0;if(void 0!==s){if(!e(s))throw new TypeError("Array.from: when provided, the second argument must be a function");arguments.length>2&&(a=arguments[2])}for(var o,l=i(r.length),u=e(n)?Object(new n(l)):new Array(l),c=0;c<l;)o=r[c],u[c]=s?void 0===a?s(o,c):s.call(a,o,c):o,c+=1;return u.length=l,u}}()),e.default=t}).call(e,n(2)(t))},function(t,e){t.exports=function(t){return t.webpackPolyfill||(t.deprecate=function(){},t.paths=[],t.children||(t.children=[]),Object.defineProperty(t,"loaded",{enumerable:!0,get:function(){return t.l}}),Object.defineProperty(t,"id",{enumerable:!0,get:function(){return t.i}}),t.webpackPolyfill=1),t}},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var i=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(t[r]=n[r])}return t},a=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}(),s=n(4),o=function(t){return t&&t.__esModule?t:{default:t}}(s),l=o.default,u=function(){function t(e,n){r(this,t);var a=document.querySelector(e);if(null!=a){var s={headerClass:".js-badger-accordion-header",panelClass:".js-badger-accordion-panel",panelInnerClass:".js-badger-accordion-panel-inner",hidenClass:"is-hidden",initalisedClass:"badger-accordion--initalised",headerDataAttr:"data-badger-accordion-header-id",openMultiplePanels:!1,openHeadersOnLoad:[]};this.settings=i({},s,n),this.container=a,this.headers=Array.from(this.container.querySelectorAll(this.settings.headerClass)),this.panels=Array.from(this.container.querySelectorAll(this.settings.panelClass)),this.toggleEl=void 0!==this.settings.toggleEl?Array.from(this.container.querySelectorAll(this.settings.toggleEl)):this.headers,this.states=[].map.call(this.headers,function(t){return{state:"closed"}}),this.ids=[].map.call(this.headers,function(t){return{id:l()}}),this.toggling=!1,this.container?this.init():console.log("Something is wrong with you markup...")}}return a(t,[{key:"init",value:function(){this.setupAttributes(),this._initalState(),this.setPanelHeight(),this.insertDataAttrs(),this._addListeners(),this._finishInitalisation()}},{key:"_initalState",value:function(){var t=this.settings.openHeadersOnLoad;t.length&&this.openHeadersOnLoad(t),this.renderDom()}},{key:"insertDataAttrs",value:function(){var t=this;this.headers.forEach(function(e,n){e.setAttribute(t.settings.headerDataAttr,n)})}},{key:"_finishInitalisation",value:function(){this.container.classList.add(this.settings.initalisedClass)}},{key:"_addListeners",value:function(){var t=this;this.headers.forEach(function(e,n){e.addEventListener("click",function(r){t.handleClick(e,n)})})}},{key:"handleClick",value:function(t,e){var n=this.settings.headerClass.substr(1);t.classList.contains(n)&&(this.setState(e),this.open(1))}},{key:"setState",value:function(t){var e=this,n=this.getState();this.settings.openMultiplePanels||n.filter(function(e,n){n!=t&&(e.state="closed")}),n.filter(function(n,r){if(r==t){var i=e.toggleState(n.state);return n.state=i}})}},{key:"renderDom",value:function(){var t=this;this.getState();this.setupAttributes(),this.states.filter(function(e,n){if("open"===e.state){t.headers[n];t.open(n)}}),this.states.filter(function(e,n){if("closed"===e.state){t.headers[n];t.close(n)}}),this.toggling=!1}},{key:"open",value:function(t){this.togglePanel("open",t)}},{key:"close",value:function(t){console.log(t+" I am close method"),this.togglePanel("closed",t)}},{key:"openAll",value:function(){var t=this;this.headers.forEach(function(e){t.togglePanel("open",e)})}},{key:"closeAll",value:function(){var t=this;this.headers.forEach(function(e){t.togglePanel("closed",e)})}},{key:"togglePanel",value:function(t,e){if(t&&e)if("closed"===t){var n=this.headers[e],r=this.panels[e];r.classList.add(this.settings.hidenClass),n.setAttribute("aria-expanded",!1)}else if("open"===t){var i=this.headers[e],a=this.panels[e];a.classList.remove(this.settings.hidenClass),i.setAttribute("aria-expanded",!0)}}},{key:"getState",value:function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[];if(e.length&&Array.isArray(e)){return e.map(function(e){return t.states[e]})}return this.states}},{key:"toggleState",value:function(t){if(void 0!==t)return"closed"===t?"open":"closed"}},{key:"getHeaderId",value:function(t){if(void 0!==t)return t.getAttribute(this.settings.headerDataAttr)}},{key:"openHeaders",value:function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[];if(e.length&&Array.isArray(e)){e.filter(function(t){return void 0!=t});e.forEach(function(e){return t.states[e].state="open"})}}},{key:"setPanelHeight",value:function(){var t=this;this.panels.forEach(function(e){var n=e.querySelector(t.settings.panelInnerClass),r=n.offsetHeight;return e.style.maxHeight=r+"px"})}},{key:"setupHeaders",value:function(){var t=this;this.headers.forEach(function(e,n){e.setAttribute("id","badger-accordion-header-"+t.ids[n].id),e.setAttribute("aria-controls","badger-accordion-panel-"+t.ids[n].id)})}},{key:"setupPanels",value:function(){var t=this;this.panels.forEach(function(e,n){e.setAttribute("id","badger-accordion-panel-"+t.ids[n].id),e.setAttribute("aria-labeledby","badger-accordion-header-"+t.ids[n].id)})}},{key:"setupAttributes",value:function(){this.setupHeaders(),this.setupPanels(),this.insertDataAttrs()}}]),t}();e.default=u},function(t,e,n){function r(t,e,n){var r=e&&n||0;"string"==typeof t&&(e="binary"==t?new Array(16):null,t=null),t=t||{};var s=t.random||(t.rng||i)();if(s[6]=15&s[6]|64,s[8]=63&s[8]|128,e)for(var o=0;o<16;++o)e[r+o]=s[o];return e||a(s)}var i=n(5),a=n(7);t.exports=r},function(t,e,n){(function(e){var n,r=e.crypto||e.msCrypto;if(r&&r.getRandomValues){var i=new Uint8Array(16);n=function(){return r.getRandomValues(i),i}}if(!n){var a=new Array(16);n=function(){for(var t,e=0;e<16;e++)0==(3&e)&&(t=4294967296*Math.random()),a[e]=t>>>((3&e)<<3)&255;return a}}t.exports=n}).call(e,n(6))},function(t,e){var n;n=function(){return this}();try{n=n||Function("return this")()||(0,eval)("this")}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e){function n(t,e){var n=e||0,i=r;return i[t[n++]]+i[t[n++]]+i[t[n++]]+i[t[n++]]+"-"+i[t[n++]]+i[t[n++]]+"-"+i[t[n++]]+i[t[n++]]+"-"+i[t[n++]]+i[t[n++]]+"-"+i[t[n++]]+i[t[n++]]+i[t[n++]]+i[t[n++]]+i[t[n++]]+i[t[n++]]}for(var r=[],i=0;i<256;++i)r[i]=(i+256).toString(16).substr(1);t.exports=n}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// Importing accordion
+
+var _arrayFromPollyfill = __webpack_require__(1);
+
+var _arrayFromPollyfill2 = _interopRequireDefault(_arrayFromPollyfill);
+
+var _badgerAccordion = __webpack_require__(3);
+
+var _badgerAccordion2 = _interopRequireDefault(_badgerAccordion);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Creating a new instance of the accordion
+var accordion = new _badgerAccordion2.default('.js-badger-accordion');
+
+// API Examples
+// accordion.open( document.querySelector('[data-badger-accordion-header-id="1"]') );
+// accordion.close( 0 );
+// console.log(accordion.getState( [0] ));
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// Production steps of ECMA-262, Edition 6, 22.1.2.1
+if (!Array.from) {
+  Array.from = function () {
+    var toStr = Object.prototype.toString;
+    var isCallable = function isCallable(fn) {
+      return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
+    };
+    var toInteger = function toInteger(value) {
+      var number = Number(value);
+      if (isNaN(number)) {
+        return 0;
+      }
+      if (number === 0 || !isFinite(number)) {
+        return number;
+      }
+      return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+    };
+    var maxSafeInteger = Math.pow(2, 53) - 1;
+    var toLength = function toLength(value) {
+      var len = toInteger(value);
+      return Math.min(Math.max(len, 0), maxSafeInteger);
+    };
+
+    // The length property of the from method is 1.
+    return function from(arrayLike /*, mapFn, thisArg */) {
+      // 1. Let C be the this value.
+      var C = this;
+
+      // 2. Let items be ToObject(arrayLike).
+      var items = Object(arrayLike);
+
+      // 3. ReturnIfAbrupt(items).
+      if (arrayLike == null) {
+        throw new TypeError('Array.from requires an array-like object - not null or undefined');
+      }
+
+      // 4. If mapfn is undefined, then let mapping be false.
+      var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
+      var T;
+      if (typeof mapFn !== 'undefined') {
+        // 5. else
+        // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+        if (!isCallable(mapFn)) {
+          throw new TypeError('Array.from: when provided, the second argument must be a function');
+        }
+
+        // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
+        if (arguments.length > 2) {
+          T = arguments[2];
+        }
+      }
+
+      // 10. Let lenValue be Get(items, "length").
+      // 11. Let len be ToLength(lenValue).
+      var len = toLength(items.length);
+
+      // 13. If IsConstructor(C) is true, then
+      // 13. a. Let A be the result of calling the [[Construct]] internal method
+      // of C with an argument list containing the single item len.
+      // 14. a. Else, Let A be ArrayCreate(len).
+      var A = isCallable(C) ? Object(new C(len)) : new Array(len);
+
+      // 16. Let k be 0.
+      var k = 0;
+      // 17. Repeat, while k < len… (also steps a - h)
+      var kValue;
+      while (k < len) {
+        kValue = items[k];
+        if (mapFn) {
+          A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
+        } else {
+          A[k] = kValue;
+        }
+        k += 1;
+      }
+      // 18. Let putStatus be Put(A, "length", len, true).
+      A.length = len;
+      // 20. Return A.
+      return A;
+    };
+  }();
+}
+
+exports.default = module;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      *  ACCORDION
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * A lightwight vanilla JS accordion with an exstensible API
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+var _v = __webpack_require__(4);
+
+var _v2 = _interopRequireDefault(_v);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var uuidV4 = _v2.default;
+
+/**
+ * CONSTRUCTOR
+ * initialises the object
+ */
+
+var BadgerAccordion = function () {
+    function BadgerAccordion(el, options) {
+        _classCallCheck(this, BadgerAccordion);
+
+        var container = document.querySelector(el);
+
+        // If el is not defined
+        if (container == null) {
+            return;
+        }
+
+        var defaults = {
+            headerClass: '.js-badger-accordion-header',
+            panelClass: '.js-badger-accordion-panel',
+            panelInnerClass: '.js-badger-accordion-panel-inner',
+            hidenClass: 'is-hidden',
+            initalisedClass: 'badger-accordion--initalised',
+            headerDataAttr: 'data-badger-accordion-header-id',
+            openMultiplePanels: false,
+            openHeadersOnLoad: []
+            // toggleEl:            // If you want to use a different element to trigger the accordion
+        };
+
+        // Options
+        this.settings = _extends({}, defaults, options);
+
+        // Setting getting elements
+        this.container = container;
+        this.headers = Array.from(this.container.querySelectorAll(this.settings.headerClass));
+        this.panels = Array.from(this.container.querySelectorAll(this.settings.panelClass));
+        this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers;
+
+        // This is for managing state of the accordion. It by default sets
+        // all accordion panels to be closed
+        this.states = [].map.call(this.headers, function (header) {
+            return { state: 'closed' };
+        });
+
+        this.ids = [].map.call(this.headers, function (header) {
+            return { id: uuidV4() };
+        });
+
+        // This is to ensure that once an opne/close event has been fired
+        // another cannot start until the first event has finished.
+        // @TODO - get this working...
+        this.toggling = false;
+
+        // Initiating the accordion
+        if (this.container) {
+            this.init();
+        } else {
+            console.log('Something is wrong with you markup...');
+        }
+    }
+
+    /**
+     *  INIT
+     *
+     *  Initalises the accordion
+     */
+
+
+    _createClass(BadgerAccordion, [{
+        key: 'init',
+        value: function init() {
+            // Sets up ID, aria attrs & data-attrs
+            this.setupAttributes();
+
+            // Setting up the inital view of the accordion
+            this._initalState();
+
+            // Setting the height of each panel
+            this.setPanelHeight();
+
+            // Inserting data-attribute onto each `header`
+            this.insertDataAttrs();
+
+            // Adding listeners to headers
+            this._addListeners();
+
+            //
+            this._finishInitalisation();
+        }
+
+        /**
+         *  INSERT DATA ATTRS
+         *
+         *  Updates state object for inital loading of the accordion
+         */
+
+    }, {
+        key: '_initalState',
+        value: function _initalState() {
+            // Sets state object as per `this.settings.openHeadersOnLoad`
+            var headersToOpen = this.settings.openHeadersOnLoad;
+
+            if (headersToOpen.length) {
+                this.openHeadersOnLoad(headersToOpen);
+            }
+
+            // Render DOM as per the updates `this.states` object
+            this.renderDom();
+        }
+
+        /**
+         *  INSERT DATA ATTRS
+         *
+         *  Adds `headerDataAttr` to all headers
+         */
+
+    }, {
+        key: 'insertDataAttrs',
+        value: function insertDataAttrs() {
+            var _this2 = this;
+
+            this.headers.forEach(function (header, index) {
+                header.setAttribute(_this2.settings.headerDataAttr, index);
+            });
+        }
+
+        /**
+         *  FINISH INITALISATION
+         *
+         *  Adds in `initalisedClass` to accordion
+         */
+
+    }, {
+        key: '_finishInitalisation',
+        value: function _finishInitalisation() {
+            this.container.classList.add(this.settings.initalisedClass);
+        }
+
+        /**
+         *  ADD LISTENERS
+         *
+         *  Adds click event to each header
+         */
+
+    }, {
+        key: '_addListeners',
+        value: function _addListeners() {
+            // So we can reference the badger-accordion object inside out eventListener
+            var _this = this;
+
+            // Adding click event to accordion
+            this.headers.forEach(function (header, index) {
+                header.addEventListener('click', function (event) {
+                    // Getting the target of the click
+                    // const clickedEl = event.target;
+
+                    _this.handleClick(header, index);
+                });
+            });
+        }
+
+        /**
+         *  HANDLE CLICK
+         *
+         *  //TODO - Add comment
+         *  @param {object} targetHeader - The header node you want to open
+         */
+
+    }, {
+        key: 'handleClick',
+        value: function handleClick(targetHeader, headerIndex) {
+            // Removing current `.` from `this.settings.headerClass` class so it can
+            // be checked against the `targetHeader` classList
+            var targetHeaderClass = this.settings.headerClass.substr(1);
+
+            // Checking that the thing that was clicked on was the accordions header
+            if (targetHeader.classList.contains(targetHeaderClass)) {
+
+                // Updating states
+                this.setState(headerIndex);
+
+                // Render DOM as per the updates `this.states` object
+                this.renderDom();
+            }
+        }
+
+        /**
+         *  SET STATES
+         *
+         *  Sets the state for all headers. The 'target header' will have its state toggeled
+         *  @param {object} targetHeaderId - The header node you want to open
+         */
+
+    }, {
+        key: 'setState',
+        value: function setState(targetHeaderId) {
+            var _this3 = this;
+
+            var states = this.getState();
+
+            // TODO - improve this comment
+            // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
+            // be can open at once. This will the state on all but the target header to 'closed'
+            if (!this.settings.openMultiplePanels) {
+                states.filter(function (state, index) {
+                    if (index != targetHeaderId) {
+                        state.state = 'closed';
+                    }
+                });
+            }
+
+            // Toggles the state value of the target header. This was `array.find` but `find`
+            // isnt supported in IE11
+            states.filter(function (state, index) {
+                if (index == targetHeaderId) {
+                    var newState = _this3.toggleState(state.state);
+                    return state.state = newState;
+                }
+            });
+        }
+
+        /**
+         *  RENDER DOM
+         *
+         *  Renders the accordion in the DOM using the `this.states` object
+         */
+
+    }, {
+        key: 'renderDom',
+        value: function renderDom() {
+            var _this4 = this;
+
+            var states = this.getState();
+
+            // Sets up ID, aria attrs & data-attrs
+            // this.setupAttributes();
+
+
+            // Filter through all open headers and open them
+            this.states.filter(function (state, index) {
+                if (state.state === 'open') {
+                    var header = _this4.headers[index];
+
+                    _this4.open(index);
+                }
+            });
+
+            // Filter through all closed headers and closes them
+            this.states.filter(function (state, index) {
+                if (state.state === 'closed') {
+                    var header = _this4.headers[index];
+
+                    _this4.close(index);
+                }
+            });
+
+            // Resetting toggling so a new event can be fired
+            this.toggling = false;
+        }
+
+        /**
+         *  OPEN
+         *
+         *  Closes a specific panel
+         *  @param {object} header - The header node you want to open
+         */
+
+    }, {
+        key: 'open',
+        value: function open(headerIndex) {
+            this.togglePanel('open', headerIndex);
+        }
+
+        /**
+         *  CLOSE
+         *
+         *  Closes a specific panel
+         *  @param {object} header - The header node you want to close
+         */
+
+    }, {
+        key: 'close',
+        value: function close(headerIndex) {
+            console.log(headerIndex + ' I am close method');
+            this.togglePanel('closed', headerIndex);
+        }
+
+        /**
+         *  OPEN ALL
+         *
+         *  Opens all panels
+         */
+
+    }, {
+        key: 'openAll',
+        value: function openAll() {
+            var _this5 = this;
+
+            this.headers.forEach(function (header) {
+                _this5.togglePanel('open', header);
+            });
+        }
+
+        /**
+         *  CLOSE ALL
+         *
+         *  Closes all panels
+         */
+
+    }, {
+        key: 'closeAll',
+        value: function closeAll() {
+            var _this6 = this;
+
+            this.headers.forEach(function (header) {
+                _this6.togglePanel('closed', header);
+            });
+        }
+
+        /**
+         *  GET STATE
+         *
+         *  Getting state of headers. By default gets state of all headers
+         *  @param {string} animationAction - The animation you want to invoke
+         *  @param {object} header          - The header node you want to animate
+         */
+
+    }, {
+        key: 'togglePanel',
+        value: function togglePanel(animationAction, headerIndex) {
+            if (animationAction !== undefined && headerIndex !== undefined) {
+                if (animationAction === 'closed') {
+                    // Getting ID of panel that we want to close
+                    var header = this.headers[headerIndex];
+                    var panelToClose = this.panels[headerIndex];
+
+                    // Closeing panel
+                    panelToClose.classList.add(this.settings.hidenClass);
+
+                    // Set aria attrs
+                    header.setAttribute('aria-expanded', false);
+                } else if (animationAction === 'open') {
+                    // 1.
+                    // Getting ID of panel that we want to open
+                    var _header = this.headers[headerIndex];
+                    var panelToOpen = this.panels[headerIndex];
+
+                    // Closeing panel
+                    panelToOpen.classList.remove(this.settings.hidenClass);
+
+                    // Set aria attrs
+                    _header.setAttribute('aria-expanded', true);
+                }
+            }
+        }
+
+        // @TODO - is this needed anymore?
+        // checkState(headerId) {
+        //     let state = this.states[headerId].state;
+        //
+        //     if(state === 'closed') {
+        //         return state;
+        //     } else if(state === 'open') {
+        //         return state;
+        //     }
+        // }
+
+
+        /**
+         *  GET STATE
+         *
+         *  Getting state of headers. By default gets state of all headers
+         *  @param {array} headerIds - Id/'s of the headers you want to check
+         */
+
+    }, {
+        key: 'getState',
+        value: function getState() {
+            var _this7 = this;
+
+            var headerIds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+            if (headerIds.length && Array.isArray(headerIds)) {
+                var states = headerIds.map(function (header) {
+                    return _this7.states[header];
+                });
+
+                return states;
+            } else {
+                return this.states;
+            }
+        }
+
+        /**
+         *  TOGGLE STATE
+         *
+         *  Toggling the state value
+         *  @param {string} currentState - Current state value for a header
+         */
+
+    }, {
+        key: 'toggleState',
+        value: function toggleState(currentState) {
+            if (currentState !== undefined) {
+                return currentState === 'closed' ? 'open' : 'closed';
+            }
+        }
+
+        /**
+         *  GET HEADER ID
+         *
+         *  Getting an ID for a header
+         *  @param {array} header - Array of ID's for the headers to be open
+         */
+
+    }, {
+        key: 'getHeaderId',
+        value: function getHeaderId(header) {
+            if (header !== undefined) {
+                return header.getAttribute(this.settings.headerDataAttr);
+            }
+        }
+
+        /**
+         *  HEADERS TO OPEN
+         *
+         *  Setting which headers should be open when accordion is initalised
+         *  @param {array} headersToOpen - Array of ID's for the headers to be open
+         */
+
+    }, {
+        key: 'openHeaders',
+        value: function openHeaders() {
+            var _this8 = this;
+
+            var headersToOpen = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+            if (headersToOpen.length && Array.isArray(headersToOpen)) {
+                var headers = headersToOpen.filter(function (header) {
+                    return header != undefined;
+                });
+
+                headersToOpen.forEach(function (header) {
+                    return _this8.states[header].state = 'open';
+                });
+            }
+        }
+
+        /**
+         *  SET PANEL HEIGHT
+         *
+         *  Setting height for panels using pannels inner element
+         */
+
+    }, {
+        key: 'setPanelHeight',
+        value: function setPanelHeight() {
+            var _this9 = this;
+
+            // [].forEach.(this.panels, (panel) => {
+            this.panels.forEach(function (panel) {
+                var panelInner = panel.querySelector(_this9.settings.panelInnerClass);
+
+                var activeHeight = panelInner.offsetHeight;
+
+                return panel.style.maxHeight = activeHeight + 'px';
+            });
+        }
+    }, {
+        key: 'setupHeaders',
+        value: function setupHeaders() {
+            var _this10 = this;
+
+            this.headers.forEach(function (header, index) {
+                header.setAttribute('id', 'badger-accordion-header-' + _this10.ids[index].id);
+                header.setAttribute('aria-controls', 'badger-accordion-panel-' + _this10.ids[index].id);
+            });
+        }
+    }, {
+        key: 'setupPanels',
+        value: function setupPanels() {
+            var _this11 = this;
+
+            this.panels.forEach(function (panel, index) {
+                panel.setAttribute('id', 'badger-accordion-panel-' + _this11.ids[index].id);
+                panel.setAttribute('aria-labeledby', 'badger-accordion-header-' + _this11.ids[index].id);
+            });
+        }
+    }, {
+        key: 'setupAttributes',
+        value: function setupAttributes() {
+            // Adding ID & aria-controls
+            this.setupHeaders();
+
+            // Adding ID & aria-labeledby
+            this.setupPanels();
+
+            // Inserting data-attribute onto each `header`
+            this.insertDataAttrs();
+        }
+    }]);
+
+    return BadgerAccordion;
+}();
+
+// Export
+
+
+exports.default = BadgerAccordion;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var rng = __webpack_require__(5);
+var bytesToUuid = __webpack_require__(7);
+
+function v4(options, buf, offset) {
+  var i = buf && offset || 0;
+
+  if (typeof(options) == 'string') {
+    buf = options == 'binary' ? new Array(16) : null;
+    options = null;
+  }
+  options = options || {};
+
+  var rnds = options.random || (options.rng || rng)();
+
+  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+  // Copy bytes to buffer, if provided
+  if (buf) {
+    for (var ii = 0; ii < 16; ++ii) {
+      buf[i + ii] = rnds[ii];
+    }
+  }
+
+  return buf || bytesToUuid(rnds);
+}
+
+module.exports = v4;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
+// browser this is a little complicated due to unknown quality of Math.random()
+// and inconsistent support for the `crypto` API.  We do the best we can via
+// feature-detection
+var rng;
+
+var crypto = global.crypto || global.msCrypto; // for IE 11
+if (crypto && crypto.getRandomValues) {
+  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
+  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
+  rng = function whatwgRNG() {
+    crypto.getRandomValues(rnds8);
+    return rnds8;
+  };
+}
+
+if (!rng) {
+  // Math.random()-based (RNG)
+  //
+  // If all else fails, use Math.random().  It's fast, but is of unspecified
+  // quality.
+  var rnds = new Array(16);
+  rng = function() {
+    for (var i = 0, r; i < 16; i++) {
+      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
+      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+    }
+
+    return rnds;
+  };
+}
+
+module.exports = rng;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+var byteToHex = [];
+for (var i = 0; i < 256; ++i) {
+  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+}
+
+function bytesToUuid(buf, offset) {
+  var i = offset || 0;
+  var bth = byteToHex;
+  return bth[buf[i++]] + bth[buf[i++]] +
+          bth[buf[i++]] + bth[buf[i++]] + '-' +
+          bth[buf[i++]] + bth[buf[i++]] + '-' +
+          bth[buf[i++]] + bth[buf[i++]] + '-' +
+          bth[buf[i++]] + bth[buf[i++]] + '-' +
+          bth[buf[i++]] + bth[buf[i++]] +
+          bth[buf[i++]] + bth[buf[i++]] +
+          bth[buf[i++]] + bth[buf[i++]];
+}
+
+module.exports = bytesToUuid;
+
+
+/***/ })
+/******/ ]);
