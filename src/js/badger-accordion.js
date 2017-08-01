@@ -165,12 +165,12 @@ class BadgerAccordion {
 
         // Checking that the thing that was clicked on was the accordions header
         if (targetHeader.classList.contains(targetHeaderClass)) {
+
             // Updating states
             this.setState(headerIndex);
 
             // Render DOM as per the updates `this.states` object
-            // this.renderDom();
-            this.open(1);
+            this.renderDom();
         }
     }
 
@@ -213,11 +213,6 @@ class BadgerAccordion {
      */
     renderDom() {
         const states = this.getState();
-
-
-        // Sets up ID, aria attrs & data-attrs
-        this.setupAttributes();
-
 
         // Filter through all open headers and open them
         this.states.filter( (state, index) => {
