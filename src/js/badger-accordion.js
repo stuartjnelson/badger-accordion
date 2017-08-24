@@ -74,16 +74,16 @@ class BadgerAccordion {
      */
     init() {
         // Sets up ID, aria attrs & data-attrs
-        this.setupAttributes();
+        this._setupAttributes();
 
         // Setting up the inital view of the accordion
         this._initalState();
 
         // Setting the height of each panel
-        this.setPanelHeight();
+        this._setPanelHeight();
 
         // Inserting data-attribute onto each `header`
-        this.insertDataAttrs();
+        this._insertDataAttrs();
 
         // Adding listeners to headers
         this._addListeners();
@@ -103,11 +103,11 @@ class BadgerAccordion {
         const headersToOpen = this.settings.openHeadersOnLoad;
 
         if (headersToOpen.length) {
-            this.openHeadersOnLoad(headersToOpen);
+            this._openHeadersOnLoad(headersToOpen);
         }
 
         // Render DOM as per the updates `this.states` object
-        this.renderDom();
+        this._renderDom();
     }
 
 
@@ -116,7 +116,7 @@ class BadgerAccordion {
      *
      *  Adds `headerDataAttr` to all headers
      */
-    insertDataAttrs() {
+    _insertDataAttrs() {
         this.headers.forEach( (header, index) => {
             header.setAttribute(this.settings.headerDataAttr, index);
         });
@@ -213,7 +213,7 @@ class BadgerAccordion {
      *
      *  Renders the accordion in the DOM using the `this.states` object
      */
-    renderDom() {
+    _renderDom() {
         const states = this.getState();
 
         // Filter through all open headers and open them
@@ -233,10 +233,6 @@ class BadgerAccordion {
                 this.close(index);
             }
         });
-
-
-        // Resetting toggling so a new event can be fired
-        this.toggling = false;
     }
 
 
@@ -365,18 +361,6 @@ class BadgerAccordion {
     }
 
 
-    /**
-     *  GET HEADER ID
-     *
-     *  Getting an ID for a header
-     *  @param {array} header - Array of ID's for the headers to be open
-     */
-    getHeaderId(header) {
-        if(header !== undefined) {
-            return header.getAttribute(this.settings.headerDataAttr);
-        }
-    }
-
 
     /**
      *  HEADERS TO OPEN
@@ -384,7 +368,7 @@ class BadgerAccordion {
      *  Setting which headers should be open when accordion is initalised
      *  @param {array} headersToOpen - Array of ID's for the headers to be open
      */
-    openHeaders(headersToOpen = []) {
+    _openHeadersOnLoad(headersToOpen = []) {
         if (headersToOpen.length && Array.isArray(headersToOpen)) {
             let headers = headersToOpen.filter(header => header != undefined);
 
@@ -400,7 +384,7 @@ class BadgerAccordion {
      *
      *  Setting height for panels using pannels inner element
      */
-    setPanelHeight() {
+    _setPanelHeight() {
         // [].forEach.(this.panels, (panel) => {
         this.panels.forEach(panel => {
             const panelInner = panel.querySelector(this.settings.panelInnerClass);
@@ -412,7 +396,7 @@ class BadgerAccordion {
     }
 
 
-    setupHeaders() {
+    _setupHeaders() {
         this.headers.forEach( (header, index) => {
             header.setAttribute('id', `badger-accordion-header-${this.ids[index].id}`);
             header.setAttribute('aria-controls', `badger-accordion-panel-${this.ids[index].id}`);
@@ -422,7 +406,7 @@ class BadgerAccordion {
 
 
 
-    setupPanels() {
+    _setupPanels() {
         this.panels.forEach( (panel, index) => {
             panel.setAttribute('id', `badger-accordion-panel-${this.ids[index].id}`);
             panel.setAttribute('aria-labeledby', `badger-accordion-header-${this.ids[index].id}`);
@@ -430,15 +414,15 @@ class BadgerAccordion {
     }
 
 
-    setupAttributes() {
+    _setupAttributes() {
         // Adding ID & aria-controls
-        this.setupHeaders();
+        this._setupHeaders();
 
         // Adding ID & aria-labeledby
-        this.setupPanels();
+        this._setupPanels();
 
         // Inserting data-attribute onto each `header`
-        this.insertDataAttrs();
+        this._insertDataAttrs();
     }
 }
 

@@ -60,11 +60,39 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72,7 +100,7 @@
 
 // Importing accordion
 
-var _arrayFromPollyfill = __webpack_require__(1);
+var _arrayFromPollyfill = __webpack_require__(2);
 
 var _arrayFromPollyfill2 = _interopRequireDefault(_arrayFromPollyfill);
 
@@ -91,7 +119,7 @@ var accordion = new _badgerAccordion2.default('.js-badger-accordion');
 // console.log(accordion.getState( [0] ));
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -184,35 +212,7 @@ if (!Array.from) {
 }
 
 exports.default = module;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)(module)))
 
 /***/ }),
 /* 3 */
@@ -237,6 +237,10 @@ var _v = __webpack_require__(4);
 
 var _v2 = _interopRequireDefault(_v);
 
+var _transitionEnd = __webpack_require__(8);
+
+var _transitionEnd2 = _interopRequireDefault(_transitionEnd);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -247,7 +251,6 @@ var uuidV4 = _v2.default;
  * CONSTRUCTOR
  * initialises the object
  */
-
 var BadgerAccordion = function () {
     function BadgerAccordion(el, options) {
         _classCallCheck(this, BadgerAccordion);
@@ -316,16 +319,16 @@ var BadgerAccordion = function () {
         key: 'init',
         value: function init() {
             // Sets up ID, aria attrs & data-attrs
-            this.setupAttributes();
+            this._setupAttributes();
 
             // Setting up the inital view of the accordion
             this._initalState();
 
             // Setting the height of each panel
-            this.setPanelHeight();
+            this._setPanelHeight();
 
             // Inserting data-attribute onto each `header`
-            this.insertDataAttrs();
+            this._insertDataAttrs();
 
             // Adding listeners to headers
             this._addListeners();
@@ -347,11 +350,11 @@ var BadgerAccordion = function () {
             var headersToOpen = this.settings.openHeadersOnLoad;
 
             if (headersToOpen.length) {
-                this.openHeadersOnLoad(headersToOpen);
+                this._openHeadersOnLoad(headersToOpen);
             }
 
             // Render DOM as per the updates `this.states` object
-            this.renderDom();
+            this._renderDom();
         }
 
         /**
@@ -361,8 +364,8 @@ var BadgerAccordion = function () {
          */
 
     }, {
-        key: 'insertDataAttrs',
-        value: function insertDataAttrs() {
+        key: '_insertDataAttrs',
+        value: function _insertDataAttrs() {
             var _this2 = this;
 
             this.headers.forEach(function (header, index) {
@@ -420,13 +423,14 @@ var BadgerAccordion = function () {
             var targetHeaderClass = this.settings.headerClass.substr(1);
 
             // Checking that the thing that was clicked on was the accordions header
-            if (targetHeader.classList.contains(targetHeaderClass)) {
+            if (targetHeader.classList.contains(targetHeaderClass) && this.toggling === false) {
+                this.toggling = true;
 
                 // Updating states
                 this.setState(headerIndex);
 
                 // Render DOM as per the updates `this.states` object
-                this.renderDom();
+                this._renderDom();
             }
         }
 
@@ -472,8 +476,8 @@ var BadgerAccordion = function () {
          */
 
     }, {
-        key: 'renderDom',
-        value: function renderDom() {
+        key: '_renderDom',
+        value: function _renderDom() {
             var _this4 = this;
 
             var states = this.getState();
@@ -495,9 +499,6 @@ var BadgerAccordion = function () {
                     _this4.close(index);
                 }
             });
-
-            // Resetting toggling so a new event can be fired
-            this.toggling = false;
         }
 
         /**
@@ -569,6 +570,8 @@ var BadgerAccordion = function () {
     }, {
         key: 'togglePanel',
         value: function togglePanel(animationAction, headerIndex) {
+            var _this7 = this;
+
             if (animationAction !== undefined && headerIndex !== undefined) {
                 if (animationAction === 'closed') {
                     // Getting ID of panel that we want to close
@@ -581,9 +584,15 @@ var BadgerAccordion = function () {
                     // Set aria attrs
                     header.setAttribute('aria-expanded', false);
                     header.setAttribute('aria-label', this.settings.headerOpenLabel);
+
+                    // Resetting toggling so a new event can be fired
+                    panelToClose.onCSSTransitionEnd(function () {
+                        return _this7.toggling = false;
+                    });
                 } else if (animationAction === 'open') {
                     // 1.
                     // Getting ID of panel that we want to open
+                    console.log("opening yehh");
                     var _header = this.headers[headerIndex];
                     var panelToOpen = this.panels[headerIndex];
 
@@ -593,6 +602,11 @@ var BadgerAccordion = function () {
                     // Set aria attrs
                     _header.setAttribute('aria-expanded', true);
                     _header.setAttribute('aria-label', this.settings.headerCloseLabel);
+
+                    // Resetting toggling so a new event can be fired
+                    panelToOpen.onCSSTransitionEnd(function () {
+                        return _this7.toggling = false;
+                    });
                 }
             }
         }
@@ -619,13 +633,13 @@ var BadgerAccordion = function () {
     }, {
         key: 'getState',
         value: function getState() {
-            var _this7 = this;
+            var _this8 = this;
 
             var headerIds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
             if (headerIds.length && Array.isArray(headerIds)) {
                 var states = headerIds.map(function (header) {
-                    return _this7.states[header];
+                    return _this8.states[header];
                 });
 
                 return states;
@@ -650,21 +664,6 @@ var BadgerAccordion = function () {
         }
 
         /**
-         *  GET HEADER ID
-         *
-         *  Getting an ID for a header
-         *  @param {array} header - Array of ID's for the headers to be open
-         */
-
-    }, {
-        key: 'getHeaderId',
-        value: function getHeaderId(header) {
-            if (header !== undefined) {
-                return header.getAttribute(this.settings.headerDataAttr);
-            }
-        }
-
-        /**
          *  HEADERS TO OPEN
          *
          *  Setting which headers should be open when accordion is initalised
@@ -672,9 +671,9 @@ var BadgerAccordion = function () {
          */
 
     }, {
-        key: 'openHeaders',
-        value: function openHeaders() {
-            var _this8 = this;
+        key: '_openHeadersOnLoad',
+        value: function _openHeadersOnLoad() {
+            var _this9 = this;
 
             var headersToOpen = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
@@ -684,7 +683,7 @@ var BadgerAccordion = function () {
                 });
 
                 headersToOpen.forEach(function (header) {
-                    return _this8.states[header].state = 'open';
+                    return _this9.states[header].state = 'open';
                 });
             }
         }
@@ -696,13 +695,13 @@ var BadgerAccordion = function () {
          */
 
     }, {
-        key: 'setPanelHeight',
-        value: function setPanelHeight() {
-            var _this9 = this;
+        key: '_setPanelHeight',
+        value: function _setPanelHeight() {
+            var _this10 = this;
 
             // [].forEach.(this.panels, (panel) => {
             this.panels.forEach(function (panel) {
-                var panelInner = panel.querySelector(_this9.settings.panelInnerClass);
+                var panelInner = panel.querySelector(_this10.settings.panelInnerClass);
 
                 var activeHeight = panelInner.offsetHeight;
 
@@ -710,37 +709,37 @@ var BadgerAccordion = function () {
             });
         }
     }, {
-        key: 'setupHeaders',
-        value: function setupHeaders() {
-            var _this10 = this;
-
-            this.headers.forEach(function (header, index) {
-                header.setAttribute('id', 'badger-accordion-header-' + _this10.ids[index].id);
-                header.setAttribute('aria-controls', 'badger-accordion-panel-' + _this10.ids[index].id);
-                header.setAttribute('aria-label', _this10.settings.headerOpenLabel);
-            });
-        }
-    }, {
-        key: 'setupPanels',
-        value: function setupPanels() {
+        key: '_setupHeaders',
+        value: function _setupHeaders() {
             var _this11 = this;
 
-            this.panels.forEach(function (panel, index) {
-                panel.setAttribute('id', 'badger-accordion-panel-' + _this11.ids[index].id);
-                panel.setAttribute('aria-labeledby', 'badger-accordion-header-' + _this11.ids[index].id);
+            this.headers.forEach(function (header, index) {
+                header.setAttribute('id', 'badger-accordion-header-' + _this11.ids[index].id);
+                header.setAttribute('aria-controls', 'badger-accordion-panel-' + _this11.ids[index].id);
+                header.setAttribute('aria-label', _this11.settings.headerOpenLabel);
             });
         }
     }, {
-        key: 'setupAttributes',
-        value: function setupAttributes() {
+        key: '_setupPanels',
+        value: function _setupPanels() {
+            var _this12 = this;
+
+            this.panels.forEach(function (panel, index) {
+                panel.setAttribute('id', 'badger-accordion-panel-' + _this12.ids[index].id);
+                panel.setAttribute('aria-labeledby', 'badger-accordion-header-' + _this12.ids[index].id);
+            });
+        }
+    }, {
+        key: '_setupAttributes',
+        value: function _setupAttributes() {
             // Adding ID & aria-controls
-            this.setupHeaders();
+            this._setupHeaders();
 
             // Adding ID & aria-labeledby
-            this.setupPanels();
+            this._setupPanels();
 
             // Inserting data-attribute onto each `header`
-            this.insertDataAttrs();
+            this._insertDataAttrs();
         }
     }]);
 
@@ -882,6 +881,65 @@ function bytesToUuid(buf, offset) {
 
 module.exports = bytesToUuid;
 
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+/*
+	By Osvaldas Valutis, www.osvaldas.info
+	Available for use under the MIT License
+*/
+
+;(function (document, window, index) {
+	var s = document.body || document.documentElement,
+	    s = s.style,
+	    prefixAnimation = '',
+	    prefixTransition = '';
+
+	if (s.WebkitAnimation == '') prefixAnimation = '-webkit-';
+	if (s.MozAnimation == '') prefixAnimation = '-moz-';
+	if (s.OAnimation == '') prefixAnimation = '-o-';
+
+	if (s.WebkitTransition == '') prefixTransition = '-webkit-';
+	if (s.MozTransition == '') prefixTransition = '-moz-';
+	if (s.OTransition == '') prefixTransition = '-o-';
+
+	Object.prototype.onCSSAnimationEnd = function (callback) {
+		var runOnce = function runOnce(e) {
+			callback();e.target.removeEventListener(e.type, runOnce);
+		};
+		this.addEventListener('webkitAnimationEnd', runOnce);
+		this.addEventListener('mozAnimationEnd', runOnce);
+		this.addEventListener('oAnimationEnd', runOnce);
+		this.addEventListener('oanimationend', runOnce);
+		this.addEventListener('animationend', runOnce);
+		if (prefixAnimation == '' && !('animation' in s) || getComputedStyle(this)[prefixAnimation + 'animation-duration'] == '0s') callback();
+		return this;
+	};
+
+	Object.prototype.onCSSTransitionEnd = function (callback) {
+		var runOnce = function runOnce(e) {
+			callback();e.target.removeEventListener(e.type, runOnce);
+		};
+		this.addEventListener('webkitTransitionEnd', runOnce);
+		this.addEventListener('mozTransitionEnd', runOnce);
+		this.addEventListener('oTransitionEnd', runOnce);
+		this.addEventListener('transitionend', runOnce);
+		this.addEventListener('transitionend', runOnce);
+		if (prefixTransition == '' && !('transition' in s) || getComputedStyle(this)[prefixTransition + 'transition-duration'] == '0s') callback();
+		return this;
+	};
+})(document, window, 0);
+
+exports.default = module;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)(module)))
 
 /***/ })
 /******/ ]);
