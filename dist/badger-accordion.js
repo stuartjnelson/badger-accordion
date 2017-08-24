@@ -267,7 +267,9 @@ var BadgerAccordion = function () {
             initalisedClass: 'badger-accordion--initalised',
             headerDataAttr: 'data-badger-accordion-header-id',
             openMultiplePanels: false,
-            openHeadersOnLoad: []
+            openHeadersOnLoad: [],
+            headerOpenLabel: 'Open accordion panel',
+            headerCloseLabel: 'Close accordion panel'
             // toggleEl:            // If you want to use a different element to trigger the accordion
         };
 
@@ -476,10 +478,6 @@ var BadgerAccordion = function () {
 
             var states = this.getState();
 
-            // Sets up ID, aria attrs & data-attrs
-            // this.setupAttributes();
-
-
             // Filter through all open headers and open them
             this.states.filter(function (state, index) {
                 if (state.state === 'open') {
@@ -525,7 +523,6 @@ var BadgerAccordion = function () {
     }, {
         key: 'close',
         value: function close(headerIndex) {
-            console.log(headerIndex + ' I am close method');
             this.togglePanel('closed', headerIndex);
         }
 
@@ -583,6 +580,7 @@ var BadgerAccordion = function () {
 
                     // Set aria attrs
                     header.setAttribute('aria-expanded', false);
+                    header.setAttribute('aria-label', this.settings.headerOpenLabel);
                 } else if (animationAction === 'open') {
                     // 1.
                     // Getting ID of panel that we want to open
@@ -594,6 +592,7 @@ var BadgerAccordion = function () {
 
                     // Set aria attrs
                     _header.setAttribute('aria-expanded', true);
+                    _header.setAttribute('aria-label', this.settings.headerCloseLabel);
                 }
             }
         }
@@ -718,6 +717,7 @@ var BadgerAccordion = function () {
             this.headers.forEach(function (header, index) {
                 header.setAttribute('id', 'badger-accordion-header-' + _this10.ids[index].id);
                 header.setAttribute('aria-controls', 'badger-accordion-panel-' + _this10.ids[index].id);
+                header.setAttribute('aria-label', _this10.settings.headerOpenLabel);
             });
         }
     }, {

@@ -29,6 +29,8 @@ class BadgerAccordion {
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
             openHeadersOnLoad:  [],
+            headerOpenLabel:    'Open accordion panel',
+            headerCloseLabel:   'Close accordion panel'
             // toggleEl:            // If you want to use a different element to trigger the accordion
         };
 
@@ -256,7 +258,6 @@ class BadgerAccordion {
      *  @param {object} header - The header node you want to close
      */
     close(headerIndex) {
-        console.log(headerIndex + ' I am close method');
         this.togglePanel('closed', headerIndex);
     }
 
@@ -304,6 +305,7 @@ class BadgerAccordion {
 
                 // Set aria attrs
                 header.setAttribute('aria-expanded', false);
+                header.setAttribute('aria-label', this.settings.headerOpenLabel);
             } else if(animationAction === 'open') {
                 // 1.
                 // Getting ID of panel that we want to open
@@ -315,6 +317,7 @@ class BadgerAccordion {
 
                 // Set aria attrs
                 header.setAttribute('aria-expanded', true);
+                header.setAttribute('aria-label', this.settings.headerCloseLabel);
             }
         }
     }
@@ -413,6 +416,7 @@ class BadgerAccordion {
         this.headers.forEach( (header, index) => {
             header.setAttribute('id', `badger-accordion-header-${this.ids[index].id}`);
             header.setAttribute('aria-controls', `badger-accordion-panel-${this.ids[index].id}`);
+            header.setAttribute('aria-label', this.settings.headerOpenLabel);
         });
     }
 
