@@ -6,6 +6,7 @@
 
 import uuid from 'uuid/v4';
 const uuidV4 = uuid;
+import onCSSTransitionEnd from '../js/transition-end';
 
 /**
  * CONSTRUCTOR
@@ -166,13 +167,15 @@ class BadgerAccordion {
         const targetHeaderClass = this.settings.headerClass.substr(1);
 
         // Checking that the thing that was clicked on was the accordions header
-        if (targetHeader.classList.contains(targetHeaderClass)) {
+        if (targetHeader.classList.contains(targetHeaderClass) && this.toggling === false) {
+            this.toggling = true;
 
             // Updating states
             this.setState(headerIndex);
 
+
             // Render DOM as per the updates `this.states` object
-            this.renderDom();
+            this._renderDom();
         }
     }
 
@@ -292,28 +295,33 @@ class BadgerAccordion {
     togglePanel(animationAction, headerIndex) {
         if(animationAction !== undefined && headerIndex !== undefined) {
             if(animationAction === 'closed') {
-                // Getting ID of panel that we want to close
+                // 1. Getting ID of panel that we want to close
                 const header        = this.headers[headerIndex];
                 const panelToClose  = this.panels[headerIndex];
 
-                // Closeing panel
+                // 2. Closeing panel
                 panelToClose.classList.add(this.settings.hidenClass);
 
-                // Set aria attrs
+                // 3. Set aria attrs
                 header.setAttribute('aria-expanded', false);
                 header.setAttribute('aria-label', this.settings.headerOpenLabel);
+
+                // 4. Resetting toggling so a new event can be fired
+                panelToClose.onCSSTransitionEnd(() => this.toggling = false );
             } else if(animationAction === 'open') {
-                // 1.
-                // Getting ID of panel that we want to open
+                // 1. Getting ID of panel that we want to open
                 const header      = this.headers[headerIndex];
                 const panelToOpen = this.panels[headerIndex];
 
-                // Closeing panel
+                // 2. Closeing panel
                 panelToOpen.classList.remove(this.settings.hidenClass);
 
-                // Set aria attrs
+                // 3. Set aria attrs
                 header.setAttribute('aria-expanded', true);
                 header.setAttribute('aria-label', this.settings.headerCloseLabel);
+
+                // 4. Resetting toggling so a new event can be fired
+                panelToOpen.onCSSTransitionEnd(() => this.toggling = false );
             }
         }
     }

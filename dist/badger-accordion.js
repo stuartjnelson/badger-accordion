@@ -574,36 +574,34 @@ var BadgerAccordion = function () {
 
             if (animationAction !== undefined && headerIndex !== undefined) {
                 if (animationAction === 'closed') {
-                    // Getting ID of panel that we want to close
+                    // 1. Getting ID of panel that we want to close
                     var header = this.headers[headerIndex];
                     var panelToClose = this.panels[headerIndex];
 
-                    // Closeing panel
+                    // 2. Closeing panel
                     panelToClose.classList.add(this.settings.hidenClass);
 
-                    // Set aria attrs
+                    // 3. Set aria attrs
                     header.setAttribute('aria-expanded', false);
                     header.setAttribute('aria-label', this.settings.headerOpenLabel);
 
-                    // Resetting toggling so a new event can be fired
+                    // 4. Resetting toggling so a new event can be fired
                     panelToClose.onCSSTransitionEnd(function () {
                         return _this7.toggling = false;
                     });
                 } else if (animationAction === 'open') {
-                    // 1.
-                    // Getting ID of panel that we want to open
-                    console.log("opening yehh");
+                    // 1. Getting ID of panel that we want to open
                     var _header = this.headers[headerIndex];
                     var panelToOpen = this.panels[headerIndex];
 
-                    // Closeing panel
+                    // 2. Closeing panel
                     panelToOpen.classList.remove(this.settings.hidenClass);
 
-                    // Set aria attrs
+                    // 3. Set aria attrs
                     _header.setAttribute('aria-expanded', true);
                     _header.setAttribute('aria-label', this.settings.headerCloseLabel);
 
-                    // Resetting toggling so a new event can be fired
+                    // 4. Resetting toggling so a new event can be fired
                     panelToOpen.onCSSTransitionEnd(function () {
                         return _this7.toggling = false;
                     });
