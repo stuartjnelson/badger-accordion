@@ -5,6 +5,7 @@
   "scripts": {
     "build": "babel js -d ../dist"
   },
+  "main": "/dist/badger-accordion.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stuartjnelson/badger-accordion.git"
