@@ -1,0 +1,42 @@
+{
+  "name": "badger-accordion",
+  "version": "0.1.0",
+  "description": "An accessible vanilla JS accordion with extensible API.",
+  "scripts": {
+    "build": "babel js -d ../dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stuartjnelson/badger-accordion.git"
+  },
+  "keywords": [
+    "accordion",
+    "accessible",
+    "accessible",
+    "accordion",
+    "extendable",
+    "accordion"
+  ],
+  "author": "Stuart j Nelson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stuartjnelson/badger-accordion/issues"
+  },
+  "homepage": "https://github.com/stuartjnelson/badger-accordion#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-es2015-modules-commonjs-simple": "^6.7.4",
+    "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015-webpack": "^6.4.3",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "uuid": "^3.1.0",
+    "webpack": "^3.3.0"
+  }
+}
