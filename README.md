@@ -27,11 +27,12 @@ Firstly create the markup for your accordion. As a bare minimum you will need to
  * A inner panel element.
     * Default: `js-badger-accordion-panel-inner`.
 
-### How to setup the plugin
-You'll need to import the plugin and create a new instance so you can use it. There is a working example in the `example` directory (shock horror!) if you'd like something to reference. 
+### How to use the plugin
+You'll need to import the plugin and create a new instance so you can use it. There is a working example in the `example` directory (shock horror!) if you'd like something to reference.
 
  1. Import `badger-accordion.js`
  2. If you have not installed the plugin the NPM ensure that you have `transition-end.js` somewhere your Webpack resolver path
+ 3. Include the `badger-accordion.css`
 
 I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The (pollyfill)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill] only adds `0.93kb` (`0.34kb` gzipped).
 ```
@@ -42,7 +43,7 @@ import BadgerAccordion from 'badger-accordion';
 const accordion = new BadgerAccordion('.js-badger-accordion');
 ```
 
-Next you'll want to create your markup. This is the minimum markup you will need for your accordion. You can use any html elements you would like but you will need to follow the nesting in the example below.
+Next you'll want to create your markup. This is the minimum markup you will need for your accordion. You can use any html elements you would like but you will need to follow the nesting in the example below. I have included the selector `badger-accordion__panel` as I feel it is best to use separate selectors for targeting an element with JavaScript and CSS.
 ```
 <dl class="js-badger-accordion">
     <dt>
@@ -50,7 +51,7 @@ Next you'll want to create your markup. This is the minimum markup you will need
             Header Content
         </button>
     </dt>
-    <dd class="js-badger-accordion-panel" style="overflow: hidden">
+    <dd class="badger-accordion__panel js-badger-accordion-panel">
         <div class="js-badger-accordion-panel-inner">
             Panel Content
         </div>
@@ -59,7 +60,7 @@ Next you'll want to create your markup. This is the minimum markup you will need
 ```
 
 #### Styles
-I have created some basic vanilla CSS styles to help you with creating an accordion. There are also `scss` files with the basic css, demo & some handy mixins you could use to speed up creating a nice accordion.
+I have created some simple CSS styles to help you with creating an accordion which are in `badger-accordion-demo.css`. There are also `scss` files with the basic css, demo & some handy mixins you could use to speed up creating a nice accordion.
 
 
 
