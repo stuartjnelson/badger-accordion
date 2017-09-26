@@ -1,11 +1,10 @@
 .badger-accordion__panel {
+  max-height: 0;
   overflow: hidden; }
-  .badger-accordion--initalised .badger-accordion__panel {
-    max-height: 0; }
-    .badger-accordion--initalised .badger-accordion__panel.is-active {
-      max-height: 75vh; }
-    .badger-accordion--initalised .badger-accordion__panel.is-hidden {
-      max-height: 0 !important; }
+  .badger-accordion__panel.is-active {
+    max-height: 75vh; }
+  .badger-accordion__panel.is-hidden {
+    max-height: 0 !important; }
   .badger-accordion--initalised .badger-accordion__panel {
     transition: all ease-in-out 0.2s; }
 
