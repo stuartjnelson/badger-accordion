@@ -1,6 +1,16 @@
 # Badger Accordion
 An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.17kb Gzipped (2.49kb).
 
+**Contents**
+  - [The idea](#the-idea)
+  - [Key terminologies](#key-terminologies)
+  - [Basic setup](#basic-setup)
+    - [How to use the plugin](#how-to-use-the-plugin)
+    - [Styles](#styles)
+  - [Options](#options)
+  - [Methods](#methods)
+  - [Roadmap](#roadmap)
+
 
 ## The idea
  - To make an accessible, animated, accordion with an extensible API.
