@@ -1,6 +1,6 @@
 {
   "name": "badger-accordion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An accessible vanilla JS accordion with extensible API.",
   "scripts": {
     "build": "babel js -d ../dist"
