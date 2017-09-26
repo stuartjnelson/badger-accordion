@@ -1,8 +1,8 @@
 'use strict';
 
 // Importing accordion
-import pollyfill from '../js/array-from-pollyfill';
-import BadgerAccordion from '../js/badger-accordion';
+import pollyfill from 'array-from-pollyfill';
+import BadgerAccordion from 'badger-accordion';
 
 // Creating a new instance of the accordion
 const accordion = new BadgerAccordion('.js-badger-accordion');

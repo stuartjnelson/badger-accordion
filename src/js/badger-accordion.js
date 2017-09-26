@@ -6,7 +6,7 @@
 
 import uuid from 'uuid/v4';
 const uuidV4 = uuid;
-import onCSSTransitionEnd from '../js/transition-end';
+import onCSSTransitionEnd from 'transition-end';
 
 /**
  * CONSTRUCTOR

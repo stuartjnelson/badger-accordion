@@ -5,18 +5,19 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, './js'),
+    resolve: {
+        modules: [
+            path.resolve('./js'),
+            path.resolve('./node_modules')
+        ]
+    },
     entry: {
-        app: './behaviour.js',
+        app: './badger-accordion.js',
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'badger-accordion.js',
     },
-    // plugins: [
-    //     new UglifyJSPlugin({
-    //         compress: false
-    //     })
-    // ],
     module: {
         rules: [
             {
