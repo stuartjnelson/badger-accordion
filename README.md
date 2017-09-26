@@ -1,5 +1,5 @@
 # Badger Accordion
-An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.5kb Gzipped (2.5kb).
+An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.17kb Gzipped (2.49kb).
 
 
 ## The idea
@@ -27,11 +27,16 @@ Firstly create the markup for your accordion. As a bare minimum you will need to
  * A inner panel element.
     * Default: `js-badger-accordion-panel-inner`.
 
-### Basic markup example
-You'll need to import the plugin and create a new instance so you can use it. I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The (pollyfill)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill] only adds `0.93kb` (`0.34kb` gzipped).
+### How to setup the plugin
+You'll need to import the plugin and create a new instance so you can use it. There is a working example in the `example` directory (shock horror!) if you'd like something to reference. 
+
+ 1. Import `badger-accordion.js`
+ 2. If you have not installed the plugin the NPM ensure that you have `transition-end.js` somewhere your Webpack resolver path
+
+I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The (pollyfill)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill] only adds `0.93kb` (`0.34kb` gzipped).
 ```
-import pollyfill from '../js/array-from-pollyfill';
-import BadgerAccordion from '../js/badger-accordion';
+import pollyfill from 'array-from-pollyfill';
+import BadgerAccordion from 'badger-accordion';
 
 // Creating a new instance of the accordion
 const accordion = new BadgerAccordion('.js-badger-accordion');
