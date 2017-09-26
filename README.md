@@ -1,5 +1,5 @@
 # Badger Accordion
-An accessible vanilla JavaScript accordion with an extensible API
+An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.5kb Gzipped (2.5kb).
 
 
 ## The idea
@@ -28,73 +28,34 @@ Firstly create the markup for your accordion. As a bare minimum you will need to
     * Default: `js-badger-accordion-panel-inner`.
 
 ### Basic markup example
-Include Javascript & CSS source files
+You'll need to import the plugin and create a new instance so you can use it. I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The (pollyfill)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill] only adds `0.93kb` (`0.34kb` gzipped).
 ```
-<script type="text/javascript" src="path/to/accordion.js"></script>
+import pollyfill from '../js/array-from-pollyfill';
+import BadgerAccordion from '../js/badger-accordion';
 
-<link rel="stylesheet" type="text/css" href="path/to/accordion.css"/>
+// Creating a new instance of the accordion
+const accordion = new BadgerAccordion('.js-badger-accordion');
 ```
 
-Create your markup. This is the minimum markup you will need for your accordion.
+Next you'll want to create your markup. This is the minimum markup you will need for your accordion. You can use any html elements you would like but you will need to follow the nesting in the example below.
 ```
 <dl class="js-badger-accordion">
     <dt>
         <button class="js-badger-accordion-header">
-            <!-- Header Content -->
-            Header
+            Header Content
         </button>
     </dt>
     <dd class="js-badger-accordion-panel" style="overflow: hidden">
         <div class="js-badger-accordion-panel-inner">
-            <!-- Panel Content -->
-            Panel
+            Panel Content
         </div>
     </dd>
 </dl>
 ```
 
-#### Full basic example
-I have created some basic vanilla CSS styles to help you with creating an accordion. Using this will save you some time. You can use the `scss`; this way you can take advantage of the `scss variables` and `mixins`
-```
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Badger Accordion</title>
+#### Styles
+I have created some basic vanilla CSS styles to help you with creating an accordion. There are also `scss` files with the basic css, demo & some handy mixins you could use to speed up creating a nice accordion.
 
-    <link rel="stylesheet" type="text/css" href="path/to/accordion.css"/>
-</head>
-<body>
-    <dl class="badger-accordion js-badger-accordion">
-        <dt>
-            <button class="badger-accordion__header js-badger-accordion-header">
-                <div class="badger-accordion__header-title">
-                    Accordion Header
-                </div>
-                <div class="badger-accordion__header-icon">
-                </div>
-            </button>
-        </dt>
-        <dd class="badger-accordion__panel js-badger-accordion-panel">
-            <div class="badger-accordion__panel-inner js-badger-accordion-panel-inner">
-                Panel content
-            </div>
-        </dd>
-    </dl>
-
-    <script type="text/javascript" src="path/to/accordion.js"></script>
-    <script type="text/javascript" src="path/to/accordion.js"></script>
-</body>
-</html>
-```
-
-
-Just need to initalise a new instance of the accordion.
-```
-<script type="text/javascript">
-    const accordion = new BadgerAccordion('.js-badger-accordion');
-</script>    
-```
 
 
 ## Options
@@ -128,22 +89,6 @@ The accordion has a series of methods allowing you to have full control over ext
 ```
 accordion.closeAll();
 ```
-
-
-### Questions ###
-1. Is my table logical below?
-2. The id's are pretty crazy. Should you be able to target a panel/header by just its number in the node list. Say to open a panel just write `accordion.open(2)`. Should I document my _private_methods_?
-3. At the top should I have a list of terminologies?
-
-| Method          | Arguments            | Description | Example |
-|---              |---                   |---          |---          |
-| `getState()`    | headerId/s - `array` | Returns the state of a panel/s by passing in the _node item index/s_ as an array. |  Getting a single Id. `accordion.getState([0])`. <br> Getting multiple header's state `accordion.getState([0, 1, 2])` |
-| `open()`        | headerIndex          | Opens a given panel using its `headerIndex`. Eg; ` accordion.open( 0 );`
-| `close()`       | headerIndex          | Closes a given panel using its `headerIndex`. Eg; ` accordion.close( 0 );`
-| `togglePanel()` | animationAction, headerIndex | Toggles panel into opening or closing. `animationAction` is either `open` or `closed`.
-| `openAll()`     |                      | Opens all accordion panels
-| `closeAll()`    |                      | Closes all accordion panels
-
 
 
 ### Roadmap
