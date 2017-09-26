@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAcA,wBAAyB;EACrB,QAAQ,EAAE,MAAM;EAGhB,sDAAgC;IAC5B,UAAU,EAAE,CAAC;IAIb,gEAAY;MAAE,UAAU,EAAE,IAAI;IAE9B,gEAAY;MAAE,UAAU,EAAE,YAAY;EAG1C,sDAAgC;IAAE,UAAU,EAAE,oBAAoB",
+"mappings": "AAcA,wBAAyB;EACrB,UAAU,EAAE,CAAC;EACb,QAAQ,EAAE,MAAM;EAIhB,kCAAY;IAAE,UAAU,EAAE,IAAI;EAE9B,kCAAY;IAAE,UAAU,EAAE,YAAY;EAGtC,sDAAgC;IAAE,UAAU,EAAE,oBAAoB",
 "sources": ["../scss/badger-accordion.scss"],
 "names": [],
 "file": "badger-accordion.css"
