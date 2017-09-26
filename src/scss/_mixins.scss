@@ -6,12 +6,15 @@
 //
 // ==========================================================================
 
+// Used to scope your selectors as you'd like
+$class: "badger-accordion";
+
 
 // ==========================================================================
 // # MIXINS
 // ==========================================================================
 
-@mixin accordion-header($class: "badger-accordion", $spacing: 40px) {
+@mixin accordion-header( $spacing: 40px) {
     .#{$class}__header {
         align-content: space-between;
         align-items: center;
@@ -35,25 +38,26 @@
 }
 
 
-@mixin accordion-panel($transition: all ease-in-out 0.2s, $max-height: 75vh) {
+@mixin accordion-panel($max-height: 75vh, $transition: all ease-in-out 0.2s) {
     .badger-accordion__panel {
         overflow: hidden;
         position: relative;
         // transition is added via `badger-accordion--initalised` to stop animation on initalition
 
-        // .js & {
+        .badger-accordion--initalised & {
             max-height: 0;
+            transition: $transition;
 
             // Closing all pannels
             // scss-lint:disable ImportantRule
             &.is-active { max-height: $max-height; } // This should be set with JS ideally so that the transition is smoother
 
             &.is-hidden { max-height: 0 !important; }
-        // }
-
-        .badger-accordion--initalised & { transition: $transition; }
+        }
     }
 }
+
+
 
 
 @mixin accordion-panel-theme($border: solid 2px darken(#95A5A6, 15%), $transition: all ease-in-out 0.2s) {

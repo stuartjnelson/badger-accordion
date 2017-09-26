@@ -55,7 +55,7 @@ a, a:hover, a:active, a:visited {
   text-decoration: none; }
 
 body {
-  color: #333;
+  color: #323232;
   font-size: 16px;
   line-height: 1.25; }
 
@@ -72,10 +72,6 @@ body {
   font-size: 2.25rem;
   line-height: 1.5;
   margin-bottom: 40px; }
-  @media (min-width: 48em) {
-    .heading--alpha {
-      font-size: 3.5rem;
-      line-height: 1.4; } }
 
 button {
   border: 0;
@@ -86,5 +82,63 @@ p {
   line-height: 1.25; }
   p:not(:last-of-type) {
     margin-bottom: 20px; }
+
+.badger-accordion__header {
+  align-content: space-between;
+  align-items: center;
+  background-color: #95A5A6;
+  display: flex;
+  padding: 20px;
+  transition: all ease-in-out 0.2s; }
+  .badger-accordion__header[aria-expanded=true] .badger-accordion__header-icon:before {
+    transform: rotate(45deg) translate3d(14px, 14px, 0); }
+  .badger-accordion__header[aria-expanded=true] .badger-accordion__header-icon:after {
+    transform: rotate(-45deg) translate3d(-14px, 14px, 0); }
+  .badger-accordion__header:focus, .badger-accordion__header:hover {
+    background-color: #2574A9;
+    outline: none; }
+    .badger-accordion__header:focus .badger-accordion__header-title, .badger-accordion__header:hover .badger-accordion__header-title {
+      color: #fff; }
+    .badger-accordion__header:focus .badger-accordion__header-icon:before, .badger-accordion__header:focus .badger-accordion__header-icon:after, .badger-accordion__header:hover .badger-accordion__header-icon:before, .badger-accordion__header:hover .badger-accordion__header-icon:after {
+      background-color: #fff; }
+
+.badger-accordion__header-icon {
+  display: block;
+  height: 40px;
+  margin-left: auto;
+  position: relative;
+  transition: all ease-in-out 0.2s;
+  width: 40px; }
+  .badger-accordion__header-icon:after, .badger-accordion__header-icon:before {
+    background-color: #333;
+    content: "";
+    height: 3px;
+    position: absolute;
+    top: 10px;
+    transition: all ease-in-out 0.13333s;
+    width: 30px; }
+  .badger-accordion__header-icon:before {
+    left: 0;
+    transform: rotate(45deg) translate3d(8px, 22px, 0);
+    transform-origin: 100%; }
+  .badger-accordion__header-icon:after {
+    transform: rotate(-45deg) translate3d(-8px, 22px, 0);
+    right: 0;
+    transform-origin: 0%; }
+
+.badger-accordion__panel {
+  background-color: #fafafa;
+  position: relative; }
+  .badger-accordion__panel:after {
+    background-color: #6C7A89;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%; }
+
+.badger-accordion__panel-inner {
+  padding: 20px; }
 
 /*# sourceMappingURL=badger-accordion-demo.css.map */
