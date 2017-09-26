@@ -1,0 +1,163 @@
+// ==========================================================================
+//
+// BADGER ACCORDION DEMO
+//
+// Description: Styles for the demo page. Including reset.css
+//
+// ==========================================================================
+
+// ==========================================================================
+// # IMPORTS
+// ==========================================================================
+
+@import "reset";
+@import "settings";
+
+
+
+
+
+// ==========================================================================
+// # BASE
+// ==========================================================================
+
+body {
+    color: $black;
+    font-size: 16px;
+    line-height: 1.25;
+}
+
+
+
+
+
+// ==========================================================================
+// # ELEMENTS
+// ==========================================================================
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: $spacing-unit 0;
+    width: 90%;
+}
+
+
+.heading--alpha {
+    font-size: 2.25rem;
+    line-height: 1.5;
+    margin-bottom: $spacing-unit;
+}
+
+
+button {
+    border: 0;
+    width: 100%;
+    font-size: 1em;
+}
+
+
+p {
+    line-height: 1.25;
+
+    &:not(:last-of-type) { margin-bottom: $half-spacing-unit; }
+}
+
+
+
+
+
+// ==========================================================================
+// # DEMO ACCORDION
+// ==========================================================================
+
+// .badger-accordion {}
+
+
+.badger-accordion__header {
+    align-content: space-between;
+    align-items: center;
+    background-color: $grey-light;
+    display: flex;
+    padding: $half-spacing-unit;
+    transition: all ease-in-out $transition-time;
+
+    &[aria-expanded=true] {
+        .badger-accordion__header-icon {
+            &:before {
+                transform: rotate(45deg) translate3d(14px, 14px, 0);
+            }
+
+            &:after {
+                transform: rotate(-45deg) translate3d(-14px, 14px, 0);
+            }
+        }
+    }
+
+    &:focus,
+    &:hover {
+        background-color: $blue;
+        outline: none;
+
+        .badger-accordion__header-title { color: #fff; }
+
+        .badger-accordion__header-icon {
+            &:before,
+            &:after { background-color: #fff; }
+        }
+    }
+}
+
+
+.badger-accordion__header-icon {
+    display: block;
+    height: $spacing-unit;
+    margin-left: auto;
+    position: relative;
+    transition: all ease-in-out $transition-time;
+    width: $spacing-unit;
+
+    &:after,
+    &:before {
+        background-color: #333;
+        content: "";
+        height: 3px;
+        position: absolute;
+        top: 10px;
+        transition: all ease-in-out (($transition-time / 3) * 2);
+        width: 30px;
+    }
+
+    &:before {
+        left: 0;
+        transform: rotate(45deg) translate3d(8px, 22px, 0);
+        transform-origin: 100%;
+    }
+
+    &:after {
+        transform: rotate(-45deg) translate3d(-8px, 22px, 0);
+        right: 0;
+        transform-origin: 0%;
+    }
+}
+
+
+.badger-accordion__panel {
+    background-color: $off-white;
+    position: relative;
+
+    &:after {
+        background-color: $grey;
+        bottom: 0;
+        content: "";
+        height: 2px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+.badger-accordion__panel-inner { padding: $half-spacing-unit; }
