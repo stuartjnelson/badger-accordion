@@ -1,146 +1,56 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/**
+ *  ACCORDION
+ *
+ * A lightwight vanilla JS accordion with an exstensible API
+ */
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      *  ACCORDION
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      *
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * A lightwight vanilla JS accordion with an exstensible API
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-
-var _v = __webpack_require__(1);
-
-var _v2 = _interopRequireDefault(_v);
-
-var _transitionEnd = __webpack_require__(5);
-
-var _transitionEnd2 = _interopRequireDefault(_transitionEnd);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var uuidV4 = _v2.default;
+import uuid from 'uuid/v4';
+const uuidV4 = uuid;
+import onCSSTransitionEnd from './transition-end';
 
 /**
  * CONSTRUCTOR
  * initialises the object
  */
-var BadgerAccordion = function () {
-    function BadgerAccordion(el, options) {
-        _classCallCheck(this, BadgerAccordion);
-
-        var container = document.querySelector(el);
+class BadgerAccordion {
+    constructor(el, options) {
+        const container = document.querySelector(el);
 
         // If el is not defined
         if (container == null) {
             return;
         }
 
-        var defaults = {
-            headerClass: '.js-badger-accordion-header',
-            panelClass: '.js-badger-accordion-panel',
-            panelInnerClass: '.js-badger-accordion-panel-inner',
-            hidenClass: 'is-hidden',
-            initalisedClass: 'badger-accordion--initalised',
-            headerDataAttr: 'data-badger-accordion-header-id',
+        const defaults = {
+            headerClass:        '.js-badger-accordion-header',
+            panelClass:         '.js-badger-accordion-panel',
+            panelInnerClass:    '.js-badger-accordion-panel-inner',
+            hidenClass:         'is-hidden',
+            initalisedClass:    'badger-accordion--initalised',
+            headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
-            openHeadersOnLoad: [],
-            headerOpenLabel: 'Open accordion panel',
-            headerCloseLabel: 'Close accordion panel'
+            openHeadersOnLoad:  [],
+            headerOpenLabel:    'Open accordion panel',
+            headerCloseLabel:   'Close accordion panel'
             // toggleEl:            // If you want to use a different element to trigger the accordion
         };
 
         // Options
-        this.settings = _extends({}, defaults, options);
+        this.settings = Object.assign({}, defaults, options);
 
         // Setting getting elements
         this.container = container;
-        this.headers = Array.from(this.container.querySelectorAll(this.settings.headerClass));
-        this.panels = Array.from(this.container.querySelectorAll(this.settings.panelClass));
+        this.headers = Array.from( this.container.querySelectorAll(this.settings.headerClass) );
+        this.panels = Array.from( this.container.querySelectorAll(this.settings.panelClass) );
         this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers;
 
         // This is for managing state of the accordion. It by default sets
         // all accordion panels to be closed
-        this.states = [].map.call(this.headers, function (header) {
+        this.states = [].map.call(this.headers, header => {
             return { state: 'closed' };
         });
 
-        this.ids = [].map.call(this.headers, function (header) {
+        this.ids = [].map.call(this.headers, header => {
             return { id: uuidV4() };
         });
 
@@ -150,671 +60,380 @@ var BadgerAccordion = function () {
         this.toggling = false;
 
         // Initiating the accordion
-        if (this.container) {
+        if( this.container ) {
             this.init();
         } else {
             console.log('Something is wrong with you markup...');
         }
     }
 
+
     /**
      *  INIT
      *
      *  Initalises the accordion
      */
+    init() {
+        // Sets up ID, aria attrs & data-attrs
+        this._setupAttributes();
+
+        // Setting up the inital view of the accordion
+        this._initalState();
+
+        // Setting the height of each panel
+        this._setPanelHeight();
+
+        // Inserting data-attribute onto each `header`
+        this._insertDataAttrs();
+
+        // Adding listeners to headers
+        this._addListeners();
+
+        //
+        this._finishInitalisation();
+    }
 
 
-    _createClass(BadgerAccordion, [{
-        key: 'init',
-        value: function init() {
-            // Sets up ID, aria attrs & data-attrs
-            this._setupAttributes();
+    /**
+     *  INSERT DATA ATTRS
+     *
+     *  Updates state object for inital loading of the accordion
+     */
+    _initalState() {
+        // Sets state object as per `this.settings.openHeadersOnLoad`
+        const headersToOpen = this.settings.openHeadersOnLoad;
 
-            // Setting up the inital view of the accordion
-            this._initalState();
-
-            // Setting the height of each panel
-            this._setPanelHeight();
-
-            // Inserting data-attribute onto each `header`
-            this._insertDataAttrs();
-
-            // Adding listeners to headers
-            this._addListeners();
-
-            //
-            this._finishInitalisation();
+        if (headersToOpen.length) {
+            this._openHeadersOnLoad(headersToOpen);
         }
 
-        /**
-         *  INSERT DATA ATTRS
-         *
-         *  Updates state object for inital loading of the accordion
-         */
+        // Render DOM as per the updates `this.states` object
+        this._renderDom();
+    }
 
-    }, {
-        key: '_initalState',
-        value: function _initalState() {
-            // Sets state object as per `this.settings.openHeadersOnLoad`
-            var headersToOpen = this.settings.openHeadersOnLoad;
 
-            if (headersToOpen.length) {
-                this._openHeadersOnLoad(headersToOpen);
-            }
+    /**
+     *  INSERT DATA ATTRS
+     *
+     *  Adds `headerDataAttr` to all headers
+     */
+    _insertDataAttrs() {
+        this.headers.forEach( (header, index) => {
+            header.setAttribute(this.settings.headerDataAttr, index);
+        });
+    }
+
+
+    /**
+     *  FINISH INITALISATION
+     *
+     *  Adds in `initalisedClass` to accordion
+     */
+    _finishInitalisation() {
+        this.container.classList.add(this.settings.initalisedClass);
+    }
+
+
+    /**
+     *  ADD LISTENERS
+     *
+     *  Adds click event to each header
+     */
+    _addListeners() {
+        // So we can reference the badger-accordion object inside out eventListener
+        const _this = this;
+
+        // Adding click event to accordion
+        this.headers.forEach((header, index) => {
+            header.addEventListener('click', function(event) {
+                // Getting the target of the click
+                // const clickedEl = event.target;
+
+                _this.handleClick(header, index);
+            });
+        });
+    }
+
+
+    /**
+     *  HANDLE CLICK
+     *
+     *  //TODO - Add comment
+     *  @param {object} targetHeader - The header node you want to open
+     */
+    handleClick(targetHeader, headerIndex) {
+        // Removing current `.` from `this.settings.headerClass` class so it can
+        // be checked against the `targetHeader` classList
+        const targetHeaderClass = this.settings.headerClass.substr(1);
+
+        // Checking that the thing that was clicked on was the accordions header
+        if (targetHeader.classList.contains(targetHeaderClass) && this.toggling === false) {
+            this.toggling = true;
+
+            // Updating states
+            this.setState(headerIndex);
+
 
             // Render DOM as per the updates `this.states` object
             this._renderDom();
         }
+    }
 
-        /**
-         *  INSERT DATA ATTRS
-         *
-         *  Adds `headerDataAttr` to all headers
-         */
 
-    }, {
-        key: '_insertDataAttrs',
-        value: function _insertDataAttrs() {
-            var _this2 = this;
+    /**
+     *  SET STATES
+     *
+     *  Sets the state for all headers. The 'target header' will have its state toggeled
+     *  @param {object} targetHeaderId - The header node you want to open
+     */
+    setState(targetHeaderId) {
+        const states = this.getState();
 
-            this.headers.forEach(function (header, index) {
-                header.setAttribute(_this2.settings.headerDataAttr, index);
-            });
-        }
-
-        /**
-         *  FINISH INITALISATION
-         *
-         *  Adds in `initalisedClass` to accordion
-         */
-
-    }, {
-        key: '_finishInitalisation',
-        value: function _finishInitalisation() {
-            this.container.classList.add(this.settings.initalisedClass);
-        }
-
-        /**
-         *  ADD LISTENERS
-         *
-         *  Adds click event to each header
-         */
-
-    }, {
-        key: '_addListeners',
-        value: function _addListeners() {
-            // So we can reference the badger-accordion object inside out eventListener
-            var _this = this;
-
-            // Adding click event to accordion
-            this.headers.forEach(function (header, index) {
-                header.addEventListener('click', function (event) {
-                    // Getting the target of the click
-                    // const clickedEl = event.target;
-
-                    _this.handleClick(header, index);
-                });
-            });
-        }
-
-        /**
-         *  HANDLE CLICK
-         *
-         *  //TODO - Add comment
-         *  @param {object} targetHeader - The header node you want to open
-         */
-
-    }, {
-        key: 'handleClick',
-        value: function handleClick(targetHeader, headerIndex) {
-            // Removing current `.` from `this.settings.headerClass` class so it can
-            // be checked against the `targetHeader` classList
-            var targetHeaderClass = this.settings.headerClass.substr(1);
-
-            // Checking that the thing that was clicked on was the accordions header
-            if (targetHeader.classList.contains(targetHeaderClass) && this.toggling === false) {
-                this.toggling = true;
-
-                // Updating states
-                this.setState(headerIndex);
-
-                // Render DOM as per the updates `this.states` object
-                this._renderDom();
-            }
-        }
-
-        /**
-         *  SET STATES
-         *
-         *  Sets the state for all headers. The 'target header' will have its state toggeled
-         *  @param {object} targetHeaderId - The header node you want to open
-         */
-
-    }, {
-        key: 'setState',
-        value: function setState(targetHeaderId) {
-            var _this3 = this;
-
-            var states = this.getState();
-
-            // TODO - improve this comment
-            // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
-            // be can open at once. This will the state on all but the target header to 'closed'
-            if (!this.settings.openMultiplePanels) {
-                states.filter(function (state, index) {
-                    if (index != targetHeaderId) {
-                        state.state = 'closed';
-                    }
-                });
-            }
-
-            // Toggles the state value of the target header. This was `array.find` but `find`
-            // isnt supported in IE11
-            states.filter(function (state, index) {
-                if (index == targetHeaderId) {
-                    var newState = _this3.toggleState(state.state);
-                    return state.state = newState;
+        // TODO - improve this comment
+        // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
+        // be can open at once. This will the state on all but the target header to 'closed'
+        if (!this.settings.openMultiplePanels) {
+            states.filter((state, index) => {
+                if (index != targetHeaderId) {
+                    state.state = 'closed';
                 }
             });
         }
 
-        /**
-         *  RENDER DOM
-         *
-         *  Renders the accordion in the DOM using the `this.states` object
-         */
+        // Toggles the state value of the target header. This was `array.find` but `find`
+        // isnt supported in IE11
+        states.filter((state, index) => {
+            if (index == targetHeaderId) {
+                const newState = this.toggleState(state.state);
+                return (state.state = newState);
+            }
+        });
+    }
 
-    }, {
-        key: '_renderDom',
-        value: function _renderDom() {
-            var _this4 = this;
 
-            var states = this.getState();
+    /**
+     *  RENDER DOM
+     *
+     *  Renders the accordion in the DOM using the `this.states` object
+     */
+    _renderDom() {
+        const states = this.getState();
 
-            // Filter through all open headers and open them
-            this.states.filter(function (state, index) {
-                if (state.state === 'open') {
-                    var header = _this4.headers[index];
+        // Filter through all open headers and open them
+        this.states.filter( (state, index) => {
+            if(state.state === 'open') {
+                let header = this.headers[index];
 
-                    _this4.open(index);
-                }
-            });
+                this.open(index);
+            }
+        });
 
-            // Filter through all closed headers and closes them
-            this.states.filter(function (state, index) {
-                if (state.state === 'closed') {
-                    var header = _this4.headers[index];
+        // Filter through all closed headers and closes them
+        this.states.filter( (state, index) => {
+            if(state.state === 'closed') {
+                const header = this.headers[index];
 
-                    _this4.close(index);
-                }
-            });
-        }
+                this.close(index);
+            }
+        });
+    }
 
-        /**
-         *  OPEN
-         *
-         *  Closes a specific panel
-         *  @param {object} header - The header node you want to open
-         */
 
-    }, {
-        key: 'open',
-        value: function open(headerIndex) {
-            this.togglePanel('open', headerIndex);
-        }
+    /**
+     *  OPEN
+     *
+     *  Closes a specific panel
+     *  @param {object} header - The header node you want to open
+     */
+    open(headerIndex) {
+        this.togglePanel('open', headerIndex);
+    }
 
-        /**
-         *  CLOSE
-         *
-         *  Closes a specific panel
-         *  @param {object} header - The header node you want to close
-         */
 
-    }, {
-        key: 'close',
-        value: function close(headerIndex) {
-            this.togglePanel('closed', headerIndex);
-        }
+    /**
+     *  CLOSE
+     *
+     *  Closes a specific panel
+     *  @param {object} header - The header node you want to close
+     */
+    close(headerIndex) {
+        this.togglePanel('closed', headerIndex);
+    }
 
-        /**
-         *  OPEN ALL
-         *
-         *  Opens all panels
-         */
 
-    }, {
-        key: 'openAll',
-        value: function openAll() {
-            var _this5 = this;
+    /**
+     *  OPEN ALL
+     *
+     *  Opens all panels
+     */
+    openAll() {
+        this.headers.forEach( header => {
+            this.togglePanel('open', header);
+        });
+    }
 
-            this.headers.forEach(function (header) {
-                _this5.togglePanel('open', header);
-            });
-        }
 
-        /**
-         *  CLOSE ALL
-         *
-         *  Closes all panels
-         */
+    /**
+     *  CLOSE ALL
+     *
+     *  Closes all panels
+     */
+    closeAll() {
+        this.headers.forEach( header => {
+            this.togglePanel('closed', header);
+        });
+    }
 
-    }, {
-        key: 'closeAll',
-        value: function closeAll() {
-            var _this6 = this;
 
-            this.headers.forEach(function (header) {
-                _this6.togglePanel('closed', header);
-            });
-        }
+    /**
+     *  GET STATE
+     *
+     *  Getting state of headers. By default gets state of all headers
+     *  @param {string} animationAction - The animation you want to invoke
+     *  @param {object} header          - The header node you want to animate
+     */
+    togglePanel(animationAction, headerIndex) {
+        if(animationAction !== undefined && headerIndex !== undefined) {
+            if(animationAction === 'closed') {
+                // 1. Getting ID of panel that we want to close
+                const header        = this.headers[headerIndex];
+                const panelToClose  = this.panels[headerIndex];
 
-        /**
-         *  GET STATE
-         *
-         *  Getting state of headers. By default gets state of all headers
-         *  @param {string} animationAction - The animation you want to invoke
-         *  @param {object} header          - The header node you want to animate
-         */
+                // 2. Closeing panel
+                panelToClose.classList.add(this.settings.hidenClass);
 
-    }, {
-        key: 'togglePanel',
-        value: function togglePanel(animationAction, headerIndex) {
-            var _this7 = this;
+                // 3. Set aria attrs
+                header.setAttribute('aria-expanded', false);
+                header.setAttribute('aria-label', this.settings.headerOpenLabel);
 
-            if (animationAction !== undefined && headerIndex !== undefined) {
-                if (animationAction === 'closed') {
-                    // 1. Getting ID of panel that we want to close
-                    var header = this.headers[headerIndex];
-                    var panelToClose = this.panels[headerIndex];
+                // 4. Resetting toggling so a new event can be fired
+                panelToClose.onCSSTransitionEnd(() => this.toggling = false );
+            } else if(animationAction === 'open') {
+                // 1. Getting ID of panel that we want to open
+                const header      = this.headers[headerIndex];
+                const panelToOpen = this.panels[headerIndex];
 
-                    // 2. Closeing panel
-                    panelToClose.classList.add(this.settings.hidenClass);
+                // 2. Closeing panel
+                panelToOpen.classList.remove(this.settings.hidenClass);
 
-                    // 3. Set aria attrs
-                    header.setAttribute('aria-expanded', false);
-                    header.setAttribute('aria-label', this.settings.headerOpenLabel);
+                // 3. Set aria attrs
+                header.setAttribute('aria-expanded', true);
+                header.setAttribute('aria-label', this.settings.headerCloseLabel);
 
-                    // 4. Resetting toggling so a new event can be fired
-                    panelToClose.onCSSTransitionEnd(function () {
-                        return _this7.toggling = false;
-                    });
-                } else if (animationAction === 'open') {
-                    // 1. Getting ID of panel that we want to open
-                    var _header = this.headers[headerIndex];
-                    var panelToOpen = this.panels[headerIndex];
-
-                    // 2. Closeing panel
-                    panelToOpen.classList.remove(this.settings.hidenClass);
-
-                    // 3. Set aria attrs
-                    _header.setAttribute('aria-expanded', true);
-                    _header.setAttribute('aria-label', this.settings.headerCloseLabel);
-
-                    // 4. Resetting toggling so a new event can be fired
-                    panelToOpen.onCSSTransitionEnd(function () {
-                        return _this7.toggling = false;
-                    });
-                }
+                // 4. Resetting toggling so a new event can be fired
+                panelToOpen.onCSSTransitionEnd(() => this.toggling = false );
             }
         }
-
-        // @TODO - is this needed anymore?
-        // checkState(headerId) {
-        //     let state = this.states[headerId].state;
-        //
-        //     if(state === 'closed') {
-        //         return state;
-        //     } else if(state === 'open') {
-        //         return state;
-        //     }
-        // }
+    }
 
 
-        /**
-         *  GET STATE
-         *
-         *  Getting state of headers. By default gets state of all headers
-         *  @param {array} headerIds - Id/'s of the headers you want to check
-         */
+    // @TODO - is this needed anymore?
+    // checkState(headerId) {
+    //     let state = this.states[headerId].state;
+    //
+    //     if(state === 'closed') {
+    //         return state;
+    //     } else if(state === 'open') {
+    //         return state;
+    //     }
+    // }
 
-    }, {
-        key: 'getState',
-        value: function getState() {
-            var _this8 = this;
 
-            var headerIds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    /**
+     *  GET STATE
+     *
+     *  Getting state of headers. By default gets state of all headers
+     *  @param {array} headerIds - Id/'s of the headers you want to check
+     */
+    getState(headerIds = []) {
+        if(headerIds.length && Array.isArray(headerIds)) {
+            let states = headerIds.map( header => this.states[header] );
 
-            if (headerIds.length && Array.isArray(headerIds)) {
-                var states = headerIds.map(function (header) {
-                    return _this8.states[header];
-                });
-
-                return states;
-            } else {
-                return this.states;
-            }
+            return states;
+        } else {
+            return this.states;
         }
+    }
 
-        /**
-         *  TOGGLE STATE
-         *
-         *  Toggling the state value
-         *  @param {string} currentState - Current state value for a header
-         */
 
-    }, {
-        key: 'toggleState',
-        value: function toggleState(currentState) {
-            if (currentState !== undefined) {
-                return currentState === 'closed' ? 'open' : 'closed';
-            }
+    /**
+     *  TOGGLE STATE
+     *
+     *  Toggling the state value
+     *  @param {string} currentState - Current state value for a header
+     */
+    toggleState(currentState) {
+        if(currentState !== undefined) {
+            return (currentState === 'closed') ? 'open' : 'closed';
         }
+    }
 
-        /**
-         *  HEADERS TO OPEN
-         *
-         *  Setting which headers should be open when accordion is initalised
-         *  @param {array} headersToOpen - Array of ID's for the headers to be open
-         */
 
-    }, {
-        key: '_openHeadersOnLoad',
-        value: function _openHeadersOnLoad() {
-            var _this9 = this;
 
-            var headersToOpen = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    /**
+     *  HEADERS TO OPEN
+     *
+     *  Setting which headers should be open when accordion is initalised
+     *  @param {array} headersToOpen - Array of ID's for the headers to be open
+     */
+    _openHeadersOnLoad(headersToOpen = []) {
+        if (headersToOpen.length && Array.isArray(headersToOpen)) {
+            let headers = headersToOpen.filter(header => header != undefined);
 
-            if (headersToOpen.length && Array.isArray(headersToOpen)) {
-                var headers = headersToOpen.filter(function (header) {
-                    return header != undefined;
-                });
-
-                headersToOpen.forEach(function (header) {
-                    return _this9.states[header].state = 'open';
-                });
-            }
-        }
-
-        /**
-         *  SET PANEL HEIGHT
-         *
-         *  Setting height for panels using pannels inner element
-         */
-
-    }, {
-        key: '_setPanelHeight',
-        value: function _setPanelHeight() {
-            var _this10 = this;
-
-            // [].forEach.(this.panels, (panel) => {
-            this.panels.forEach(function (panel) {
-                var panelInner = panel.querySelector(_this10.settings.panelInnerClass);
-
-                var activeHeight = panelInner.offsetHeight;
-
-                return panel.style.maxHeight = activeHeight + 'px';
+            headersToOpen.forEach(header => {
+                return (this.states[header].state = 'open');
             });
         }
-    }, {
-        key: '_setupHeaders',
-        value: function _setupHeaders() {
-            var _this11 = this;
+    }
 
-            this.headers.forEach(function (header, index) {
-                header.setAttribute('id', 'badger-accordion-header-' + _this11.ids[index].id);
-                header.setAttribute('aria-controls', 'badger-accordion-panel-' + _this11.ids[index].id);
-                header.setAttribute('aria-label', _this11.settings.headerOpenLabel);
-            });
-        }
-    }, {
-        key: '_setupPanels',
-        value: function _setupPanels() {
-            var _this12 = this;
 
-            this.panels.forEach(function (panel, index) {
-                panel.setAttribute('id', 'badger-accordion-panel-' + _this12.ids[index].id);
-                panel.setAttribute('aria-labeledby', 'badger-accordion-header-' + _this12.ids[index].id);
-            });
-        }
-    }, {
-        key: '_setupAttributes',
-        value: function _setupAttributes() {
-            // Adding ID & aria-controls
-            this._setupHeaders();
+    /**
+     *  SET PANEL HEIGHT
+     *
+     *  Setting height for panels using pannels inner element
+     */
+    _setPanelHeight() {
+        // [].forEach.(this.panels, (panel) => {
+        this.panels.forEach(panel => {
+            const panelInner = panel.querySelector(this.settings.panelInnerClass);
 
-            // Adding ID & aria-labeledby
-            this._setupPanels();
+            let activeHeight = panelInner.offsetHeight;
 
-            // Inserting data-attribute onto each `header`
-            this._insertDataAttrs();
-        }
-    }]);
+            return panel.style.maxHeight = `${activeHeight}px`;
+        });
+    }
 
-    return BadgerAccordion;
-}();
+
+    _setupHeaders() {
+        this.headers.forEach( (header, index) => {
+            header.setAttribute('id', `badger-accordion-header-${this.ids[index].id}`);
+            header.setAttribute('aria-controls', `badger-accordion-panel-${this.ids[index].id}`);
+            header.setAttribute('aria-label', this.settings.headerOpenLabel);
+        });
+    }
+
+
+
+    _setupPanels() {
+        this.panels.forEach( (panel, index) => {
+            panel.setAttribute('id', `badger-accordion-panel-${this.ids[index].id}`);
+            panel.setAttribute('aria-labeledby', `badger-accordion-header-${this.ids[index].id}`);
+        });
+    }
+
+
+    _setupAttributes() {
+        // Adding ID & aria-controls
+        this._setupHeaders();
+
+        // Adding ID & aria-labeledby
+        this._setupPanels();
+
+        // Inserting data-attribute onto each `header`
+        this._insertDataAttrs();
+    }
+}
+
 
 // Export
-
-
-exports.default = BadgerAccordion;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var rng = __webpack_require__(2);
-var bytesToUuid = __webpack_require__(4);
-
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
-
-  if (typeof(options) == 'string') {
-    buf = options == 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-
-  var rnds = options.random || (options.rng || rng)();
-
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
-    }
-  }
-
-  return buf || bytesToUuid(rnds);
-}
-
-module.exports = v4;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
-// browser this is a little complicated due to unknown quality of Math.random()
-// and inconsistent support for the `crypto` API.  We do the best we can via
-// feature-detection
-var rng;
-
-var crypto = global.crypto || global.msCrypto; // for IE 11
-if (crypto && crypto.getRandomValues) {
-  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
-  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
-  rng = function whatwgRNG() {
-    crypto.getRandomValues(rnds8);
-    return rnds8;
-  };
-}
-
-if (!rng) {
-  // Math.random()-based (RNG)
-  //
-  // If all else fails, use Math.random().  It's fast, but is of unspecified
-  // quality.
-  var rnds = new Array(16);
-  rng = function() {
-    for (var i = 0, r; i < 16; i++) {
-      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-    }
-
-    return rnds;
-  };
-}
-
-module.exports = rng;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-/**
- * Convert array of 16 byte values to UUID string format of the form:
- * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
- */
-var byteToHex = [];
-for (var i = 0; i < 256; ++i) {
-  byteToHex[i] = (i + 0x100).toString(16).substr(1);
-}
-
-function bytesToUuid(buf, offset) {
-  var i = offset || 0;
-  var bth = byteToHex;
-  return bth[buf[i++]] + bth[buf[i++]] +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] +
-          bth[buf[i++]] + bth[buf[i++]] +
-          bth[buf[i++]] + bth[buf[i++]];
-}
-
-module.exports = bytesToUuid;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(module) {
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-/*
-	By Osvaldas Valutis, www.osvaldas.info
-	Available for use under the MIT License
-*/
-
-;(function (document, window, index) {
-	var s = document.body || document.documentElement,
-	    s = s.style,
-	    prefixAnimation = '',
-	    prefixTransition = '';
-
-	if (s.WebkitAnimation == '') prefixAnimation = '-webkit-';
-	if (s.MozAnimation == '') prefixAnimation = '-moz-';
-	if (s.OAnimation == '') prefixAnimation = '-o-';
-
-	if (s.WebkitTransition == '') prefixTransition = '-webkit-';
-	if (s.MozTransition == '') prefixTransition = '-moz-';
-	if (s.OTransition == '') prefixTransition = '-o-';
-
-	Object.prototype.onCSSAnimationEnd = function (callback) {
-		var runOnce = function runOnce(e) {
-			callback();e.target.removeEventListener(e.type, runOnce);
-		};
-		this.addEventListener('webkitAnimationEnd', runOnce);
-		this.addEventListener('mozAnimationEnd', runOnce);
-		this.addEventListener('oAnimationEnd', runOnce);
-		this.addEventListener('oanimationend', runOnce);
-		this.addEventListener('animationend', runOnce);
-		if (prefixAnimation == '' && !('animation' in s) || getComputedStyle(this)[prefixAnimation + 'animation-duration'] == '0s') callback();
-		return this;
-	};
-
-	Object.prototype.onCSSTransitionEnd = function (callback) {
-		var runOnce = function runOnce(e) {
-			callback();e.target.removeEventListener(e.type, runOnce);
-		};
-		this.addEventListener('webkitTransitionEnd', runOnce);
-		this.addEventListener('mozTransitionEnd', runOnce);
-		this.addEventListener('oTransitionEnd', runOnce);
-		this.addEventListener('transitionend', runOnce);
-		this.addEventListener('transitionend', runOnce);
-		if (prefixTransition == '' && !('transition' in s) || getComputedStyle(this)[prefixTransition + 'transition-duration'] == '0s') callback();
-		return this;
-	};
-})(document, window, 0);
-
-exports.default = module;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)(module)))
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ })
-/******/ ]);
+export default BadgerAccordion;
