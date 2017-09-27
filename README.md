@@ -44,7 +44,7 @@ You'll need to import the plugin and create a new instance so you can use it. Th
  2. If you have not installed the plugin the NPM ensure that you have `transition-end.js` somewhere your Webpack resolver path
  3. Include the `badger-accordion.css`
 
-I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The (pollyfill)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill] only adds `0.93kb` (`0.34kb` gzipped).
+I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The [pollyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill) only adds `0.93kb` (`0.34kb` gzipped).
 ```
 import pollyfill from 'array-from-pollyfill';
 import BadgerAccordion from 'badger-accordion';
