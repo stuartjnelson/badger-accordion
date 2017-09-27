@@ -8,12 +8,14 @@ An accessible light weight, vanilla JavaScript accordion with an extensible API.
 
 **Contents**
   - [The idea](#the-idea)
-  - [Key terminologies](#key-terminologies)
+    - [Key terminologies](#key-terminologies)
   - [Basic setup](#basic-setup)
     - [How to use the plugin](#how-to-use-the-plugin)
     - [Styles](#styles)
   - [Options](#options)
   - [Methods](#methods)
+  - [Sponsors](#sponsors)
+  - [Contributors](#contributors)
   - [Roadmap](#roadmap)
 
 
