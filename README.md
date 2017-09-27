@@ -1,14 +1,21 @@
 # Badger Accordion
 An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.17kb Gzipped (2.49kb).
+<br>
+[Codepen demo](https://codepen.io/stuartjnelson/full/WZpxqY)
+<br>
+[Github Repo](https://github.com/stuartjnelson/badger-accordion)
+<br>
 
 **Contents**
   - [The idea](#the-idea)
-  - [Key terminologies](#key-terminologies)
+    - [Key terminologies](#key-terminologies)
   - [Basic setup](#basic-setup)
     - [How to use the plugin](#how-to-use-the-plugin)
     - [Styles](#styles)
   - [Options](#options)
   - [Methods](#methods)
+  - [Sponsors](#sponsors)
+  - [Contributors](#contributors)
   - [Roadmap](#roadmap)
 
 
@@ -44,7 +51,7 @@ You'll need to import the plugin and create a new instance so you can use it. Th
  2. If you have not installed the plugin the NPM ensure that you have `transition-end.js` somewhere your Webpack resolver path
  3. Include the `badger-accordion.css`
 
-I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The (pollyfill)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill] only adds `0.93kb` (`0.34kb` gzipped).
+I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The [pollyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill) only adds `0.93kb` (`0.34kb` gzipped).
 ```
 import pollyfill from 'array-from-pollyfill';
 import BadgerAccordion from 'badger-accordion';
@@ -74,6 +81,7 @@ I have created some simple CSS styles to help you with creating an accordion whi
 
 
 
+<br>
 ## Options
 
 The accordion has a selection of options that you can overwrite. For example if you wanted to open the first and 4th panel when the accordion is initalised;
@@ -84,10 +92,9 @@ new BadgerAccordion('.js-badger-accordion', {
 });
 ```
 
-### Options
+|:-----------------|-----------|---------------|---------------|
 | Option             | Type    | Default                            | Description |
-| ---                | ---     | ---                                | ---   |
-| headerClass        | String  | `.js-badger-accordion-header`      | Class for panel's header  |
+| headerClass        | String  | `.js-badger-accordion-header`      | Class for panel's header |
 | panelClass         | String  | `.js-badger-accordion-panel`       | Class for panel  |
 | panelInnerClass    | String  | `.js-badger-accordion-panel-inner` | Class for panel inner container  |
 | hidenClass         | String  | `is-hidden`                        | Class added to panels that are hidden  |
@@ -98,6 +105,7 @@ new BadgerAccordion('.js-badger-accordion', {
 | headerCloseLabel   | String  | `Accordion close button`           | Value for header's `aria-label` when button is open  |
 
 
+<br>
 ## Methods
 
 The accordion has a series of methods allowing you to have full control over extending the plugin. For example if you wanted to close all your accordion's panels;
@@ -105,7 +113,6 @@ The accordion has a series of methods allowing you to have full control over ext
 ```
 accordion.closeAll();
 ```
-
 
 | Method          | Arguments            | Description | Example |
 |---              |---                   |---          |---          |
@@ -117,7 +124,16 @@ accordion.closeAll();
 | `closeAll()`    |                      | Closes all accordion panels  ||
 
 
-### Roadmap
+## Sponsors
+A massive thanks to [BrowserStack](https://www.browserstack.com) for supporting me by allowing me to use their platform for free. BrowserStack is a cloud based testing tool that lets you test websites on a wide range web browsers and real mobiles devices. This removes all the hassle of installing chunky VM's. BrowserStack has some great tools such as automated testing, testing local sites (via a browser extension) and taking screenshots.
+![BrowserStack logo](https://digitalscientists.com/system/images/1448/original/logo-browserstack.png)
+
+
+## Contributors
+I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who did a great fork of the Codepen demo.   
+
+
+## Roadmap
  - Create option for callback methods on each public method
  - Export an IE9 safe version in the repo
  - Create horizontal accordion option
