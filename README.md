@@ -81,7 +81,6 @@ I have created some simple CSS styles to help you with creating an accordion whi
 
 
 
-<br>
 ## Options
 
 The accordion has a selection of options that you can overwrite. For example if you wanted to open the first and 4th panel when the accordion is initalised;
@@ -92,8 +91,8 @@ new BadgerAccordion('.js-badger-accordion', {
 });
 ```
 
-|:-----------------|-----------|---------------|---------------|
 | Option             | Type    | Default                            | Description |
+|---                 |---      |---                                 |---          |
 | headerClass        | String  | `.js-badger-accordion-header`      | Class for panel's header |
 | panelClass         | String  | `.js-badger-accordion-panel`       | Class for panel  |
 | panelInnerClass    | String  | `.js-badger-accordion-panel-inner` | Class for panel inner container  |
@@ -105,7 +104,7 @@ new BadgerAccordion('.js-badger-accordion', {
 | headerCloseLabel   | String  | `Accordion close button`           | Value for header's `aria-label` when button is open  |
 
 
-<br>
+
 ## Methods
 
 The accordion has a series of methods allowing you to have full control over extending the plugin. For example if you wanted to close all your accordion's panels;
