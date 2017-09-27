@@ -1,5 +1,10 @@
 # Badger Accordion
 An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.17kb Gzipped (2.49kb).
+<br>
+[Codepen demo](https://codepen.io/stuartjnelson/full/WZpxqY)
+<br>
+[Github Repo](https://github.com/stuartjnelson/badger-accordion)
+<br>
 
 **Contents**
   - [The idea](#the-idea)
