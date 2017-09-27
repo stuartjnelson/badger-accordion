@@ -88,8 +88,6 @@ new BadgerAccordion('.js-badger-accordion', {
     openHeadersOnLoad: [0, 3]    
 });
 ```
-
-### Options
 | Option             | Type    | Default                            | Description |
 | ---                | ---     | ---                                | ---   |
 | headerClass        | String  | `.js-badger-accordion-header`      | Class for panel's header  |
@@ -122,7 +120,16 @@ accordion.closeAll();
 | `closeAll()`    |                      | Closes all accordion panels  ||
 
 
-### Roadmap
+## Sponsors
+A massive thanks to [BrowserStack](https://www.browserstack.com) for supporting me by allowing me to use their platform for free. BrowserStack is a cloud based testing tool that lets you test websites on a wide range web browsers and real mobiles devices. This removes all the hassle of installing chunky VM's. BrowserStack has some great tools such as automated testing, testing local sites (via a browser extension) and taking screenshots.
+![BrowserStack logo](https://digitalscientists.com/system/images/1448/original/logo-browserstack.png)
+
+
+## Contributors 
+I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who did a great fork of the Codepen demo.   
+
+
+## Roadmap
  - Create option for callback methods on each public method
  - Export an IE9 safe version in the repo
  - Create horizontal accordion option
