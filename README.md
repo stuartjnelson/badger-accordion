@@ -79,6 +79,7 @@ I have created some simple CSS styles to help you with creating an accordion whi
 
 
 
+<br>
 ## Options
 
 The accordion has a selection of options that you can overwrite. For example if you wanted to open the first and 4th panel when the accordion is initalised;
@@ -88,9 +89,10 @@ new BadgerAccordion('.js-badger-accordion', {
     openHeadersOnLoad: [0, 3]    
 });
 ```
+
+|:-----------------|-----------|---------------|---------------|
 | Option             | Type    | Default                            | Description |
-| ---                | ---     | ---                                | ---   |
-| headerClass        | String  | `.js-badger-accordion-header`      | Class for panel's header  |
+| headerClass        | String  | `.js-badger-accordion-header`      | Class for panel's header |
 | panelClass         | String  | `.js-badger-accordion-panel`       | Class for panel  |
 | panelInnerClass    | String  | `.js-badger-accordion-panel-inner` | Class for panel inner container  |
 | hidenClass         | String  | `is-hidden`                        | Class added to panels that are hidden  |
@@ -101,6 +103,7 @@ new BadgerAccordion('.js-badger-accordion', {
 | headerCloseLabel   | String  | `Accordion close button`           | Value for header's `aria-label` when button is open  |
 
 
+<br>
 ## Methods
 
 The accordion has a series of methods allowing you to have full control over extending the plugin. For example if you wanted to close all your accordion's panels;
@@ -108,7 +111,6 @@ The accordion has a series of methods allowing you to have full control over ext
 ```
 accordion.closeAll();
 ```
-
 
 | Method          | Arguments            | Description | Example |
 |---              |---                   |---          |---          |
@@ -125,7 +127,7 @@ A massive thanks to [BrowserStack](https://www.browserstack.com) for supporting 
 ![BrowserStack logo](https://digitalscientists.com/system/images/1448/original/logo-browserstack.png)
 
 
-## Contributors 
+## Contributors
 I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who did a great fork of the Codepen demo.   
 
 
