@@ -2,3 +2,4 @@
 /src/css/badger-accordion.css.map
 badger-accordion-demo.css.map
 /node_modules
+.DS_Store
