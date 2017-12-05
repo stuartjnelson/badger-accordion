@@ -6,13 +6,13 @@ import includePaths from 'rollup-plugin-includepaths';
 // import uglify from 'rollup-plugin-uglify';
 
 export default {
-    // input: 'src/js/badger-accordion.js',
-    input: 'example/js/behaviour.js',
+    input: 'src/js/badger-accordion.js',
+    // input: 'example/js/behaviour.js', // - for compling example
     sourcemap: 'inline',
     name: 'BadgerAccordion',
     output: {
-        // file: 'dist/badger-accordion.js',
-        file: 'example/js/app.js',
+        file: 'dist/badger-accordion.js',
+        // file: 'example/js/app.js', // - for compling example
         format: 'umd',
     },
     plugins: [
