@@ -1,68 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Badger Accordion</title>
 
-    <link rel="stylesheet" href="css/badger-accordion.css">
+    <style media="screen">
+        .badger-accordion__panel {
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .badger-accordion__panel.is-active {
+            max-height: 75vh;
+        }
+
+        .badger-accordion__panel.is-hidden {
+            max-height: 0 !important;
+        }
+
+        .badger-accordion--initalised .badger-accordion__panel {
+            transition: all ease-in-out 0.2s;
+        }
+    </style>
     <link rel="stylesheet" href="css/badger-accordion-demo.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:600&text=Badger%20Accordion">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
 </head>
+
 <body>
-    <div>
-        <div class="container">
-            <h1 class="heading--alpha">Badger Accordion</h1>
+    <main>
+        <section class="container">
+            <header class="header">
+                <h1 class="heading--alpha">Badger Accordion</h1>
+
+                <p>An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.17kb Gzipped (2.49kb). Checkout the links below for more info.</p>
+
+                <ul class="inline-list">
+                    <li class="inline-list__item">
+                        <a href="https://github.com/stuartjnelson/badger-accordion" class="icon-link" rel="noopener nofollow" target="_blank">
+                            <span class="vh">Link to github</span>
+                            <span class="icon-link__text">
+                                Repo & docs
+                            </span>
+                            <svg aria-hidden="true" height="32" viewBox="0 0 16 16" width="32">
+                                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0   3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </header>
 
             <dl class="badger-accordion js-badger-accordion">
-                <dt>
-                    <button class="badger-accordion__header js-badger-accordion-header">
-                        <div class="badger-accordion__header-title">
-                            Accordion Header
+                <dt class="badger-accordion__header">
+                    <button class="badger-accordion__trigger js-badger-accordion-header">
+                        <div class="badger-accordion__trigger-title">
+                            European Badgers - Meles meles
                         </div>
-                        <div class="badger-accordion__header-icon">
+                        <div class="badger-accordion__trigger-icon">
                         </div>
                     </button>
                 </dt>
                 <dd class="badger-accordion__panel js-badger-accordion-panel">
                     <div class="badger-accordion__panel-inner text-module js-badger-accordion-panel-inner">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                        <p>Badgers are short-legged omnivores in the family Mustelidae, which also includes otters, polecats, weasels and wolverines. They belong to the caniform suborder of carnivoran mammals.</p>
+                        <p>Badgers are thought to have got their name because of the white mark – or badge – on their head, although there are other theories.</p>
+                        <p>Another old name for badgers is ‘brock’, meaning grey. You can often see the word brock in street names. Brock is also the name of a character in the Pokemon TV series!</p>
+                        <p>Badgers are fast – they can run up to 30km per hour (nearly 20 mph) for short periods.</p>
                     </div>
                 </dd>
-                <dt>
-                    <button class="badger-accordion__header js-badger-accordion-header">
-                        <div class="badger-accordion__header-title">
-                            Accordion Header
+                <dt class="badger-accordion__header">
+                    <button class="badger-accordion__trigger js-badger-accordion-header">
+                        <div class="badger-accordion__trigger-title">
+                            Honey badger - Mellivora capensis
                         </div>
-                        <div class="badger-accordion__header-icon">
+                        <div class="badger-accordion__trigger-icon">
                         </div>
                     </button>
                 </dt>
                 <dd class="badger-accordion__panel js-badger-accordion-panel">
                     <div class="badger-accordion__panel-inner text-module js-badger-accordion-panel-inner">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                        <p>Honey badgers can reach 2.4 feet in length and weigh between 19 and 26 pounds. They have bushy tail that is usually 12 inches long.</p>
+                        <p>Honey badger has incredible thick skin that cannot be pierced with arrows, spears or even machete. Skin is also very loose, which is useful in the case of attack. When predator grabs a badger, animal rotates in its skin and turns
+                            toward predator's face to fight back (attacking its eyes).</p>
+                        <p>Honey badger has very sharp teeth. They can easily break tortoise shell.</p>
+                    </div>
+                </dd>
+                <dt class="badger-accordion__header">
+                    <button class="badger-accordion__trigger js-badger-accordion-header">
+                        <div class="badger-accordion__trigger-title">
+                            Hog Badger - Arctonyx collaris
+                        </div>
+                        <div class="badger-accordion__trigger-icon">
+                        </div>
+                    </button>
+                </dt>
+                <dd class="badger-accordion__panel js-badger-accordion-panel">
+                    <div class="badger-accordion__panel-inner text-module js-badger-accordion-panel-inner">
+                        <p>Although badgers are a solitary animal the young Hog Badger tends to be quite playful and social. I would be careful playing with any animal that has extremely large claws. Remember folks, it is all fun and games until someone
+                            loses an eye.</p>
+                        <p>Hog Badgers are omnivores and they feed on a variety of things from honey and fruit to insects and small mammals. </p>
+                        <p>A young / baby of a hog badger is called a 'kit'. The females are called 'sow' and males 'boar'. A hog badger group is called a 'cete, colony, set or company'.</p>
                     </div>
                 </dd>
             </dl>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <script src="js/app.js" charset="utf-8"></script>
 </body>
+
 </html>

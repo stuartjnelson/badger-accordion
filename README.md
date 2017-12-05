@@ -3,8 +3,6 @@ An accessible light weight, vanilla JavaScript accordion with an extensible API.
 <br>
 [Codepen demo](https://codepen.io/stuartjnelson/full/WZpxqY)
 <br>
-[Github Repo](https://github.com/stuartjnelson/badger-accordion)
-<br>
 
 **Contents**
   - [The idea](#the-idea)
@@ -32,24 +30,11 @@ An accessible light weight, vanilla JavaScript accordion with an extensible API.
 
 
 ## Basic setup
-
-Firstly create the markup for your accordion. As a bare minimum you will need to create;
-
- * A container with your `accordion class`. This is required and will be passed into your accordion instance.
-    * Default `accordion class`: `js-badger-accordion`.
- * A button with your accordion header class.
-    * Default: `js-badger-accordion-header`.
- * A panel with your accordion panel class. This panel will need to have as a bare minimum css of having `overflow: hidden` set.
-    * Default: `js-badger-accordion-panel`.
- * A inner panel element.
-    * Default: `js-badger-accordion-panel-inner`.
-
-### How to use the plugin
 You'll need to import the plugin and create a new instance so you can use it. There is a working example in the `example` directory (shock horror!) if you'd like something to reference.
 
  1. Import `badger-accordion.js`
- 2. If you have not installed the plugin the NPM ensure that you have `transition-end.js` somewhere your Webpack resolver path
- 3. Include the `badger-accordion.css`
+ 2. Create new instance of the accordion
+ 3. Include the basic styles (which are in `dist/badger-accordion.css` or `dist/badger-accordion.css`)
 
 I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The [pollyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill) only adds `0.93kb` (`0.34kb` gzipped).
 ```
@@ -77,7 +62,7 @@ Next you'll want to create your markup. This is the minimum markup you will need
 ```
 
 #### Styles
-I have created some simple CSS styles to help you with creating an accordion which are in `badger-accordion-demo.css`. There are also `scss` files with the basic css, demo & some handy mixins you could use to speed up creating a nice accordion.
+I have created some simple CSS styles to help you with creating an accordion which are in `dist/badger-accordion-demo.css` or `dist/badger-accordion-demo.scss`. If you'd like some additional styles checkout the example dir.
 
 
 
@@ -129,10 +114,12 @@ A massive thanks to [BrowserStack](https://www.browserstack.com) for supporting 
 
 
 ## Contributors
-I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who did a great fork of the Codepen demo.   
+I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who gave my demo styles _some love_ <sup>Steve Richardson™</sup>.
 
 
 ## Roadmap
+ - General performance & naming review
+ - Create some mixins to help making custom themes quicker & easier
  - Create option for callback methods on each public method
  - Export an IE9 safe version in the repo
  - Create horizontal accordion option
