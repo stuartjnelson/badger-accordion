@@ -4,8 +4,9 @@
  * A lightwight vanilla JS accordion with an exstensible API
  */
 
-import uuid from 'uuid/v4';
-const uuidV4 = uuid;
+// import uuid from 'uuid/v4';
+// const uuidV4 = uuid;
+/* eslint-disable no-unused-vars */
 import onCSSTransitionEnd from 'transition-end';
 
 /**
@@ -46,12 +47,12 @@ class BadgerAccordion {
 
         // This is for managing state of the accordion. It by default sets
         // all accordion panels to be closed
-        this.states = [].map.call(this.headers, header => {
+        this.states = [].map.call(this.headers, () => {
             return { state: 'closed' };
         });
 
-        this.ids = [].map.call(this.headers, header => {
-            return { id: uuidV4() };
+        this.ids = [].map.call(this.headers, () => {
+            return { id: Math.floor((Math.random() * 1000000) + 1) };
         });
 
         // This is to ensure that once an opne/close event has been fired
@@ -63,6 +64,7 @@ class BadgerAccordion {
         if( this.container ) {
             this.init();
         } else {
+            /* eslint-disable no-console */
             console.log('Something is wrong with you markup...');
         }
     }
@@ -145,7 +147,7 @@ class BadgerAccordion {
 
         // Adding click event to accordion
         this.headers.forEach((header, index) => {
-            header.addEventListener('click', function(event) {
+            header.addEventListener('click', function() {
                 // Getting the target of the click
                 // const clickedEl = event.target;
 
@@ -217,13 +219,11 @@ class BadgerAccordion {
      *  Renders the accordion in the DOM using the `this.states` object
      */
     _renderDom() {
-        const states = this.getState();
+        // const states = this.getState();
 
         // Filter through all open headers and open them
         this.states.filter( (state, index) => {
             if(state.state === 'open') {
-                let header = this.headers[index];
-
                 this.open(index);
             }
         });
@@ -231,8 +231,6 @@ class BadgerAccordion {
         // Filter through all closed headers and closes them
         this.states.filter( (state, index) => {
             if(state.state === 'closed') {
-                const header = this.headers[index];
-
                 this.close(index);
             }
         });
@@ -380,7 +378,7 @@ class BadgerAccordion {
         if (headersToOpen.length && Array.isArray(headersToOpen)) {
             let headers = headersToOpen.filter(header => header != undefined);
 
-            headersToOpen.forEach(header => {
+            headers.forEach(header => {
                 return (this.states[header].state = 'open');
             });
         }
