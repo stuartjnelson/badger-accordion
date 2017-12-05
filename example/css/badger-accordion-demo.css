@@ -111,7 +111,9 @@ button {
 
 p {
   line-height: 1.25;
-  margin: 20px auto; }
+  margin: 20px 0; }
+  p:not(:last-of-type) {
+    margin-bottom: 20px; }
 
 a {
   color: #34495e; }
@@ -130,21 +132,30 @@ a {
   display: flex;
   text-align: center;
   justify-content: center;
+  padding: 5px;
   text-decoration: none; }
-  .icon-link:focus .icon-link__text {
-    box-shadow: inset 0 -2px currentColor; }
+  .icon-link:focus {
+    color: #2574A9;
+    outline: auto 2px #2574A9; }
+    .icon-link:focus .icon-link__text {
+      box-shadow: inset 0 -3px #2574A9; }
+    .icon-link:focus svg {
+      fill: #2574A9; }
   .icon-link svg {
     transition: all ease-in-out 0.2s;
     fill: #34495e;
     margin-left: 0.5rem; }
 
 @media screen and (min-width: 768px) {
-  .icon-link:hover .icon-link__text {
-    box-shadow: inset 0 -2px currentColor; }
-  .icon-link:hover svg {
-    fill: #000; } }
+  .icon-link:hover {
+    color: #2574A9; }
+    .icon-link:hover .icon-link__text {
+      box-shadow: inset 0 -3px #2574A9; }
+    .icon-link:hover svg {
+      fill: #2574A9; } }
 .icon-link__text {
-  transition: all ease-in-out 0.2s; }
+  transition: all ease-in-out 0.2s;
+  box-shadow: inset 0 -2px currentColor; }
 
 .badger-accordion {
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);
