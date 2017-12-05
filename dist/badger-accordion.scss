@@ -17,7 +17,6 @@
     overflow: hidden;
 
     // Closing all pannels
-    // scss-lint:disable ImportantRule
     &.is-active { max-height: 75vh; }
 
     &.is-hidden { max-height: 0 !important; }
