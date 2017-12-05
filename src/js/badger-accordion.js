@@ -4,8 +4,8 @@
  * A lightwight vanilla JS accordion with an exstensible API
  */
 
-import uuid from 'uuid/v4';
-const uuidV4 = uuid;
+// import uuid from 'uuid/v4';
+// const uuidV4 = uuid;
 /* eslint-disable no-unused-vars */
 import onCSSTransitionEnd from 'transition-end';
 
@@ -52,7 +52,7 @@ class BadgerAccordion {
         });
 
         this.ids = [].map.call(this.headers, () => {
-            return { id: uuidV4() };
+            return { id: Math.floor((Math.random() * 1000000) + 1) };
         });
 
         // This is to ensure that once an opne/close event has been fired
