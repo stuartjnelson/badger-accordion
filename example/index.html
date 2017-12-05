@@ -6,7 +6,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Badger Accordion</title>
 
-    <link rel="stylesheet" href="css/badger-accordion.css">
+    <style media="screen">
+        .badger-accordion__panel {
+            max-height: 0;
+            overflow: hidden; }
+        .badger-accordion__panel.is-active {
+            max-height: 75vh; }
+        .badger-accordion__panel.is-hidden {
+            max-height: 0 !important; }
+        .badger-accordion--initalised .badger-accordion__panel {
+            transition: all ease-in-out 0.2s; }
+    </style>
     <link rel="stylesheet" href="css/badger-accordion-demo.css">
 </head>
 <body>
