@@ -32,9 +32,10 @@ An accessible light weight, vanilla JavaScript accordion with an extensible API.
 ## Basic setup
 You'll need to import the plugin and create a new instance so you can use it. There is a working example in the `example` directory (shock horror!) if you'd like something to reference.
 
- 1. Import `badger-accordion.js`
- 2. Create new instance of the accordion
- 3. Include the basic styles (which are in `dist/badger-accordion.css` or `dist/badger-accordion.css`)
+ 1. Create your markup
+ 2. Include the basic styles (which are in `dist/badger-accordion.css` or `dist/badger-accordion.css`)
+ 3. Import `badger-accordion.js`
+ 4. Create new instance of the accordion
 
 I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The [pollyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill) only adds `0.93kb` (`0.34kb` gzipped).
 ```
@@ -45,7 +46,7 @@ import BadgerAccordion from 'badger-accordion';
 const accordion = new BadgerAccordion('.js-badger-accordion');
 ```
 
-Next you'll want to create your markup. This is the minimum markup you will need for your accordion. You can use any html elements you would like but you will need to follow the nesting in the example below. I have included the selector `badger-accordion__panel` as I feel it is best to use separate selectors for targeting an element with JavaScript and CSS.
+Next you'll want to create your markup. This is the minimum markup you will need for your accordion. You can use any html elements you would like but you will need to follow the nesting in the example below. I have included the selector `badger-accordion__panel` that is just for targeting the panels styles. I feel it is best to use separate selectors for targeting an element with JavaScript and CSS. Feel free to create your own selectors all JavaScript selectors are overwrite able using the plugins [options](#options).
 ```
 <dl class="js-badger-accordion">
     <dt>
