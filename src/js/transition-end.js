@@ -23,35 +23,41 @@
     if (s.OTransition == '')
         prefixTransition = '-o-';
 
-    Object.prototype.onCSSAnimationEnd = function(callback) {
-        var runOnce = function(e) {
-            callback();
-            e.target.removeEventListener(e.type, runOnce);
-        };
-        this.addEventListener('webkitAnimationEnd', runOnce);
-        this.addEventListener('mozAnimationEnd', runOnce);
-        this.addEventListener('oAnimationEnd', runOnce);
-        this.addEventListener('oanimationend', runOnce);
-        this.addEventListener('animationend', runOnce);
-        if ((prefixAnimation == '' && !('animation' in s)) || getComputedStyle(this)[prefixAnimation + 'animation-duration'] == '0s')
-            callback();
-        return this;
-    };
+    Object.defineProperty(Object.prototype, 'onCSSAnimationEnd', {
+        value: function(callback) {
+            var runOnce = function(e) {
+                callback();
+                e.target.removeEventListener(e.type, runOnce);
+            };
+            this.addEventListener('webkitAnimationEnd', runOnce);
+            this.addEventListener('mozAnimationEnd', runOnce);
+            this.addEventListener('oAnimationEnd', runOnce);
+            this.addEventListener('oanimationend', runOnce);
+            this.addEventListener('animationend', runOnce);
+            if ((prefixAnimation == '' && !('animation' in s)) || getComputedStyle(this)[prefixAnimation + 'animation-duration'] == '0s')
+                callback();
+            return this;
+        },
+        enumerable: false
+    });
 
-    Object.prototype.onCSSTransitionEnd = function(callback) {
-        var runOnce = function(e) {
-            callback();
-            e.target.removeEventListener(e.type, runOnce);
-        };
-        this.addEventListener('webkitTransitionEnd', runOnce);
-        this.addEventListener('mozTransitionEnd', runOnce);
-        this.addEventListener('oTransitionEnd', runOnce);
-        this.addEventListener('transitionend', runOnce);
-        this.addEventListener('transitionend', runOnce);
-        if ((prefixTransition == '' && !('transition' in s)) || getComputedStyle(this)[prefixTransition + 'transition-duration'] == '0s')
-            callback();
-        return this;
-    };
+    Object.defineProperty(Object.prototype, 'onCSSTransitionEnd', {
+        value: function(callback) {
+            var runOnce = function runOnce(e) {
+                callback();
+                e.target.removeEventListener(e.type, runOnce);
+            };
+            this.addEventListener('webkitTransitionEnd', runOnce);
+            this.addEventListener('mozTransitionEnd', runOnce);
+            this.addEventListener('oTransitionEnd', runOnce);
+            this.addEventListener('transitionend', runOnce);
+            this.addEventListener('transitionend', runOnce);
+            if (prefixTransition == '' && !('transition' in s) || getComputedStyle(this)[prefixTransition + 'transition-duration'] == '0s')
+                callback();
+            return this;
+        },
+        enumerable: false
+    });
 }(document, window, 0));
 
 /* eslint-disable no-undef */
