@@ -37,7 +37,8 @@
             if (prefixAnimation == '' && !('animation' in s) || getComputedStyle(this)[prefixAnimation + 'animation-duration'] == '0s') callback();
             return this;
         },
-        enumerable: false
+        enumerable: false,
+        writable: true
     });
 
     Object.defineProperty(Object.prototype, 'onCSSTransitionEnd', {
@@ -54,7 +55,8 @@
             if (prefixTransition == '' && !('transition' in s) || getComputedStyle(this)[prefixTransition + 'transition-duration'] == '0s') callback();
             return this;
         },
-        enumerable: false
+        enumerable: false,
+        writable: true
     });
 })(document, window, 0);
 

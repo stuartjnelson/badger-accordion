@@ -38,7 +38,8 @@
                 callback();
             return this;
         },
-        enumerable: false
+        enumerable: false,
+        writable: true
     });
 
     Object.defineProperty(Object.prototype, 'onCSSTransitionEnd', {
@@ -56,7 +57,8 @@
                 callback();
             return this;
         },
-        enumerable: false
+        enumerable: false,
+        writable: true
     });
 }(document, window, 0));
 
