@@ -12,6 +12,7 @@ export default {
     name: 'BadgerAccordion',
     output: {
         file: 'dist/badger-accordion.js',
+        // file: 'dist/badger-accordion.min.js',
         // file: 'example/js/app.js', // - for compling example
         format: 'umd',
     },
