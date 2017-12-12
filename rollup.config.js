@@ -8,10 +8,11 @@ import includePaths from 'rollup-plugin-includepaths';
 export default {
     input: 'src/js/badger-accordion.js',
     // input: 'example/js/behaviour.js', // - for compling example
-    sourcemap: 'inline',
+    sourcemap: 'false',
     name: 'BadgerAccordion',
     output: {
         file: 'dist/badger-accordion.js',
+        // file: 'dist/badger-accordion.min.js',
         // file: 'example/js/app.js', // - for compling example
         format: 'umd',
     },
