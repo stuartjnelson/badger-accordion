@@ -6,9 +6,12 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
-## [1.0.0] to [1.0.11] - 2017-12-11
-### Added/Updated/Fixed
- - Just added this change log. Wont detail whats happened until now. Released the plugin and updated a bunch of things.
+## [1.0.13] - 2017-12-12
+### Fixed
+ - Updated transitionEnd JS to ensure that `Object.defineProperty` is writable
+
+### Updated
+ - Updated issue template
 
 
 ## [1.0.12] - 2017-12-11
@@ -20,3 +23,8 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ### Updated
  - `rollup.config.js` so that srcmaps aren't included with complied JS files.
+
+
+## [1.0.0] to [1.0.11] - 2017-12-11
+### Added/Updated/Fixed
+ - Just added this change log. Wont detail whats happened until now. Released the plugin and updated a bunch of things.
