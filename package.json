@@ -1,6 +1,6 @@
 {
   "name": "badger-accordion",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "An accessible vanilla JS accordion with extensible API.",
   "main": "dist/badger-accordion.js",
   "repository": {
