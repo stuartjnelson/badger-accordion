@@ -154,6 +154,16 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 
         /* eslint-disable no-undef */
 
+        var _extends = Object.assign || function (target) {
+            for (var i = 1; i < arguments.length; i++) {
+                var source = arguments[i];for (var key in source) {
+                    if (Object.prototype.hasOwnProperty.call(source, key)) {
+                        target[key] = source[key];
+                    }
+                }
+            }return target;
+        };
+
         var _createClass = function () {
             function defineProperties(target, props) {
                 for (var i = 0; i < props.length; i++) {
@@ -210,7 +220,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
                 };
 
                 // Options
-                this.settings = Object.assign({}, defaults, options);
+                this.settings = _extends({}, defaults, options);
 
                 // Setting getting elements
                 this.container = container;
