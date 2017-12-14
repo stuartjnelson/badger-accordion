@@ -3,5 +3,6 @@
     ["env", {
       "modules": false
     }]
-  ]
+  ],
+  "plugins": ["transform-object-assign"]
 }

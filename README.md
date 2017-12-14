@@ -8,7 +8,7 @@ An accessible light weight, vanilla JavaScript accordion with an extensible API.
   - [The idea](#the-idea)
     - [Key terminologies](#key-terminologies)
   - [Basic setup](#basic-setup)
-    - [How to use the plugin](#how-to-use-the-plugin)
+    - [Download plugin](#download-plugin)
     - [Styles](#styles)
   - [Options](#options)
   - [Methods](#methods)
@@ -30,6 +30,12 @@ An accessible light weight, vanilla JavaScript accordion with an extensible API.
 
 
 ## Basic setup
+### Download plugin
+You can download the plugin using NPM or direct download from Github
+*   **NPM:**`npm i -D badger-accordion`
+*   **Yarn:**`yarn add badger-accordion`
+*   **Direct download:**[Direct download link](https://github.com/stuartjnelson/badger-accordion/archive/master.zip)
+
 You'll need to import the plugin and create a new instance so you can use it. There is a working example in the `example` directory (shock horror!) if you'd like something to reference.
 
  1. Create your markup
