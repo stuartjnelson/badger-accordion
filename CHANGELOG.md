@@ -6,6 +6,15 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
+## [1.0.14] - 2017-12-13
+### Fixed
+ - Fixed IE11 bug with object assign
+
+### Updated
+ - Babel plugins to fix IE11 bug
+ - Updated README.md with download info
+
+
 ## [1.0.13] - 2017-12-12
 ### Fixed
  - Updated transitionEnd JS to ensure that `Object.defineProperty` is writable
