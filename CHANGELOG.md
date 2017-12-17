@@ -6,6 +6,11 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
+## [1.0.15] - 2017-12-16
+### Updated
+ - Improving readme
+
+
 ## [1.0.14] - 2017-12-13
 ### Fixed
  - Fixed IE11 bug with object assign
