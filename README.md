@@ -1,16 +1,20 @@
 # Badger Accordion
 An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.17kb Gzipped (2.49kb).
 <br>
-[Codepen demo](https://codepen.io/stuartjnelson/full/WZpxqY)
-[Medium walk though article](https://medium.com/@stuartjnelson/badger-accordion-an-accessible-light-weight-vanilla-javascript-accordion-with-an-extensible-api-a34128922822)
 
+ - [Demo site](ba.northernbadger.co.uk)    
+ - [Codepen demo](https://codepen.io/stuartjnelson/full/WZpxqY)
+
+---
 
 **Contents**
   - [The idea](#the-idea)
     - [Key terminologies](#key-terminologies)
   - [Basic setup](#basic-setup)
     - [Download plugin](#download-plugin)
+    - [Markup](#markup)
     - [Styles](#styles)
+    - [Create new instance of Badger Accordion](#create-new-instance-of-badger-accordion)
   - [Options](#options)
   - [Methods](#methods)
   - [Sponsors](#sponsors)
