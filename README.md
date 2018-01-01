@@ -1,4 +1,6 @@
 # Badger Accordion
+![Badger Accordion logo](http://ba.northernbadger.co.uk/images/badger-accordion-logo--half.png)
+<br>
 An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.17kb Gzipped (2.49kb).
 <br>
 
