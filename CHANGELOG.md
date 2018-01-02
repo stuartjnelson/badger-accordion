@@ -6,7 +6,13 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
-## [1.0.15] - 2017-12-16
+## [1.0.17] - 2018-1-1
+### Updated
+ - Importing array.from polyfill by default
+ - Updated copy with new file size!
+
+
+## [1.0.16] - 2018-1-1
 ### Updated
  - Tweaked example demo markup and styles
  - Updated packages for Rollup. Now have `umd` & `esm` versions transpiled
