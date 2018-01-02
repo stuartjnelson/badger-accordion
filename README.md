@@ -1,7 +1,8 @@
 # Badger Accordion
 ![Badger Accordion logo](http://ba.northernbadger.co.uk/images/badger-accordion-logo--half.png)
 <br>
-An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.17kb Gzipped (2.49kb).
+An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 6.14kb and Gzipped 1.86kb!
+
 <br>
 
  - [Demo site](ba.northernbadger.co.uk)    
@@ -154,7 +155,7 @@ A massive thanks to [BrowserStack](https://www.browserstack.com) for supporting 
 
 
 ## Contributors
-I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who gave my demo styles _some love_ <sup>Steve Richardson™</sup>.
+I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who created the AWESOME logo and gave my demo styles _some love_ <sup>Steve Richardson™</sup>.
 
 
 ## Roadmap
