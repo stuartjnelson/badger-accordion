@@ -96,9 +96,8 @@ I have created some simple CSS styles to help you with creating an accordion whi
 ```
 
 ### Create new instance of Badger Accordion
-I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The [pollyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill) only adds `0.93kb` (`0.34kb` gzipped).
+Please note that currently the [Array.from polyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill) is being included as standard (but wrapped in a conditional check). If this is an issue for you or you have an awesome idea of how to include it please get in touch.
 ```
-import pollyfill from 'array-from-pollyfill';
 import BadgerAccordion from 'badger-accordion';
 
 // Creating a new instance of the accordion
