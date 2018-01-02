@@ -7,6 +7,7 @@
 // import uuid from 'uuid/v4';
 // const uuidV4 = uuid;
 /* eslint-disable no-unused-vars */
+import arrayFromPolyfill from 'array-from-polyfill';
 import onCSSTransitionEnd from 'transition-end';
 
 /**
