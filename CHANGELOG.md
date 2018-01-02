@@ -8,6 +8,15 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## [1.0.15] - 2017-12-16
 ### Updated
+ - Tweaked example demo markup and styles
+ - Updated packages for Rollup. Now have `umd` & `esm` versions transpiled
+
+### Added
+ - Created .esm files
+
+
+## [1.0.15] - 2017-12-16
+### Updated
  - Improving readme
 
 
