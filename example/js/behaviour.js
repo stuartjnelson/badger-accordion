@@ -1,8 +1,6 @@
 'use strict';
 
 // Importing accordion
-/* eslint-disable no-unused-vars */
-import pollyfill from 'dist/array-from-pollyfill';
 import BadgerAccordion from 'dist/badger-accordion';
 
 // Creating a new instance of the accordion

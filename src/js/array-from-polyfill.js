@@ -1,4 +1,3 @@
-// Production steps of ECMA-262, Edition 6, 22.1.2.1
 if (!Array.from) {
     Array.from = (function() {
         var toStr = Object.prototype.toString;
@@ -14,7 +13,9 @@ if (!Array.from) {
                 return number;
             }
             return (
-                number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+                number > 0
+                    ? 1
+                    : -1) * Math.floor(Math.abs(number));
         };
         var maxSafeInteger = Math.pow(2, 53) - 1;
         var toLength = function(value) {
@@ -88,4 +89,5 @@ if (!Array.from) {
     }());
 }
 
+/* eslint-disable no-undef */
 export default module;

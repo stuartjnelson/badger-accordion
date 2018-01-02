@@ -1,7 +1,8 @@
 # Badger Accordion
 ![Badger Accordion logo](http://ba.northernbadger.co.uk/images/badger-accordion-logo--half.png)
 <br>
-An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.17kb Gzipped (2.49kb).
+An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 6.14kb and Gzipped 1.86kb!
+
 <br>
 
  - [Demo site](ba.northernbadger.co.uk)    
@@ -96,9 +97,8 @@ I have created some simple CSS styles to help you with creating an accordion whi
 ```
 
 ### Create new instance of Badger Accordion
-I'd recommend also importing the `Array.from` pollyfill so that your accordion will work for IE9+. The [pollyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill) only adds `0.93kb` (`0.34kb` gzipped).
+Please note that currently the [Array.from polyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill) is being included as standard (but wrapped in a conditional check). If this is an issue for you or you have an awesome idea of how to include it please get in touch.
 ```
-import pollyfill from 'array-from-pollyfill';
 import BadgerAccordion from 'badger-accordion';
 
 // Creating a new instance of the accordion
@@ -155,7 +155,7 @@ A massive thanks to [BrowserStack](https://www.browserstack.com) for supporting 
 
 
 ## Contributors
-I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who gave my demo styles _some love_ <sup>Steve Richardson™</sup>.
+I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who created the AWESOME logo and gave my demo styles _some love_ <sup>Steve Richardson™</sup>.
 
 
 ## Roadmap
