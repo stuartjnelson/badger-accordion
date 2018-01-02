@@ -3,19 +3,23 @@ import eslint from 'rollup-plugin-eslint';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import includePaths from 'rollup-plugin-includepaths';
-// import uglify from 'rollup-plugin-uglify';
+import uglify from 'rollup-plugin-uglify-es';
+import replace from 'rollup-plugin-replace';
 
 export default {
-    input: 'src/js/badger-accordion.js',
-    // input: 'example/js/behaviour.js', // - for compling example
+    input: (process.env.NODE_ENV === 'example' && 'example/js/behaviour.js' || 'src/js/badger-accordion.js'),
     sourcemap: 'false',
     name: 'BadgerAccordion',
-    output: {
-        file: 'dist/badger-accordion.js',
-        // file: 'dist/badger-accordion.min.js',
-        // file: 'example/js/app.js', // - for compling example
-        format: 'umd',
-    },
+    output: [
+        {
+            file: (process.env.NODE_ENV === 'production' && 'dist/badger-accordion.min.js' || process.env.NODE_ENV === 'example' && 'example/js/app.js' || 'dist/badger-accordion.js'),
+            format: 'umd'
+        },
+        {
+            file: (process.env.NODE_ENV === 'production' && 'dist/badger-accordion.esm.min.js' || 'dist/badger-accordion.esm.js' ),
+            format: 'es',
+        }
+    ],
     plugins: [
         resolve(),
         commonjs(),
@@ -24,6 +28,9 @@ export default {
         }),
         babel({exclude: 'node_modules/**'}),
         includePaths(),
-        // uglify()
+        replace({
+            ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+        }),
+        (process.env.NODE_ENV === 'production' && uglify()),
     ]
 };
