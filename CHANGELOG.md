@@ -7,6 +7,11 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 ## [1.0.19] - 2018-1-31
+### Updated
+ - NPM version
+
+
+## [1.0.18] - 2018-1-31
 ### Added
  - Added rol=“region” to accordion panel
  - Added rol=“presentation” to accordion
