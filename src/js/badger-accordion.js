@@ -134,6 +134,7 @@ class BadgerAccordion {
      */
     _finishInitalisation() {
         this.container.classList.add(this.settings.initalisedClass);
+        this.container.setAttribute('role', 'presentation');
     }
 
 
