@@ -404,6 +404,9 @@ class BadgerAccordion {
     }
 
 
+    /**
+     * SET UP HEADERS
+     */
     _setupHeaders() {
         this.headers.forEach( (header, index) => {
             header.setAttribute('id', `badger-accordion-header-${this.ids[index].id}`);
@@ -413,24 +416,15 @@ class BadgerAccordion {
     }
 
 
-
+    /**
+     * SET UP PANELS
+     */
     _setupPanels() {
         this.panels.forEach( (panel, index) => {
             panel.setAttribute('id', `badger-accordion-panel-${this.ids[index].id}`);
             panel.setAttribute('aria-labeledby', `badger-accordion-header-${this.ids[index].id}`);
+            panel.setAttribute('role', 'region');
         });
-    }
-
-
-    _setupAttributes() {
-        // Adding ID & aria-controls
-        this._setupHeaders();
-
-        // Adding ID & aria-labeledby
-        this._setupPanels();
-
-        // Inserting data-attribute onto each `header`
-        this._insertDataAttrs();
     }
 }
 
