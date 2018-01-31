@@ -244,7 +244,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
                     return { id: Math.floor(Math.random() * 1000000 + 1) };
                 });
 
-                // This is to ensure that once an opne/close event has been fired
+                // This is to ensure that once an open/close event has been fired
                 // another cannot start until the first event has finished.
                 // @TODO - get this working...
                 this.toggling = false;
@@ -282,7 +282,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
                     // Adding listeners to headers
                     this._addListeners();
 
-                    //
+                    // Adds class to accordion for initalisation
                     this._finishInitalisation();
                 }
 
@@ -332,6 +332,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
                 key: '_finishInitalisation',
                 value: function _finishInitalisation() {
                     this.container.classList.add(this.settings.initalisedClass);
+                    this.container.setAttribute('role', 'presentation');
                 }
 
                 /**
@@ -360,7 +361,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
                 /**
                  *  HANDLE CLICK
                  *
-                 *  //TODO - Add comment
+                 *  Handles click and checks if click was on an header element
                  *  @param {object} targetHeader - The header node you want to open
                  */
 
@@ -397,9 +398,9 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 
                     var states = this.getState();
 
-                    // TODO - improve this comment
                     // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
-                    // be can open at once. This will the state on all but the target header to 'closed'
+                    // be can open at once. If it is false then all panels state APART from the one that
+                    // has just been clicked needs to be set to 'closed'.
                     if (!this.settings.openMultiplePanels) {
                         states.filter(function (state, index) {
                             if (index != targetHeaderId) {
@@ -632,6 +633,25 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
                 }
 
                 /**
+                 *  SET UP ATTRIBUTES
+                 *
+                 *  Initalises accordion attribute methods
+                 */
+
+            }, {
+                key: '_setupAttributes',
+                value: function _setupAttributes() {
+                    // Adding ID & aria-controls
+                    this._setupHeaders();
+
+                    // Adding ID & aria-labeledby
+                    this._setupPanels();
+
+                    // Inserting data-attribute onto each `header`
+                    this._insertDataAttrs();
+                }
+
+                /**
                  *  SET PANEL HEIGHT
                  *
                  *  Setting height for panels using pannels inner element
@@ -651,6 +671,11 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
                         return panel.style.maxHeight = activeHeight + 'px';
                     });
                 }
+
+                /**
+                 * SET UP HEADERS
+                 */
+
             }, {
                 key: '_setupHeaders',
                 value: function _setupHeaders() {
@@ -662,6 +687,11 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
                         header.setAttribute('aria-label', _this11.settings.headerOpenLabel);
                     });
                 }
+
+                /**
+                 * SET UP PANELS
+                 */
+
             }, {
                 key: '_setupPanels',
                 value: function _setupPanels() {
@@ -670,19 +700,8 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
                     this.panels.forEach(function (panel, index) {
                         panel.setAttribute('id', 'badger-accordion-panel-' + _this12.ids[index].id);
                         panel.setAttribute('aria-labeledby', 'badger-accordion-header-' + _this12.ids[index].id);
+                        panel.setAttribute('role', 'region');
                     });
-                }
-            }, {
-                key: '_setupAttributes',
-                value: function _setupAttributes() {
-                    // Adding ID & aria-controls
-                    this._setupHeaders();
-
-                    // Adding ID & aria-labeledby
-                    this._setupPanels();
-
-                    // Inserting data-attribute onto each `header`
-                    this._insertDataAttrs();
                 }
             }]);
 
