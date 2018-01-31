@@ -388,6 +388,24 @@ class BadgerAccordion {
 
 
     /**
+     *  SET UP ATTRIBUTES
+     *
+     *  Initalises accordion attribute methods
+     */
+    _setupAttributes() {
+        // Adding ID & aria-controls
+        this._setupHeaders();
+
+        // Adding ID & aria-labeledby
+        this._setupPanels();
+
+        // Inserting data-attribute onto each `header`
+        this._insertDataAttrs();
+    }
+
+
+
+    /**
      *  SET PANEL HEIGHT
      *
      *  Setting height for panels using pannels inner element
