@@ -40,7 +40,7 @@ An accessible light weight, vanilla JavaScript accordion with an extensible API.
 ## Basic setup
 ### Download plugin
 You can download the plugin using NPM or direct download from Github
-*   **NPM:**`npm i -D badger-accordion`
+*   **NPM:**`npm i badger-accordion`
 *   **Yarn:**`yarn add badger-accordion`
 *   **Direct download:**[Direct download link](https://github.com/stuartjnelson/badger-accordion/archive/master.zip)
 

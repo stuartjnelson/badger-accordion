@@ -56,7 +56,7 @@ class BadgerAccordion {
             return { id: Math.floor((Math.random() * 1000000) + 1) };
         });
 
-        // This is to ensure that once an opne/close event has been fired
+        // This is to ensure that once an open/close event has been fired
         // another cannot start until the first event has finished.
         // @TODO - get this working...
         this.toggling = false;
@@ -92,7 +92,7 @@ class BadgerAccordion {
         // Adding listeners to headers
         this._addListeners();
 
-        //
+        // Adds class to accordion for initalisation
         this._finishInitalisation();
     }
 
@@ -134,6 +134,7 @@ class BadgerAccordion {
      */
     _finishInitalisation() {
         this.container.classList.add(this.settings.initalisedClass);
+        this.container.setAttribute('role', 'presentation');
     }
 
 
@@ -161,7 +162,7 @@ class BadgerAccordion {
     /**
      *  HANDLE CLICK
      *
-     *  //TODO - Add comment
+     *  Handles click and checks if click was on an header element
      *  @param {object} targetHeader - The header node you want to open
      */
     handleClick(targetHeader, headerIndex) {
@@ -192,9 +193,9 @@ class BadgerAccordion {
     setState(targetHeaderId) {
         const states = this.getState();
 
-        // TODO - improve this comment
         // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
-        // be can open at once. This will the state on all but the target header to 'closed'
+        // be can open at once. If it is false then all panels state APART from the one that
+        // has just been clicked needs to be set to 'closed'.
         if (!this.settings.openMultiplePanels) {
             states.filter((state, index) => {
                 if (index != targetHeaderId) {
@@ -387,6 +388,24 @@ class BadgerAccordion {
 
 
     /**
+     *  SET UP ATTRIBUTES
+     *
+     *  Initalises accordion attribute methods
+     */
+    _setupAttributes() {
+        // Adding ID & aria-controls
+        this._setupHeaders();
+
+        // Adding ID & aria-labeledby
+        this._setupPanels();
+
+        // Inserting data-attribute onto each `header`
+        this._insertDataAttrs();
+    }
+
+
+
+    /**
      *  SET PANEL HEIGHT
      *
      *  Setting height for panels using pannels inner element
@@ -403,6 +422,9 @@ class BadgerAccordion {
     }
 
 
+    /**
+     * SET UP HEADERS
+     */
     _setupHeaders() {
         this.headers.forEach( (header, index) => {
             header.setAttribute('id', `badger-accordion-header-${this.ids[index].id}`);
@@ -412,24 +434,15 @@ class BadgerAccordion {
     }
 
 
-
+    /**
+     * SET UP PANELS
+     */
     _setupPanels() {
         this.panels.forEach( (panel, index) => {
             panel.setAttribute('id', `badger-accordion-panel-${this.ids[index].id}`);
             panel.setAttribute('aria-labeledby', `badger-accordion-header-${this.ids[index].id}`);
+            panel.setAttribute('role', 'region');
         });
-    }
-
-
-    _setupAttributes() {
-        // Adding ID & aria-controls
-        this._setupHeaders();
-
-        // Adding ID & aria-labeledby
-        this._setupPanels();
-
-        // Inserting data-attribute onto each `header`
-        this._insertDataAttrs();
     }
 }
 
