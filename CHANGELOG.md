@@ -6,6 +6,11 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
+## [1.0.20] - 2018-2-08
+### Fixed
+ - Fixed link to demo site in Readme
+
+
 ## [1.0.19] - 2018-1-31
 ### Updated
  - NPM version

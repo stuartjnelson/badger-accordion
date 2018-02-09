@@ -5,7 +5,7 @@ An accessible light weight, vanilla JavaScript accordion with an extensible API.
 
 <br>
 
- - [Demo site](ba.northernbadger.co.uk)    
+ - [Demo site](http://ba.northernbadger.co.uk)    
  - [Codepen demo](https://codepen.io/stuartjnelson/full/WZpxqY)
 
 ---
