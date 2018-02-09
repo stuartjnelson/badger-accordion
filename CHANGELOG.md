@@ -8,7 +8,7 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## [1.0.20] - 2018-2-08
 ### Fixed
- - NPM version
+ - Fixed link to demo site in Readme
 
 
 ## [1.0.19] - 2018-1-31
