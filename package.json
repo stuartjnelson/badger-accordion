@@ -3,7 +3,7 @@
   "version": "1.0.20",
   "description": "An accessible vanilla JS accordion with extensible API.",
   "main": "dist/badger-accordion.js",
-  "module": "distbadger-accordion.esm.js",
+  "module": "dist/badger-accordion.esm.js",
   "scripts": {
     "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c",
     "example": "NODE_ENV=example ./node_modules/.bin/rollup -c",
@@ -45,6 +45,7 @@
     "rollup-plugin-uglify-es": "0.0.1"
   },
   "dependencies": {
-    "debug": "^3.1.0"
+    "debug": "^3.1.0",
+    "rollup-plugin-copy": "^0.2.3"
   }
 }

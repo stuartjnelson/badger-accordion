@@ -8,6 +8,6 @@ const accordion = new BadgerAccordion('.js-badger-accordion');
 
 // API Examples
 /* eslint-disable no-console */
-console.log(accordion.getState( [0] ));
+console.log(accordion.getState([0]));
 // accordion.open( document.querySelector('[data-badger-accordion-header-id="1"]') );
 // accordion.close( 0 );
