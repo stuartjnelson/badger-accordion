@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c",
     "example": "NODE_ENV=example ./node_modules/.bin/rollup -c",
-    "build": "NODE_ENV=production ./node_modules/.bin/rollup -c"
+    "build": "NODE_ENV=production ./node_modules/.bin/rollup -c",
+    "pre-publish": "NODE_ENV=develop ./node_modules/.bin/rollup -c && NODE_ENV=production ./node_modules/.bin/rollup -c"
   },
   "repository": {
     "type": "git",
