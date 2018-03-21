@@ -6,6 +6,15 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
+## [1.0.21] - 2018-3-21
+### Fixed
+ - Fixing typo in `package.json` for module
+ - Error with `npm run example` from inserting code don't want into `dist/northern-badger.esm.js`
+
+### Added
+ - Added `rollup-plugin-copy` to copy style files
+
+
 ## [1.0.20] - 2018-2-08
 ### Fixed
  - Fixed link to demo site in Readme
