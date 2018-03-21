@@ -7,20 +7,28 @@ import uglify from 'rollup-plugin-uglify-es';
 import replace from 'rollup-plugin-replace';
 import copy from 'rollup-plugin-copy';
 
+// Default output options
+let output = [
+    {
+        file: (process.env.NODE_ENV === 'production' && 'dist/badger-accordion.min.js' || process.env.NODE_ENV === 'example' && 'example/js/app.js' || 'dist/badger-accordion.js'),
+        format: 'umd'
+    },
+    {
+        file: (process.env.NODE_ENV === 'production' && 'dist/badger-accordion.esm.min.js' || 'dist/badger-accordion.esm.js'),
+        format: 'es',
+    }
+];
+
+// Setting output like this to avoid `.esm.js` from having the `/example` code in it
+if(process.env.NODE_ENV === 'example') {
+    output.splice(1, 1);
+}
+
 export default {
     input: (process.env.NODE_ENV === 'example' && 'example/js/behaviour.js' || 'src/js/badger-accordion.js'),
     sourcemap: 'false',
     name: 'BadgerAccordion',
-    output: [
-        {
-            file: (process.env.NODE_ENV === 'production' && 'dist/badger-accordion.min.js' || process.env.NODE_ENV === 'example' && 'example/js/app.js' || 'dist/badger-accordion.js'),
-            format: 'umd'
-        },
-        {
-            file: (process.env.NODE_ENV === 'production' && 'dist/badger-accordion.esm.min.js' || 'dist/badger-accordion.esm.js' ),
-            format: 'es',
-        }
-    ],
+    output: output,
     plugins: [
         resolve(),
         commonjs(),
@@ -37,8 +45,7 @@ export default {
             copy({
                 'src/js/array-from-polyfill.js' : 'dist/array-from-polyfill.js',
                 'src/css/badger-accordion.css' : 'dist/badger-accordion.css',
-                'src/scss/badger-accordion.scss' : 'dist/badger-accordion.scss',
-                // Ideally turn off the `verbose` option. Currently an error is thrown even though there is no error...
+                'src/scss/badger-accordion.scss' : 'dist/badger-accordion.scss'
             })
         )
     ]
