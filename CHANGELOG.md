@@ -6,6 +6,11 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
+## [1.0.22] - 2018-3-21
+### Changed
+ - Adding `pre-pubish` npm script. This is a safty net to stop issues with `.esm` file that the `npm example` script was causing before publishing the plugin
+
+
 ## [1.0.21] - 2018-3-21
 ### Fixed
  - Fixing typo in `package.json` for module

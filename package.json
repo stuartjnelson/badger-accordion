@@ -1,13 +1,14 @@
 {
   "name": "badger-accordion",
-  "version": "1.0.20",
+  "version": "1.0.22",
   "description": "An accessible vanilla JS accordion with extensible API.",
   "main": "dist/badger-accordion.js",
   "module": "dist/badger-accordion.esm.js",
   "scripts": {
     "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c",
     "example": "NODE_ENV=example ./node_modules/.bin/rollup -c",
-    "build": "NODE_ENV=production ./node_modules/.bin/rollup -c"
+    "build": "NODE_ENV=production ./node_modules/.bin/rollup -c",
+    "pre-publish": "NODE_ENV=develop ./node_modules/.bin/rollup -c && NODE_ENV=production ./node_modules/.bin/rollup -c"
   },
   "repository": {
     "type": "git",
