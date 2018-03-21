@@ -5,6 +5,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import includePaths from 'rollup-plugin-includepaths';
 import uglify from 'rollup-plugin-uglify-es';
 import replace from 'rollup-plugin-replace';
+import copy from 'rollup-plugin-copy';
 
 export default {
     input: (process.env.NODE_ENV === 'example' && 'example/js/behaviour.js' || 'src/js/badger-accordion.js'),
@@ -32,5 +33,13 @@ export default {
             ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
         }),
         (process.env.NODE_ENV === 'production' && uglify()),
+        (process.env.NODE_ENV === 'production' &&
+            copy({
+                'src/js/array-from-polyfill.js' : 'dist/array-from-polyfill.js',
+                'src/css/badger-accordion.css' : 'dist/badger-accordion.css',
+                'src/scss/badger-accordion.scss' : 'dist/badger-accordion.scss',
+                // Ideally turn off the `verbose` option. Currently an error is thrown even though there is no error...
+            })
+        )
     ]
 };

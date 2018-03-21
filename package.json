@@ -45,6 +45,7 @@
     "rollup-plugin-uglify-es": "0.0.1"
   },
   "dependencies": {
-    "debug": "^3.1.0"
+    "debug": "^3.1.0",
+    "rollup-plugin-copy": "^0.2.3"
   }
 }
