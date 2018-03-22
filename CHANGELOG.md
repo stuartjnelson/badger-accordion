@@ -6,7 +6,12 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
-## [1.0.22] - 2018-3-21
+## [1.0.24] - 2018-3-22
+### Updated
+ - And this time updated `.babelrc`'s preset
+
+
+## [1.0.23] - 2018-3-22
 ### Updated
  - Bable setup so it follows the latest standard as well as all dependencies. This should fix [Issue #4](https://github.com/stuartjnelson/badger-accordion/issues/4)
 
