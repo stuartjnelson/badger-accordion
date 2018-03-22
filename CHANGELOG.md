@@ -7,6 +7,11 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 ## [1.0.22] - 2018-3-21
+### Updated
+ - Bable setup so it follows the latest standard as well as all dependencies. This should fix [Issue #4](https://github.com/stuartjnelson/badger-accordion/issues/4)
+
+
+## [1.0.22] - 2018-3-21
 ### Changed
  - Adding `pre-pubish` npm script. This is a safty net to stop issues with `.esm` file that the `npm example` script was causing before publishing the plugin
 

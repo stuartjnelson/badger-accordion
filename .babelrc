@@ -1,8 +1,11 @@
 {
   "presets": [
     ["env", {
-      "modules": false
+      "modules": false,
+      "targets": {
+        "browsers": ["last 2 versions", "ie >= 11"]
+      }
     }]
   ],
-  "plugins": ["transform-object-assign"]
+  "plugins": ["@babel/transform-object-assign"]
 }
