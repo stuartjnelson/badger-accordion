@@ -6,6 +6,18 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
+
+## [1.0.27] - 2018-3-22
+### Updated
+ - Improving SCSS comment
+ - Updated rollup so default example styles are copied by rollup
+
+
+## [1.0.26] - 2018-3-22
+### Updated
+ - NPM version
+
+
 ## [1.0.25] - 2018-4-4
 ### Updated
  - Dependancies
