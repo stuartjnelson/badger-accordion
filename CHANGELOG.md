@@ -6,6 +6,15 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
+## [1.0.25] - 2018-4-4
+### Updated
+ - Dependancies
+ - Updated essential SCSS/CSS. Renamed default hidden class. Removed some old unnecessary css.
+ - Updated example SCSS
+ - Ignored .sass-cache
+ - Compiled assets
+
+
 ## [1.0.24] - 2018-3-22
 ### Updated
  - And this time updated `.babelrc`'s preset
