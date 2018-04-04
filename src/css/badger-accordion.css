@@ -4,6 +4,6 @@
   .badger-accordion__panel.-ba-is-hidden {
     max-height: 0 !important; }
   .badger-accordion--initalised .badger-accordion__panel {
-    transition: all ease-in-out 0.2s; }
+    transition: max-height ease-in-out 0.2s; }
 
 /*# sourceMappingURL=badger-accordion.css.map */
