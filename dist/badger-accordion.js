@@ -221,7 +221,12 @@ function () {
       headerClass: '.js-badger-accordion-header',
       panelClass: '.js-badger-accordion-panel',
       panelInnerClass: '.js-badger-accordion-panel-inner',
-      hidenClass: '-ba-is-hidden',
+      hiddenClass: '-ba-is-hidden',
+
+      get hidenClass() {
+        return this.hiddenClass;
+      },
+
       initalisedClass: 'badger-accordion--initalised',
       headerDataAttr: 'data-badger-accordion-header-id',
       openMultiplePanels: false,
@@ -231,7 +236,12 @@ function () {
 
     }; // Options
 
-    this.settings = _extends({}, defaults, options); // Setting getting elements
+    this.settings = _extends({}, defaults, options); // Deprecating `settings.hidenClass` but adding fallback for older versions
+
+    if (this.settings.hidenClass !== this.settings.hiddenClass) {
+      this.settings.hiddenClass = this.settings.hidenClass;
+    } // Setting getting elements
+
 
     this.container = container;
     this.headers = Array.from(this.container.querySelectorAll(this.settings.headerClass));
@@ -510,7 +520,7 @@ function () {
           var header = this.headers[headerIndex];
           var panelToClose = this.panels[headerIndex]; // 2. Closeing panel
 
-          panelToClose.classList.add(this.settings.hidenClass); // 3. Set aria attrs
+          panelToClose.classList.add(this.settings.hiddenClass); // 3. Set aria attrs
 
           header.setAttribute('aria-expanded', false);
           header.setAttribute('aria-label', this.settings.headerOpenLabel); // 4. Resetting toggling so a new event can be fired
@@ -523,7 +533,7 @@ function () {
           var _header = this.headers[headerIndex];
           var panelToOpen = this.panels[headerIndex]; // 2. Closeing panel
 
-          panelToOpen.classList.remove(this.settings.hidenClass); // 3. Set aria attrs
+          panelToOpen.classList.remove(this.settings.hiddenClass); // 3. Set aria attrs
 
           _header.setAttribute('aria-expanded', true);
 

@@ -7,6 +7,12 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 
+## [1.0.29] - 2018-3-22
+### Updated
+ - Deprecated `hidenClass` option. This was a spelling mistake and has been deprecated. If you have used in from version < 1.0.28 then `hiddenClass` is now equal to `hidenClass`
+ - Compiled assets and updated readme
+
+
 ## [1.0.28] - 2018-3-22
 ### Updated
  - Updated default transition to be more specific
