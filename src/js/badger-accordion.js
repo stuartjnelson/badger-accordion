@@ -27,7 +27,7 @@ class BadgerAccordion {
             headerClass:        '.js-badger-accordion-header',
             panelClass:         '.js-badger-accordion-panel',
             panelInnerClass:    '.js-badger-accordion-panel-inner',
-            hidenClass:         'is-hidden',
+            hidenClass:         '-ba-is-hidden',
             initalisedClass:    'badger-accordion--initalised',
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
