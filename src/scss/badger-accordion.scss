@@ -13,18 +13,12 @@
 // .badger-accordion {}
 
 .badger-accordion__panel {
+    max-height: 75vh;
     overflow: hidden;
+
+    // scss-lint:disable ImportantRule
+    &.-ba-is-hidden { max-height: 0 !important; }
+
     // transition is added via `badger-accordion--initalised` to stop animation on initalition
-
-    .badger-accordion--initalised & {
-        max-height: 0;
-
-        // Closing all pannels
-        // scss-lint:disable ImportantRule
-        &.is-active { max-height: 75vh; }
-
-        &.is-hidden { max-height: 0 !important; }
-    }
-
     .badger-accordion--initalised & { transition: all ease-in-out 0.2s; }
 }

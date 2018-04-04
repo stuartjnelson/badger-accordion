@@ -4,4 +4,5 @@ badger-accordion-demo.css.map
 /node_modules
 .DS_Store
 /example/.sass-cache
+/src/.sass-cache
 *.map
