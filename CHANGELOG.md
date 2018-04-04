@@ -7,6 +7,11 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 
+## [1.0.28] - 2018-3-22
+### Updated
+ - Updated default transition to be more specific
+
+
 ## [1.0.27] - 2018-3-22
 ### Updated
  - Improving SCSS comment
