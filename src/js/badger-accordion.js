@@ -27,7 +27,8 @@ class BadgerAccordion {
             headerClass:        '.js-badger-accordion-header',
             panelClass:         '.js-badger-accordion-panel',
             panelInnerClass:    '.js-badger-accordion-panel-inner',
-            hidenClass:         '-ba-is-hidden',
+            hiddenClass:        '-ba-is-hidden',
+            get hidenClass() { return this.hiddenClass; },
             initalisedClass:    'badger-accordion--initalised',
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
@@ -39,6 +40,11 @@ class BadgerAccordion {
 
         // Options
         this.settings = Object.assign({}, defaults, options);
+
+        // Deprecating `settings.hidenClass` but adding fallback for older versions
+        if(this.settings.hidenClass !== this.settings.hiddenClass) {
+            this.settings.hiddenClass = this.settings.hidenClass;
+        }
 
         // Setting getting elements
         this.container = container;
@@ -300,7 +306,7 @@ class BadgerAccordion {
                 const panelToClose  = this.panels[headerIndex];
 
                 // 2. Closeing panel
-                panelToClose.classList.add(this.settings.hidenClass);
+                panelToClose.classList.add(this.settings.hiddenClass);
 
                 // 3. Set aria attrs
                 header.setAttribute('aria-expanded', false);
@@ -314,7 +320,7 @@ class BadgerAccordion {
                 const panelToOpen = this.panels[headerIndex];
 
                 // 2. Closeing panel
-                panelToOpen.classList.remove(this.settings.hidenClass);
+                panelToOpen.classList.remove(this.settings.hiddenClass);
 
                 // 3. Set aria attrs
                 header.setAttribute('aria-expanded', true);
