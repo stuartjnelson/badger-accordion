@@ -40,6 +40,12 @@ export default {
         replace({
             ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
         }),
+        (process.env.NODE_ENV === 'example' &&
+            copy({
+                'src/css/badger-accordion.css' : 'example/css/badger-accordion.css',
+                'src/scss/badger-accordion.scss' : 'example/scss/badger-accordion.scss'
+            })
+        ),
         (process.env.NODE_ENV === 'production' && uglify()),
         (process.env.NODE_ENV === 'production' &&
             copy({
