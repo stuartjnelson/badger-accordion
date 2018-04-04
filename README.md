@@ -119,7 +119,8 @@ new BadgerAccordion('.js-badger-accordion', {
 | headerClass        | String  | `.js-badger-accordion-header`      | Class for panel's header |
 | panelClass         | String  | `.js-badger-accordion-panel`       | Class for panel  |
 | panelInnerClass    | String  | `.js-badger-accordion-panel-inner` | Class for panel inner container  |
-| hidenClass         | String  | `-ba-is-hidden`                    | Class added to panels that are hidden  |
+| hiddenClass        | String  | `-ba-is-hidden`                    | Class added to panels that are hidden  |
+| hidenClass         | @Deprecated  | @Deprecated                   | This was a spelling mistake and has been deprecated. If you have used in from version < 1.0.29 then `hiddenClass` is now equal to `hidenClass`  |
 | initalisedClass    | String  | `badger-accordion--initalised`     | Class add to accordion when it has initalised   |
 | headerDataAttr     | String  | `data-badger-accordion-header-id`  | Data attribute on each header   |
 | openMultiplePanels | Boolean | `false`                            | Give you the ability to have mutiple panels open at one time. By default this is disabled  |
