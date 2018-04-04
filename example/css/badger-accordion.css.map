@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAcA,wBAAyB;EACrB,UAAU,EAAE,CAAC;EACb,QAAQ,EAAE,MAAM;EAIhB,kCAAY;IAAE,UAAU,EAAE,IAAI;EAE9B,kCAAY;IAAE,UAAU,EAAE,YAAY;EAGtC,sDAAgC;IAAE,UAAU,EAAE,oBAAoB",
-"sources": ["../scss/badger-accordion.scss"],
-"names": [],
-"file": "badger-accordion.css"
-}
