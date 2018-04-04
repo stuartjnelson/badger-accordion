@@ -79,20 +79,17 @@ While you could use the selector from point 3 I would not recommend doing this. 
 ### Styles
 I have created some simple CSS styles to help you with creating an accordion which are in `dist/badger-accordion-demo.css` or `dist/badger-accordion-demo.scss`. If you'd like some additional styles checkout the example dir.
 ```
-.badger-accordion--initalised .badger-accordion__panel {
-    max-height: 0;
-}
-.badger-accordion--initalised .badger-accordion__panel.is-active {
+.badger-accordion__panel {
     max-height: 75vh;
+    overflow: hidden;
 }
-.badger-accordion--initalised .badger-accordion__panel.is-hidden {
+
+.badger-accordion__panel.-ba-is-hidden {
     max-height: 0 !important;
 }
+
 .badger-accordion--initalised .badger-accordion__panel {
     transition: all ease-in-out 0.2s;
-}
-.badger-accordion__panel {
-    overflow: hidden;
 }
 ```
 
@@ -122,7 +119,7 @@ new BadgerAccordion('.js-badger-accordion', {
 | headerClass        | String  | `.js-badger-accordion-header`      | Class for panel's header |
 | panelClass         | String  | `.js-badger-accordion-panel`       | Class for panel  |
 | panelInnerClass    | String  | `.js-badger-accordion-panel-inner` | Class for panel inner container  |
-| hidenClass         | String  | `is-hidden`                        | Class added to panels that are hidden  |
+| hidenClass         | String  | `-ba-is-hidden`                    | Class added to panels that are hidden  |
 | initalisedClass    | String  | `badger-accordion--initalised`     | Class add to accordion when it has initalised   |
 | headerDataAttr     | String  | `data-badger-accordion-header-id`  | Data attribute on each header   |
 | openMultiplePanels | Boolean | `false`                            | Give you the ability to have mutiple panels open at one time. By default this is disabled  |
