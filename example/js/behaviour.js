@@ -8,7 +8,7 @@ import BadgerAccordion from 'dist/badger-accordion';
 const accordions = document.querySelectorAll('.js-badger-accordion');
 
 Array.from(accordions).forEach((accordion) => {
-    new BadgerAccordion(accordion);
+    const ba = new BadgerAccordion(accordion);
 });
 
 const accordionSingle = new BadgerAccordion('.js-badger-accordion');

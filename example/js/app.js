@@ -744,7 +744,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 
 var accordions = document.querySelectorAll('.js-badger-accordion');
 Array.from(accordions).forEach(function (accordion) {
-  new badgerAccordion(accordion);
+  var ba = new badgerAccordion(accordion);
 });
 var accordionSingle = new badgerAccordion('.js-badger-accordion'); // API Examples
 
