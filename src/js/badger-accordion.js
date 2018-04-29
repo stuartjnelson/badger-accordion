@@ -16,12 +16,16 @@ import onCSSTransitionEnd from 'transition-end';
  */
 class BadgerAccordion {
     constructor(el, options) {
-        const container = document.querySelector(el);
+        const container = typeof el === 'object' ? el : document.querySelector(el);
 
         // If el is not defined
         if (container == null) {
             return;
+        } else if(NodeList.prototype.isPrototypeOf(container) && container.length > 1) {
+            /* eslint-disable no-console */
+            console.log('BADGER ACCORDION ERROR - your nodelist passed to the new instance is greater than 1');
         }
+
 
         const defaults = {
             headerClass:        '.js-badger-accordion-header',
