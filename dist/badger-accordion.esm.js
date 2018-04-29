@@ -1,3 +1,17 @@
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -205,10 +219,13 @@ function () {
   function BadgerAccordion(el, options) {
     _classCallCheck(this, BadgerAccordion);
 
-    var container = document.querySelector(el); // If el is not defined
+    var container = _typeof(el) === 'object' ? el : document.querySelector(el); // If el is not defined
 
     if (container == null) {
       return;
+    } else if (NodeList.prototype.isPrototypeOf(container) && container.length > 1) {
+      /* eslint-disable no-console */
+      console.log('BADGER ACCORDION ERROR - your nodelist passed to the new instance is greater than 1');
     }
 
     var defaults = {

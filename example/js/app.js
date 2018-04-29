@@ -4,6 +4,20 @@
 	(factory());
 }(this, (function () { 'use strict';
 
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 
@@ -18,7 +32,21 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
   (function (global, factory) {
     module.exports = factory();
   })(commonjsGlobal, function () {
-    function _classCallCheck(instance, Constructor) {
+    function _typeof$$1(obj) {
+      if (typeof Symbol === "function" && _typeof(Symbol.iterator) === "symbol") {
+        _typeof$$1 = function _typeof$$1(obj) {
+          return _typeof(obj);
+        };
+      } else {
+        _typeof$$1 = function _typeof$$1(obj) {
+          return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof(obj);
+        };
+      }
+
+      return _typeof$$1(obj);
+    }
+
+    function _classCallCheck$$1(instance, Constructor) {
       if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
       }
@@ -34,14 +62,14 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
       }
     }
 
-    function _createClass(Constructor, protoProps, staticProps) {
+    function _createClass$$1(Constructor, protoProps, staticProps) {
       if (protoProps) _defineProperties(Constructor.prototype, protoProps);
       if (staticProps) _defineProperties(Constructor, staticProps);
       return Constructor;
     }
 
-    function _extends() {
-      _extends = Object.assign || function (target) {
+    function _extends$$1() {
+      _extends$$1 = Object.assign || function (target) {
         for (var i = 1; i < arguments.length; i++) {
           var source = arguments[i];
 
@@ -55,7 +83,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
         return target;
       };
 
-      return _extends.apply(this, arguments);
+      return _extends$$1.apply(this, arguments);
     }
 
     if (!Array.from) {
@@ -225,12 +253,15 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
     /*#__PURE__*/
     function () {
       function BadgerAccordion(el, options) {
-        _classCallCheck(this, BadgerAccordion);
+        _classCallCheck$$1(this, BadgerAccordion);
 
-        var container = document.querySelector(el); // If el is not defined
+        var container = _typeof$$1(el) === 'object' ? el : document.querySelector(el); // If el is not defined
 
         if (container == null) {
           return;
+        } else if (NodeList.prototype.isPrototypeOf(container) && container.length > 1) {
+          /* eslint-disable no-console */
+          console.log('BADGER ACCORDION ERROR - your nodelist passed to the new instance is greater than 1');
         }
 
         var defaults = {
@@ -252,7 +283,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 
         }; // Options
 
-        this.settings = _extends({}, defaults, options); // Deprecating `settings.hidenClass` but adding fallback for older versions
+        this.settings = _extends$$1({}, defaults, options); // Deprecating `settings.hidenClass` but adding fallback for older versions
 
         if (this.settings.hidenClass !== this.settings.hiddenClass) {
           this.settings.hiddenClass = this.settings.hidenClass;
@@ -294,7 +325,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
        */
 
 
-      _createClass(BadgerAccordion, [{
+      _createClass$$1(BadgerAccordion, [{
         key: "init",
         value: function init() {
           // Sets up ID, aria attrs & data-attrs
@@ -709,11 +740,20 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 
 });
 
-var accordion = new badgerAccordion('.js-badger-accordion'); // API Examples
+// const accordions = document.querySelectorAll('.js-badger-accordion');
+
+var accordions = document.querySelectorAll('.js-badger-accordion');
+Array.from(accordions).forEach(function (accordion) {
+  new badgerAccordion(accordion);
+});
+var accordionSingle = new badgerAccordion('.js-badger-accordion'); // API Examples
 
 /* eslint-disable no-console */
+// console.log(baderAccordion.getState([0]));
 
-console.log(accordion.getState([0])); // accordion.open( document.querySelector('[data-badger-accordion-header-id="1"]') );
+console.log(accordionSingle);
+console.log(accordions[0]);
+console.log(accordions[0].getState([0])); // accordion.open( document.querySelector('[data-badger-accordion-header-id="1"]') );
 // accordion.close( 0 );
 
 })));
