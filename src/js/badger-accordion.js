@@ -16,12 +16,13 @@ import onCSSTransitionEnd from 'transition-end';
  */
 class BadgerAccordion {
     constructor(el, options) {
-        const container = document.querySelector(el);
+        const container = typeof el === 'string' ? document.querySelector(el) : el;
 
         // If el is not defined
         if (container == null) {
             return;
         }
+
 
         const defaults = {
             headerClass:        '.js-badger-accordion-header',

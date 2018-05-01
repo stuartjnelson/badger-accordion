@@ -18,6 +18,7 @@ An accessible light weight, vanilla JavaScript accordion with an extensible API.
     - [Markup](#markup)
     - [Styles](#styles)
     - [Create new instance of Badger Accordion](#create-new-instance-of-badger-accordion)
+    - [Create multiple instances of Badger Accordion](#create-multiple-instances-of-badger-accordion)
   - [Options](#options)
   - [Methods](#methods)
   - [Sponsors](#sponsors)
@@ -94,13 +95,52 @@ I have created some simple CSS styles to help you with creating an accordion whi
 ```
 
 ### Create new instance of Badger Accordion
+You just import Badger Accordion. Then you can either pass in a DOM node or CSS Selector. Passing in a DOM node as in the first example below is the best way to create a new instance.
+
 Please note that currently the [Array.from polyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill) is being included as standard (but wrapped in a conditional check). If this is an issue for you or you have an awesome idea of how to include it please get in touch.
 ```
 import BadgerAccordion from 'badger-accordion';
 
 // Creating a new instance of the accordion
-const accordion = new BadgerAccordion('.js-badger-accordion');
+const accordionDomNode = document.querySelector('.js-badger-accordion');
+
+const accordion = new BadgerAccordion(accordionDomNode);
 ```
+
+
+
+
+
+### Create multiple instances of Badger Accordion
+If you want to have multiple instances of the accordion in the same document you could do it like this by looping over the collection of DOM nodes.
+```
+<!-- HTML -->
+<dl class="badger-accordion js-badger-accordion">
+    <!-- Your markup -->
+</dl>
+
+<dl class="badger-accordion js-badger-accordion">
+    <!-- Your markup -->
+</dl>
+
+<dl class="badger-accordion js-badger-accordion">
+    <!-- Your markup -->
+</dl>
+```
+
+```
+// Importing accordion
+import BadgerAccordion from 'dist/badger-accordion';
+
+const accordions = document.querySelectorAll('.js-badger-accordion');
+
+Array.from(accordions).forEach((accordion) => {
+    const ba = new BadgerAccordion(accordion);
+
+    // console.log(ba.getState([0]));
+});
+```
+
 
 
 

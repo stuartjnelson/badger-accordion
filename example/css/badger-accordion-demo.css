@@ -197,6 +197,8 @@ a {
       color: #fff; }
     .badger-accordion__trigger:focus .badger-accordion__trigger-icon:after, .badger-accordion__trigger:focus .badger-accordion__trigger-icon:before, .badger-accordion__trigger:hover .badger-accordion__trigger-icon:after, .badger-accordion__trigger:hover .badger-accordion__trigger-icon:before {
       background-color: #fff; }
+  .badger-accordion__trigger::-moz-focus-inner {
+    border: none; }
 
 .badger-accordion__trigger-title {
   font-size: 1.2rem;

@@ -205,7 +205,7 @@ function () {
   function BadgerAccordion(el, options) {
     _classCallCheck(this, BadgerAccordion);
 
-    var container = document.querySelector(el); // If el is not defined
+    var container = typeof el === 'string' ? document.querySelector(el) : el; // If el is not defined
 
     if (container == null) {
       return;

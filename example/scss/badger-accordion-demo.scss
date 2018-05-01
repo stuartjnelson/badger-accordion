@@ -252,6 +252,11 @@ a { color: $dark-blue; }
             }
         }
     }
+
+    // Removing "inner outline" for Firefox
+    &::-moz-focus-inner {
+        border: none;
+    }
 }
 
 
