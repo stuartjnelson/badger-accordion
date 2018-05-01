@@ -11,6 +11,7 @@ For more information about keeping good change logs please refer to [keep a chan
 ### Updated
  - Plugin so can now pass in a DOM node
  - README & example files
+ - Tweaking minor Firefox CSS bug with the demo
 
 
 ## [1.0.30] - 2018-4-4
