@@ -227,7 +227,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
       function BadgerAccordion(el, options) {
         _classCallCheck(this, BadgerAccordion);
 
-        var container = document.querySelector(el); // If el is not defined
+        var container = typeof el === 'string' ? document.querySelector(el) : el; // If el is not defined
 
         if (container == null) {
           return;
@@ -709,12 +709,30 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 
 });
 
-var accordion = new badgerAccordion('.js-badger-accordion'); // API Examples
+// ================================
+// const accordionDomNode = document.querySelector('.js-badger-accordion');
+// const accordion = new BadgerAccordion(accordionDomNode);
+
+/* eslint-disable no-console */
+// console.log(accordion.getState([0]));
+// accordion.open(0); // Opens the first accordion panel
+// Creating a new instance of the accordion usign DOM node
+// ================================
+// const accordions = document.querySelectorAll('.js-badger-accordion');
+// Array.from(accordions).forEach((accordion) => {
+//     const ba = new BadgerAccordion(accordion);
+//
+//     /* eslint-disable no-console */
+//     console.log(ba.getState([0]));
+// });
+// Creating a new instance of the accordion usign CSS selector
+// ================================
+
+var accordionCssSelector = new badgerAccordion('.js-badger-accordion'); // API Examples
 
 /* eslint-disable no-console */
 
-console.log(accordion.getState([0])); // accordion.open( document.querySelector('[data-badger-accordion-header-id="1"]') );
-// accordion.close( 0 );
+console.log(accordionCssSelector.getState([0])); // accordionCssSelector.open( 0 );
 
 })));
 //# sourceMappingURL=app.js.map
