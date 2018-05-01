@@ -3,21 +3,39 @@
 // Importing accordion
 import BadgerAccordion from 'dist/badger-accordion';
 
-// Creating a new instance of the accordion
+// Creating a new instance of the accordion usign DOM node
+// ================================
+const accordionDomNode = document.querySelector('.js-badger-accordion');
+
+const accordion = new BadgerAccordion(accordionDomNode);
+
+/* eslint-disable no-console */
+console.log(accordion.getState([0]));
+// accordion.open(0); // Opens the first accordion panel
+
+
+
+
+// Creating a new instance of the accordion usign DOM node
+// ================================
 // const accordions = document.querySelectorAll('.js-badger-accordion');
-const accordions = document.querySelectorAll('.js-badger-accordion');
 
-Array.from(accordions).forEach((accordion) => {
-    const ba = new BadgerAccordion(accordion);
-});
+// Array.from(accordions).forEach((accordion) => {
+//     const ba = new BadgerAccordion(accordion);
+//
+//     /* eslint-disable no-console */
+//     console.log(ba.getState([0]));
+// });
 
-const accordionSingle = new BadgerAccordion('.js-badger-accordion');
+
+
+
+
+// Creating a new instance of the accordion usign CSS selector
+// ================================
+// const accordionCssSelector = new BadgerAccordion('.js-badger-accordion');
 
 // API Examples
 /* eslint-disable no-console */
-// console.log(baderAccordion.getState([0]));
-console.log(accordionSingle);
-console.log(accordions[0]);
-console.log(accordions[0].getState([0]));
-// accordion.open( document.querySelector('[data-badger-accordion-header-id="1"]') );
-// accordion.close( 0 );
+// console.log(accordionCssSelector.getState([0]));
+// accordionCssSelector.open( 0 );
