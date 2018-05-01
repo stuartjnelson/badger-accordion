@@ -7,9 +7,15 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 
+## [1.1.0] - 2018-4-30
+### Updated
+ - Plugin so can now pass in a DOM node
+ - README & example files
+
+
 ## [1.0.30] - 2018-4-4
 ### Updated
-- NPM version
+ - NPM version
 
 
 ## [1.0.29] - 2018-4-4
