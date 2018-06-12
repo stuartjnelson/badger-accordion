@@ -7,6 +7,11 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 
+## [1.1.1] - 2018-6-12
+### Updated
+ - LICENSE so its correct...
+
+
 ## [1.1.0] - 2018-4-30
 ### Updated
  - Plugin so can now pass in a DOM node
