@@ -4,6 +4,10 @@
   "description": "An accessible vanilla JS accordion with extensible API.",
   "main": "dist/badger-accordion.js",
   "module": "dist/badger-accordion.esm.js",
+  "files": [
+    "dist",
+    "!.DS_Store"
+  ],
   "scripts": {
     "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c",
     "example": "NODE_ENV=example ./node_modules/.bin/rollup -c",
