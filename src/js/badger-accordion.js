@@ -91,7 +91,7 @@ class BadgerAccordion {
         this._initalState();
 
         // Setting the height of each panel
-        this._setPanelHeight();
+        this.calculateAllPanelsHeight();
 
         // Inserting data-attribute onto each `header`
         this._insertDataAttrs();
@@ -413,20 +413,44 @@ class BadgerAccordion {
 
 
     /**
-     *  SET PANEL HEIGHT
+     *  SET PANEL HEIGHT - ** DEPRICATED **
+     *
+     *  Depreicated as this method is becoming public and
+     *  I want to name it something that lets devs know
+     *  it's not just for using inside the `init()` method.
+     */
+    _setPanelHeight() {
+        this.calculateAllPanelsHeight();
+    }
+
+
+
+    /**
+     *  CALCULATE PANEL HEIGHT
      *
      *  Setting height for panels using pannels inner element
      */
-    _setPanelHeight() {
-        // [].forEach.(this.panels, (panel) => {
+    calculatePanelHeight(panel) {
+        const panelInner = panel.querySelector(this.settings.panelInnerClass);
+
+        let activeHeight = panelInner.offsetHeight;
+
+        return panel.style.maxHeight = `${activeHeight}px`;
+    }
+
+
+
+    /**
+     *  CALCULATE PANEL HEIGHT
+     *
+     *  Setting height for panels using pannels inner element
+     */
+    calculateAllPanelsHeight() {
         this.panels.forEach(panel => {
-            const panelInner = panel.querySelector(this.settings.panelInnerClass);
-
-            let activeHeight = panelInner.offsetHeight;
-
-            return panel.style.maxHeight = `${activeHeight}px`;
+            this.calculatePanelHeight(panel);
         });
     }
+
 
 
     /**

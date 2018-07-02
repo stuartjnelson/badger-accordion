@@ -179,12 +179,15 @@ accordion.closeAll();
 
 | Method          | Arguments            | Description | Example |
 |---              |---                   |---          |---          |
+| `init()`        |                      | Fires off all methods needed to initialise the accordion. Can be used again after to re-initialise ||
 | `getState()`    | headerId/s - `array` | Returns the state of a panel/s by passing in the _node item index/s_ as an array. |  Getting a single Id. `accordion.getState([0])`. <br> Getting multiple header's state `accordion.getState([0, 1, 2])` |
 | `open()`        | headerIndex          | Opens a given panel using its `headerIndex`. Eg; ` accordion.open( 0 );` ||
 | `close()`       | headerIndex          | Closes a given panel using its `headerIndex`. Eg; ` accordion.close( 0 );` ||
-| `togglePanel()` | animationAction, headerIndex | Toggles panel into opening or closing. `animationAction` is either `open` or `closed`. ||
+| `togglePanel()` | animationAction, headerIndex | Toggles panel into opening or closing. `animationAction` is either `open` or `closed` ||
 | `openAll()`     |                      | Opens all accordion panels   ||
 | `closeAll()`    |                      | Closes all accordion panels  ||
+| `calculateAllPanelsHeight()` |         | Calculates and sets all panels height      ||
+| `calculatePanelHeight()` |             | Calculates and sets a single panels height ||
 
 
 ## Sponsors
