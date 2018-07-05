@@ -150,7 +150,10 @@ The accordion has a selection of options that you can overwrite. For example if 
 
 ```
 new BadgerAccordion('.js-badger-accordion', {
-    openHeadersOnLoad: [0, 3]    
+    openHeadersOnLoad: [0, 3],
+    roles: {
+        region: true
+    }    
 });
 ```
 
@@ -166,6 +169,7 @@ new BadgerAccordion('.js-badger-accordion', {
 | openMultiplePanels | Boolean | `false`                            | Give you the ability to have mutiple panels open at one time. By default this is disabled  |
 | headerOpenLabel    | String  | `Accordion open button`            | Value for header's `aria-label` when button is closed |
 | headerCloseLabel   | String  | `Accordion close button`           | Value for header's `aria-label` when button is open  |
+| roles              | Boolean or Object | `true`                   | Controls setting `presentation` role on the container element & `region` on the panel. By using a boolean value you will set both attributes. By settings this as an object you will be explicitly setting only that role. Any roles not included in the object will not be set. In the example above only the `region` role will be set. |
 
 
 

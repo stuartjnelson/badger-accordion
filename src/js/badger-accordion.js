@@ -35,7 +35,8 @@ class BadgerAccordion {
             openMultiplePanels: false,
             openHeadersOnLoad:  [],
             headerOpenLabel:    'Open accordion panel',
-            headerCloseLabel:   'Close accordion panel'
+            headerCloseLabel:   'Close accordion panel',
+            roles:              true
             // toggleEl:            // If you want to use a different element to trigger the accordion
         };
 
@@ -103,6 +104,26 @@ class BadgerAccordion {
         this._finishInitalisation();
     }
 
+    /**
+     * CHECK ROLES ETTING
+     * @return {[boolean]}
+     * Checks roles setting for all roles or a single role.
+     * First checks if a `boolean` has been used to set all
+     * roles to either true or false. If the setting is an
+     * object it will only set the attribute where each
+     * attribute has explicitly been set as true, eg;
+     * ```
+     * roles: {
+     *     region: true
+     * }
+     * ```
+     */
+    _setRole(role, el) {
+        if(typeof this.settings.roles === 'boolean' && this.settings.roles || this.settings.roles[role] !== undefined && this.settings.roles[role] !== false) {
+            el.setAttribute('role', role);
+        }
+    }
+
 
     /**
      *  INSERT DATA ATTRS
@@ -141,7 +162,7 @@ class BadgerAccordion {
      */
     _finishInitalisation() {
         this.container.classList.add(this.settings.initalisedClass);
-        this.container.setAttribute('role', 'presentation');
+        this._setRole('presentation', this.container);
     }
 
 
@@ -472,7 +493,9 @@ class BadgerAccordion {
         this.panels.forEach( (panel, index) => {
             panel.setAttribute('id', `badger-accordion-panel-${this.ids[index].id}`);
             panel.setAttribute('aria-labeledby', `badger-accordion-header-${this.ids[index].id}`);
-            panel.setAttribute('role', 'region');
+            if(this.settings.roles === true || this.settings.roles.region !== false) {
+                this._setRole('region', panel);
+            }
         });
     }
 }
