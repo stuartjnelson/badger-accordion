@@ -274,8 +274,8 @@ class BadgerAccordion {
      *  Opens all panels
      */
     openAll() {
-        this.headers.forEach( header => {
-            this.togglePanel('open', header);
+        this.headers.forEach((header, headerIndex) => {
+            this.togglePanel('open', headerIndex);
         });
     }
 
@@ -286,8 +286,8 @@ class BadgerAccordion {
      *  Closes all panels
      */
     closeAll() {
-        this.headers.forEach( header => {
-            this.togglePanel('closed', header);
+        this.headers.forEach((header, headerIndex) => {
+            this.togglePanel('closed', headerIndex);
         });
     }
 

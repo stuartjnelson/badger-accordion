@@ -476,8 +476,8 @@ function () {
     value: function openAll() {
       var _this5 = this;
 
-      this.headers.forEach(function (header) {
-        _this5.togglePanel('open', header);
+      this.headers.forEach(function (header, headerIndex) {
+        _this5.togglePanel('open', headerIndex);
       });
     }
     /**
@@ -491,8 +491,8 @@ function () {
     value: function closeAll() {
       var _this6 = this;
 
-      this.headers.forEach(function (header) {
-        _this6.togglePanel('closed', header);
+      this.headers.forEach(function (header, headerIndex) {
+        _this6.togglePanel('closed', headerIndex);
       });
     }
     /**
