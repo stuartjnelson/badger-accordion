@@ -445,7 +445,7 @@ function () {
      *  OPEN
      *
      *  Closes a specific panel
-     *  @param {object} header - The header node you want to open
+     *  @param {integer} headerIndex - The header node index you want to open
      */
 
   }, {
@@ -457,7 +457,7 @@ function () {
      *  CLOSE
      *
      *  Closes a specific panel
-     *  @param {object} header - The header node you want to close
+     *  @param {integer} headerIndex - The header node index you want to close
      */
 
   }, {
@@ -500,7 +500,7 @@ function () {
      *
      *  Getting state of headers. By default gets state of all headers
      *  @param {string} animationAction - The animation you want to invoke
-     *  @param {object} header          - The header node you want to animate
+     *  @param {integer} headerIndex    - The header node index you want to animate
      */
 
   }, {

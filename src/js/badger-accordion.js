@@ -250,7 +250,7 @@ class BadgerAccordion {
      *  OPEN
      *
      *  Closes a specific panel
-     *  @param {object} header - The header node you want to open
+     *  @param {integer} headerIndex - The header node index you want to open
      */
     open(headerIndex) {
         this.togglePanel('open', headerIndex);
@@ -261,7 +261,7 @@ class BadgerAccordion {
      *  CLOSE
      *
      *  Closes a specific panel
-     *  @param {object} header - The header node you want to close
+     *  @param {integer} headerIndex - The header node index you want to close
      */
     close(headerIndex) {
         this.togglePanel('closed', headerIndex);
@@ -297,7 +297,7 @@ class BadgerAccordion {
      *
      *  Getting state of headers. By default gets state of all headers
      *  @param {string} animationAction - The animation you want to invoke
-     *  @param {object} header          - The header node you want to animate
+     *  @param {integer} headerIndex    - The header node index you want to animate
      */
     togglePanel(animationAction, headerIndex) {
         if(animationAction !== undefined && headerIndex !== undefined) {
