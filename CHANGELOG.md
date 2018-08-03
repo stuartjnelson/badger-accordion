@@ -7,6 +7,14 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 
+## [1.1.2] - 2018-8-3
+### Added
+ - Issue #9 Active class to the open header & panel
+
+### Changed
+ - Issue #10 - Moved packages to devDependencies and cleaned up package.json
+
+
 ## [1.1.1] - 2018-6-12
 ### Updated
  - LICENSE so its correct...

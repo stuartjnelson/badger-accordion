@@ -4,6 +4,10 @@
   "description": "An accessible vanilla JS accordion with extensible API.",
   "main": "dist/badger-accordion.js",
   "module": "dist/badger-accordion.esm.js",
+  "files": [
+    "dist",
+    "!.DS_Store"
+  ],
   "scripts": {
     "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c",
     "example": "NODE_ENV=example ./node_modules/.bin/rollup -c",
@@ -29,26 +33,25 @@
   },
   "homepage": "https://github.com/stuartjnelson/badger-accordion#readme",
   "devDependencies": {
-    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/core": "^7.0.0-beta.55",
+    "@babel/plugin-transform-object-assign": "^7.0.0-beta.55",
+    "@babel/preset-env": "^7.0.0-beta.55",
     "babel-cli": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
+    "debug": "^3.1.0",
     "install": "^0.10.4",
-    "npm": "^5.8.0",
+    "npm": "^5.10.0",
     "rollup": "^0.52.3",
-    "rollup-plugin-babel": "^4.0.0-beta.3",
+    "rollup-plugin-babel": "^4.0.0-beta.7",
     "rollup-plugin-commonjs": "^8.4.1",
+    "rollup-plugin-copy": "^0.2.3",
     "rollup-plugin-eslint": "^4.0.0",
-    "rollup-plugin-includepaths": "^0.2.2",
+    "rollup-plugin-includepaths": "^0.2.3",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify-es": "0.0.1"
   },
-  "dependencies": {
-    "@babel/core": "^7.0.0-beta.44",
-    "@babel/plugin-transform-object-assign": "^7.0.0-beta.44",
-    "debug": "^3.1.0",
-    "rollup-plugin-copy": "^0.2.3"
-  }
+  "dependencies": {}
 }
