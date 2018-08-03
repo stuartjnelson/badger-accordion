@@ -29,6 +29,7 @@ class BadgerAccordion {
             panelClass:         '.js-badger-accordion-panel',
             panelInnerClass:    '.js-badger-accordion-panel-inner',
             hiddenClass:        '-ba-is-hidden',
+            activeClass:        '-ba-is-active',
             get hidenClass() { return this.hiddenClass; },
             initalisedClass:    'badger-accordion--initalised',
             headerDataAttr:     'data-badger-accordion-header-id',
@@ -330,25 +331,33 @@ class BadgerAccordion {
                 // 2. Closeing panel
                 panelToClose.classList.add(this.settings.hiddenClass);
 
-                // 3. Set aria attrs
+                // 3. Removing active classes
+                panelToClose.classList.remove(this.settings.activeClass);
+                header.classList.remove(this.settings.activeClass);
+
+                // 4. Set aria attrs
                 header.setAttribute('aria-expanded', false);
                 header.setAttribute('aria-label', this.settings.headerOpenLabel);
 
-                // 4. Resetting toggling so a new event can be fired
+                // 5. Resetting toggling so a new event can be fired
                 panelToClose.onCSSTransitionEnd(() => this.toggling = false );
             } else if(animationAction === 'open') {
                 // 1. Getting ID of panel that we want to open
                 const header      = this.headers[headerIndex];
                 const panelToOpen = this.panels[headerIndex];
 
-                // 2. Closeing panel
+                // 2. Opening panel
                 panelToOpen.classList.remove(this.settings.hiddenClass);
 
-                // 3. Set aria attrs
+                // 3. Adding active classes
+                panelToOpen.classList.add(this.settings.activeClass);
+                header.classList.add(this.settings.activeClass);
+
+                // 4. Set aria attrs
                 header.setAttribute('aria-expanded', true);
                 header.setAttribute('aria-label', this.settings.headerCloseLabel);
 
-                // 4. Resetting toggling so a new event can be fired
+                // 5. Resetting toggling so a new event can be fired
                 panelToOpen.onCSSTransitionEnd(() => this.toggling = false );
             }
         }
