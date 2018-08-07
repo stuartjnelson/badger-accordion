@@ -451,7 +451,7 @@ function () {
      *  OPEN
      *
      *  Closes a specific panel
-     *  @param {object} header - The header node you want to open
+     *  @param {integer} headerIndex - The header node index you want to open
      */
 
   }, {
@@ -463,7 +463,7 @@ function () {
      *  CLOSE
      *
      *  Closes a specific panel
-     *  @param {object} header - The header node you want to close
+     *  @param {integer} headerIndex - The header node index you want to close
      */
 
   }, {
@@ -482,8 +482,8 @@ function () {
     value: function openAll() {
       var _this5 = this;
 
-      this.headers.forEach(function (header) {
-        _this5.togglePanel('open', header);
+      this.headers.forEach(function (header, headerIndex) {
+        _this5.togglePanel('open', headerIndex);
       });
     }
     /**
@@ -497,8 +497,8 @@ function () {
     value: function closeAll() {
       var _this6 = this;
 
-      this.headers.forEach(function (header) {
-        _this6.togglePanel('closed', header);
+      this.headers.forEach(function (header, headerIndex) {
+        _this6.togglePanel('closed', headerIndex);
       });
     }
     /**
@@ -506,7 +506,7 @@ function () {
      *
      *  Getting state of headers. By default gets state of all headers
      *  @param {string} animationAction - The animation you want to invoke
-     *  @param {object} header          - The header node you want to animate
+     *  @param {integer} headerIndex    - The header node index you want to animate
      */
 
   }, {
