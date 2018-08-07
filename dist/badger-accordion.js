@@ -222,6 +222,7 @@ function () {
       panelClass: '.js-badger-accordion-panel',
       panelInnerClass: '.js-badger-accordion-panel-inner',
       hiddenClass: '-ba-is-hidden',
+      activeClass: '-ba-is-active',
 
       get hidenClass() {
         return this.hiddenClass;
@@ -232,7 +233,8 @@ function () {
       openMultiplePanels: false,
       openHeadersOnLoad: [],
       headerOpenLabel: 'Open accordion panel',
-      headerCloseLabel: 'Close accordion panel' // toggleEl:            // If you want to use a different element to trigger the accordion
+      headerCloseLabel: 'Close accordion panel',
+      roles: true // toggleEl:            // If you want to use a different element to trigger the accordion
 
     }; // Options
 
@@ -288,8 +290,7 @@ function () {
       this._initalState(); // Setting the height of each panel
 
 
-      this._setPanelHeight(); // Inserting data-attribute onto each `header`
-
+      this.calculateAllPanelsHeight(); // Inserting data-attribute onto each `header`
 
       this._insertDataAttrs(); // Adding listeners to headers
 
@@ -298,6 +299,28 @@ function () {
 
 
       this._finishInitalisation();
+    }
+    /**
+     * CHECK ROLES ETTING
+     * @return {[boolean]}
+     * Checks roles setting for all roles or a single role.
+     * First checks if a `boolean` has been used to set all
+     * roles to either true or false. If the setting is an
+     * object it will only set the attribute where each
+     * attribute has explicitly been set as true, eg;
+     * ```
+     * roles: {
+     *     region: true
+     * }
+     * ```
+     */
+
+  }, {
+    key: "_setRole",
+    value: function _setRole(role, el) {
+      if (typeof this.settings.roles === 'boolean' && this.settings.roles || this.settings.roles[role] !== undefined && this.settings.roles[role] !== false) {
+        el.setAttribute('role', role);
+      }
     }
     /**
      *  INSERT DATA ATTRS
@@ -343,7 +366,8 @@ function () {
     key: "_finishInitalisation",
     value: function _finishInitalisation() {
       this.container.classList.add(this.settings.initalisedClass);
-      this.container.setAttribute('role', 'presentation');
+
+      this._setRole('presentation', this.container);
     }
     /**
      *  ADD LISTENERS
@@ -520,10 +544,13 @@ function () {
           var header = this.headers[headerIndex];
           var panelToClose = this.panels[headerIndex]; // 2. Closeing panel
 
-          panelToClose.classList.add(this.settings.hiddenClass); // 3. Set aria attrs
+          panelToClose.classList.add(this.settings.hiddenClass); // 3. Removing active classes
+
+          panelToClose.classList.remove(this.settings.activeClass);
+          header.classList.remove(this.settings.activeClass); // 4. Set aria attrs
 
           header.setAttribute('aria-expanded', false);
-          header.setAttribute('aria-label', this.settings.headerOpenLabel); // 4. Resetting toggling so a new event can be fired
+          header.setAttribute('aria-label', this.settings.headerOpenLabel); // 5. Resetting toggling so a new event can be fired
 
           panelToClose.onCSSTransitionEnd(function () {
             return _this7.toggling = false;
@@ -531,13 +558,18 @@ function () {
         } else if (animationAction === 'open') {
           // 1. Getting ID of panel that we want to open
           var _header = this.headers[headerIndex];
-          var panelToOpen = this.panels[headerIndex]; // 2. Closeing panel
+          var panelToOpen = this.panels[headerIndex]; // 2. Opening panel
 
-          panelToOpen.classList.remove(this.settings.hiddenClass); // 3. Set aria attrs
+          panelToOpen.classList.remove(this.settings.hiddenClass); // 3. Adding active classes
+
+          panelToOpen.classList.add(this.settings.activeClass);
+
+          _header.classList.add(this.settings.activeClass); // 4. Set aria attrs
+
 
           _header.setAttribute('aria-expanded', true);
 
-          _header.setAttribute('aria-label', this.settings.headerCloseLabel); // 4. Resetting toggling so a new event can be fired
+          _header.setAttribute('aria-label', this.settings.headerCloseLabel); // 5. Resetting toggling so a new event can be fired
 
 
           panelToOpen.onCSSTransitionEnd(function () {
@@ -635,21 +667,44 @@ function () {
       this._insertDataAttrs();
     }
     /**
-     *  SET PANEL HEIGHT
+     *  SET PANEL HEIGHT - ** DEPRICATED **
      *
-     *  Setting height for panels using pannels inner element
+     *  Depreicated as this method is becoming public and
+     *  I want to name it something that lets devs know
+     *  it's not just for using inside the `init()` method.
      */
 
   }, {
     key: "_setPanelHeight",
     value: function _setPanelHeight() {
+      this.calculateAllPanelsHeight();
+    }
+    /**
+     *  CALCULATE PANEL HEIGHT
+     *
+     *  Setting height for panels using pannels inner element
+     */
+
+  }, {
+    key: "calculatePanelHeight",
+    value: function calculatePanelHeight(panel) {
+      var panelInner = panel.querySelector(this.settings.panelInnerClass);
+      var activeHeight = panelInner.offsetHeight;
+      return panel.style.maxHeight = "".concat(activeHeight, "px");
+    }
+    /**
+     *  CALCULATE PANEL HEIGHT
+     *
+     *  Setting height for panels using pannels inner element
+     */
+
+  }, {
+    key: "calculateAllPanelsHeight",
+    value: function calculateAllPanelsHeight() {
       var _this10 = this;
 
-      // [].forEach.(this.panels, (panel) => {
       this.panels.forEach(function (panel) {
-        var panelInner = panel.querySelector(_this10.settings.panelInnerClass);
-        var activeHeight = panelInner.offsetHeight;
-        return panel.style.maxHeight = "".concat(activeHeight, "px");
+        _this10.calculatePanelHeight(panel);
       });
     }
     /**
@@ -679,7 +734,10 @@ function () {
       this.panels.forEach(function (panel, index) {
         panel.setAttribute('id', "badger-accordion-panel-".concat(_this12.ids[index].id));
         panel.setAttribute('aria-labeledby', "badger-accordion-header-".concat(_this12.ids[index].id));
-        panel.setAttribute('role', 'region');
+
+        if (_this12.settings.roles === true || _this12.settings.roles.region !== false) {
+          _this12._setRole('region', panel);
+        }
       });
     }
   }]);
