@@ -29,13 +29,15 @@ class BadgerAccordion {
             panelClass:         '.js-badger-accordion-panel',
             panelInnerClass:    '.js-badger-accordion-panel-inner',
             hiddenClass:        '-ba-is-hidden',
+            activeClass:        '-ba-is-active',
             get hidenClass() { return this.hiddenClass; },
             initalisedClass:    'badger-accordion--initalised',
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
             openHeadersOnLoad:  [],
             headerOpenLabel:    'Open accordion panel',
-            headerCloseLabel:   'Close accordion panel'
+            headerCloseLabel:   'Close accordion panel',
+            roles:              true
             // toggleEl:            // If you want to use a different element to trigger the accordion
         };
 
@@ -91,7 +93,7 @@ class BadgerAccordion {
         this._initalState();
 
         // Setting the height of each panel
-        this._setPanelHeight();
+        this.calculateAllPanelsHeight();
 
         // Inserting data-attribute onto each `header`
         this._insertDataAttrs();
@@ -101,6 +103,26 @@ class BadgerAccordion {
 
         // Adds class to accordion for initalisation
         this._finishInitalisation();
+    }
+
+    /**
+     * CHECK ROLES ETTING
+     * @return {[boolean]}
+     * Checks roles setting for all roles or a single role.
+     * First checks if a `boolean` has been used to set all
+     * roles to either true or false. If the setting is an
+     * object it will only set the attribute where each
+     * attribute has explicitly been set as true, eg;
+     * ```
+     * roles: {
+     *     region: true
+     * }
+     * ```
+     */
+    _setRole(role, el) {
+        if(typeof this.settings.roles === 'boolean' && this.settings.roles || this.settings.roles[role] !== undefined && this.settings.roles[role] !== false) {
+            el.setAttribute('role', role);
+        }
     }
 
 
@@ -141,7 +163,7 @@ class BadgerAccordion {
      */
     _finishInitalisation() {
         this.container.classList.add(this.settings.initalisedClass);
-        this.container.setAttribute('role', 'presentation');
+        this._setRole('presentation', this.container);
     }
 
 
@@ -250,7 +272,7 @@ class BadgerAccordion {
      *  OPEN
      *
      *  Closes a specific panel
-     *  @param {object} header - The header node you want to open
+     *  @param {integer} headerIndex - The header node index you want to open
      */
     open(headerIndex) {
         this.togglePanel('open', headerIndex);
@@ -261,7 +283,7 @@ class BadgerAccordion {
      *  CLOSE
      *
      *  Closes a specific panel
-     *  @param {object} header - The header node you want to close
+     *  @param {integer} headerIndex - The header node index you want to close
      */
     close(headerIndex) {
         this.togglePanel('closed', headerIndex);
@@ -274,8 +296,8 @@ class BadgerAccordion {
      *  Opens all panels
      */
     openAll() {
-        this.headers.forEach( header => {
-            this.togglePanel('open', header);
+        this.headers.forEach((header, headerIndex) => {
+            this.togglePanel('open', headerIndex);
         });
     }
 
@@ -286,8 +308,8 @@ class BadgerAccordion {
      *  Closes all panels
      */
     closeAll() {
-        this.headers.forEach( header => {
-            this.togglePanel('closed', header);
+        this.headers.forEach((header, headerIndex) => {
+            this.togglePanel('closed', headerIndex);
         });
     }
 
@@ -297,7 +319,7 @@ class BadgerAccordion {
      *
      *  Getting state of headers. By default gets state of all headers
      *  @param {string} animationAction - The animation you want to invoke
-     *  @param {object} header          - The header node you want to animate
+     *  @param {integer} headerIndex    - The header node index you want to animate
      */
     togglePanel(animationAction, headerIndex) {
         if(animationAction !== undefined && headerIndex !== undefined) {
@@ -309,25 +331,33 @@ class BadgerAccordion {
                 // 2. Closeing panel
                 panelToClose.classList.add(this.settings.hiddenClass);
 
-                // 3. Set aria attrs
+                // 3. Removing active classes
+                panelToClose.classList.remove(this.settings.activeClass);
+                header.classList.remove(this.settings.activeClass);
+
+                // 4. Set aria attrs
                 header.setAttribute('aria-expanded', false);
                 header.setAttribute('aria-label', this.settings.headerOpenLabel);
 
-                // 4. Resetting toggling so a new event can be fired
+                // 5. Resetting toggling so a new event can be fired
                 panelToClose.onCSSTransitionEnd(() => this.toggling = false );
             } else if(animationAction === 'open') {
                 // 1. Getting ID of panel that we want to open
                 const header      = this.headers[headerIndex];
                 const panelToOpen = this.panels[headerIndex];
 
-                // 2. Closeing panel
+                // 2. Opening panel
                 panelToOpen.classList.remove(this.settings.hiddenClass);
 
-                // 3. Set aria attrs
+                // 3. Adding active classes
+                panelToOpen.classList.add(this.settings.activeClass);
+                header.classList.add(this.settings.activeClass);
+
+                // 4. Set aria attrs
                 header.setAttribute('aria-expanded', true);
                 header.setAttribute('aria-label', this.settings.headerCloseLabel);
 
-                // 4. Resetting toggling so a new event can be fired
+                // 5. Resetting toggling so a new event can be fired
                 panelToOpen.onCSSTransitionEnd(() => this.toggling = false );
             }
         }
@@ -413,20 +443,44 @@ class BadgerAccordion {
 
 
     /**
-     *  SET PANEL HEIGHT
+     *  SET PANEL HEIGHT - ** DEPRICATED **
+     *
+     *  Depreicated as this method is becoming public and
+     *  I want to name it something that lets devs know
+     *  it's not just for using inside the `init()` method.
+     */
+    _setPanelHeight() {
+        this.calculateAllPanelsHeight();
+    }
+
+
+
+    /**
+     *  CALCULATE PANEL HEIGHT
      *
      *  Setting height for panels using pannels inner element
      */
-    _setPanelHeight() {
-        // [].forEach.(this.panels, (panel) => {
+    calculatePanelHeight(panel) {
+        const panelInner = panel.querySelector(this.settings.panelInnerClass);
+
+        let activeHeight = panelInner.offsetHeight;
+
+        return panel.style.maxHeight = `${activeHeight}px`;
+    }
+
+
+
+    /**
+     *  CALCULATE PANEL HEIGHT
+     *
+     *  Setting height for panels using pannels inner element
+     */
+    calculateAllPanelsHeight() {
         this.panels.forEach(panel => {
-            const panelInner = panel.querySelector(this.settings.panelInnerClass);
-
-            let activeHeight = panelInner.offsetHeight;
-
-            return panel.style.maxHeight = `${activeHeight}px`;
+            this.calculatePanelHeight(panel);
         });
     }
+
 
 
     /**
@@ -448,7 +502,9 @@ class BadgerAccordion {
         this.panels.forEach( (panel, index) => {
             panel.setAttribute('id', `badger-accordion-panel-${this.ids[index].id}`);
             panel.setAttribute('aria-labeledby', `badger-accordion-header-${this.ids[index].id}`);
-            panel.setAttribute('role', 'region');
+            if(this.settings.roles === true || this.settings.roles.region !== false) {
+                this._setRole('region', panel);
+            }
         });
     }
 }

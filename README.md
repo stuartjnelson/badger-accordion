@@ -150,7 +150,10 @@ The accordion has a selection of options that you can overwrite. For example if 
 
 ```
 new BadgerAccordion('.js-badger-accordion', {
-    openHeadersOnLoad: [0, 3]    
+    openHeadersOnLoad: [0, 3],
+    roles: {
+        region: true
+    }    
 });
 ```
 
@@ -166,6 +169,7 @@ new BadgerAccordion('.js-badger-accordion', {
 | openMultiplePanels | Boolean | `false`                            | Give you the ability to have mutiple panels open at one time. By default this is disabled  |
 | headerOpenLabel    | String  | `Accordion open button`            | Value for header's `aria-label` when button is closed |
 | headerCloseLabel   | String  | `Accordion close button`           | Value for header's `aria-label` when button is open  |
+| roles              | Boolean or Object | `true`                   | Controls setting `presentation` role on the container element & `region` on the panel. By using a boolean value you will set both attributes. By settings this as an object you will be explicitly setting only that role. Any roles not included in the object will not be set. In the example above only the `region` role will be set. |
 
 
 
@@ -179,12 +183,15 @@ accordion.closeAll();
 
 | Method          | Arguments            | Description | Example |
 |---              |---                   |---          |---          |
+| `init()`        |                      | Fires off all methods needed to initialise the accordion. Can be used again after to re-initialise ||
 | `getState()`    | headerId/s - `array` | Returns the state of a panel/s by passing in the _node item index/s_ as an array. |  Getting a single Id. `accordion.getState([0])`. <br> Getting multiple header's state `accordion.getState([0, 1, 2])` |
 | `open()`        | headerIndex          | Opens a given panel using its `headerIndex`. Eg; ` accordion.open( 0 );` ||
 | `close()`       | headerIndex          | Closes a given panel using its `headerIndex`. Eg; ` accordion.close( 0 );` ||
-| `togglePanel()` | animationAction, headerIndex | Toggles panel into opening or closing. `animationAction` is either `open` or `closed`. ||
+| `togglePanel()` | animationAction, headerIndex | Toggles panel into opening or closing. `animationAction` is either `open` or `closed` ||
 | `openAll()`     |                      | Opens all accordion panels   ||
 | `closeAll()`    |                      | Closes all accordion panels  ||
+| `calculateAllPanelsHeight()` |         | Calculates and sets all panels height      ||
+| `calculatePanelHeight()` |             | Calculates and sets a single panels height ||
 
 
 ## Sponsors

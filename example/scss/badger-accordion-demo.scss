@@ -131,7 +131,7 @@ button {
 
 p {
     line-height: 1.25;
-    margin: $half-spacing-unit 0;
+    margin: $half-spacing-unit 0 0 0;
 
     &:not(:last-of-type) {
         margin-bottom: $half-spacing-unit;
