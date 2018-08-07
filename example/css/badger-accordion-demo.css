@@ -111,7 +111,7 @@ button {
 
 p {
   line-height: 1.25;
-  margin: 20px 0; }
+  margin: 20px 0 0 0; }
   p:not(:last-of-type) {
     margin-bottom: 20px; }
 

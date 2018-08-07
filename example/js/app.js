@@ -238,6 +238,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
           panelClass: '.js-badger-accordion-panel',
           panelInnerClass: '.js-badger-accordion-panel-inner',
           hiddenClass: '-ba-is-hidden',
+          activeClass: '-ba-is-active',
 
           get hidenClass() {
             return this.hiddenClass;
@@ -248,7 +249,8 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
           openMultiplePanels: false,
           openHeadersOnLoad: [],
           headerOpenLabel: 'Open accordion panel',
-          headerCloseLabel: 'Close accordion panel' // toggleEl:            // If you want to use a different element to trigger the accordion
+          headerCloseLabel: 'Close accordion panel',
+          roles: true // toggleEl:            // If you want to use a different element to trigger the accordion
 
         }; // Options
 
@@ -304,8 +306,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
           this._initalState(); // Setting the height of each panel
 
 
-          this._setPanelHeight(); // Inserting data-attribute onto each `header`
-
+          this.calculateAllPanelsHeight(); // Inserting data-attribute onto each `header`
 
           this._insertDataAttrs(); // Adding listeners to headers
 
@@ -314,6 +315,28 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 
 
           this._finishInitalisation();
+        }
+        /**
+         * CHECK ROLES ETTING
+         * @return {[boolean]}
+         * Checks roles setting for all roles or a single role.
+         * First checks if a `boolean` has been used to set all
+         * roles to either true or false. If the setting is an
+         * object it will only set the attribute where each
+         * attribute has explicitly been set as true, eg;
+         * ```
+         * roles: {
+         *     region: true
+         * }
+         * ```
+         */
+
+      }, {
+        key: "_setRole",
+        value: function _setRole(role, el) {
+          if (typeof this.settings.roles === 'boolean' && this.settings.roles || this.settings.roles[role] !== undefined && this.settings.roles[role] !== false) {
+            el.setAttribute('role', role);
+          }
         }
         /**
          *  INSERT DATA ATTRS
@@ -359,7 +382,8 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
         key: "_finishInitalisation",
         value: function _finishInitalisation() {
           this.container.classList.add(this.settings.initalisedClass);
-          this.container.setAttribute('role', 'presentation');
+
+          this._setRole('presentation', this.container);
         }
         /**
          *  ADD LISTENERS
@@ -467,7 +491,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
          *  OPEN
          *
          *  Closes a specific panel
-         *  @param {object} header - The header node you want to open
+         *  @param {integer} headerIndex - The header node index you want to open
          */
 
       }, {
@@ -479,7 +503,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
          *  CLOSE
          *
          *  Closes a specific panel
-         *  @param {object} header - The header node you want to close
+         *  @param {integer} headerIndex - The header node index you want to close
          */
 
       }, {
@@ -498,8 +522,8 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
         value: function openAll() {
           var _this5 = this;
 
-          this.headers.forEach(function (header) {
-            _this5.togglePanel('open', header);
+          this.headers.forEach(function (header, headerIndex) {
+            _this5.togglePanel('open', headerIndex);
           });
         }
         /**
@@ -513,8 +537,8 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
         value: function closeAll() {
           var _this6 = this;
 
-          this.headers.forEach(function (header) {
-            _this6.togglePanel('closed', header);
+          this.headers.forEach(function (header, headerIndex) {
+            _this6.togglePanel('closed', headerIndex);
           });
         }
         /**
@@ -522,7 +546,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
          *
          *  Getting state of headers. By default gets state of all headers
          *  @param {string} animationAction - The animation you want to invoke
-         *  @param {object} header          - The header node you want to animate
+         *  @param {integer} headerIndex    - The header node index you want to animate
          */
 
       }, {
@@ -536,10 +560,13 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
               var header = this.headers[headerIndex];
               var panelToClose = this.panels[headerIndex]; // 2. Closeing panel
 
-              panelToClose.classList.add(this.settings.hiddenClass); // 3. Set aria attrs
+              panelToClose.classList.add(this.settings.hiddenClass); // 3. Removing active classes
+
+              panelToClose.classList.remove(this.settings.activeClass);
+              header.classList.remove(this.settings.activeClass); // 4. Set aria attrs
 
               header.setAttribute('aria-expanded', false);
-              header.setAttribute('aria-label', this.settings.headerOpenLabel); // 4. Resetting toggling so a new event can be fired
+              header.setAttribute('aria-label', this.settings.headerOpenLabel); // 5. Resetting toggling so a new event can be fired
 
               panelToClose.onCSSTransitionEnd(function () {
                 return _this7.toggling = false;
@@ -547,13 +574,18 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
             } else if (animationAction === 'open') {
               // 1. Getting ID of panel that we want to open
               var _header = this.headers[headerIndex];
-              var panelToOpen = this.panels[headerIndex]; // 2. Closeing panel
+              var panelToOpen = this.panels[headerIndex]; // 2. Opening panel
 
-              panelToOpen.classList.remove(this.settings.hiddenClass); // 3. Set aria attrs
+              panelToOpen.classList.remove(this.settings.hiddenClass); // 3. Adding active classes
+
+              panelToOpen.classList.add(this.settings.activeClass);
+
+              _header.classList.add(this.settings.activeClass); // 4. Set aria attrs
+
 
               _header.setAttribute('aria-expanded', true);
 
-              _header.setAttribute('aria-label', this.settings.headerCloseLabel); // 4. Resetting toggling so a new event can be fired
+              _header.setAttribute('aria-label', this.settings.headerCloseLabel); // 5. Resetting toggling so a new event can be fired
 
 
               panelToOpen.onCSSTransitionEnd(function () {
@@ -651,21 +683,44 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
           this._insertDataAttrs();
         }
         /**
-         *  SET PANEL HEIGHT
+         *  SET PANEL HEIGHT - ** DEPRICATED **
          *
-         *  Setting height for panels using pannels inner element
+         *  Depreicated as this method is becoming public and
+         *  I want to name it something that lets devs know
+         *  it's not just for using inside the `init()` method.
          */
 
       }, {
         key: "_setPanelHeight",
         value: function _setPanelHeight() {
-          var _this10 = this; // [].forEach.(this.panels, (panel) => {
+          this.calculateAllPanelsHeight();
+        }
+        /**
+         *  CALCULATE PANEL HEIGHT
+         *
+         *  Setting height for panels using pannels inner element
+         */
 
+      }, {
+        key: "calculatePanelHeight",
+        value: function calculatePanelHeight(panel) {
+          var panelInner = panel.querySelector(this.settings.panelInnerClass);
+          var activeHeight = panelInner.offsetHeight;
+          return panel.style.maxHeight = "".concat(activeHeight, "px");
+        }
+        /**
+         *  CALCULATE PANEL HEIGHT
+         *
+         *  Setting height for panels using pannels inner element
+         */
+
+      }, {
+        key: "calculateAllPanelsHeight",
+        value: function calculateAllPanelsHeight() {
+          var _this10 = this;
 
           this.panels.forEach(function (panel) {
-            var panelInner = panel.querySelector(_this10.settings.panelInnerClass);
-            var activeHeight = panelInner.offsetHeight;
-            return panel.style.maxHeight = "".concat(activeHeight, "px");
+            _this10.calculatePanelHeight(panel);
           });
         }
         /**
@@ -695,7 +750,10 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
           this.panels.forEach(function (panel, index) {
             panel.setAttribute('id', "badger-accordion-panel-".concat(_this12.ids[index].id));
             panel.setAttribute('aria-labeledby', "badger-accordion-header-".concat(_this12.ids[index].id));
-            panel.setAttribute('role', 'region');
+
+            if (_this12.settings.roles === true || _this12.settings.roles.region !== false) {
+              _this12._setRole('region', panel);
+            }
           });
         }
       }]);
@@ -705,17 +763,16 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 
 
     return BadgerAccordion;
-  }); 
-
+  });
 });
 
 // ================================
-// const accordionDomNode = document.querySelector('.js-badger-accordion');
-// const accordion = new BadgerAccordion(accordionDomNode);
 
+var accordionDomNode = document.querySelector('.js-badger-accordion');
+var accordion = new badgerAccordion(accordionDomNode);
 /* eslint-disable no-console */
-// console.log(accordion.getState([0]));
-// accordion.open(0); // Opens the first accordion panel
+
+console.log(accordion.getState([0])); // accordion.open(0); // Opens the first accordion panel
 // Creating a new instance of the accordion usign DOM node
 // ================================
 // const accordions = document.querySelectorAll('.js-badger-accordion');
@@ -727,12 +784,12 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 // });
 // Creating a new instance of the accordion usign CSS selector
 // ================================
-
-var accordionCssSelector = new badgerAccordion('.js-badger-accordion'); // API Examples
+// const accordionCssSelector = new BadgerAccordion('.js-badger-accordion');
+// API Examples
 
 /* eslint-disable no-console */
-
-console.log(accordionCssSelector.getState([0])); // accordionCssSelector.open( 0 );
+// console.log(accordionCssSelector.getState([0]));
+// accordionCssSelector.open( 0 );
 
 })));
 //# sourceMappingURL=app.js.map
