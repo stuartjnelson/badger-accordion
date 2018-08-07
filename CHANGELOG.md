@@ -8,10 +8,24 @@ For more information about keeping good change logs please refer to [keep a chan
 
 
 ## [1.1.2] - 2018-8-3
+### Fixed
+ - Fixing demo styles <p>
+ - Issue #14: [seanjhulse](https://github.com/seanjhulse) created a PR and patched this so openAll/closeAll works.
+
 ### Added
  - Issue #9 Active class to the open header & panel
 
 ### Changed
+ - Deprecating `setPanelHeight()` in favour better name
+   This method was “private” and not named great for it being used after the initialisation IMO. I have now called it `calculateAllPanelsHeight()` which I feel is more descriptive. Also created a method to calculate a single panel’s height `calculatePanelHeight()`. Also updated the docs.
+ - Issue #8: Setting the roles.
+   By default both the `presentation` role on the container element & `region` on the panel will be set. You can now using turn them both off `roles: false` or explicitly set one or both of the roles to be set.
+
+   ```
+     roles: {
+       region: true
+     }
+   ```  
  - Issue #10 - Moved packages to devDependencies and cleaned up package.json
 
 
