@@ -771,13 +771,9 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 var accordionDomNode = document.querySelector('.js-badger-accordion');
 var accordion = new badgerAccordion(accordionDomNode);
 /* eslint-disable no-console */
-// accordion.open(0); // Opens the first accordion panel
 
-accordion.openAll(); // Opens the first accordion panel
-
-setTimeout(function () {
-  accordion.closeAll();
-}, 3000); // Creating a new instance of the accordion usign DOM node
+console.log(accordion.getState([0])); // accordion.open(0); // Opens the first accordion panel
+// Creating a new instance of the accordion usign DOM node
 // ================================
 // const accordions = document.querySelectorAll('.js-badger-accordion');
 // Array.from(accordions).forEach((accordion) => {
