@@ -29,6 +29,20 @@ For more information about keeping good change logs please refer to [keep a chan
  - Issue #10 - Moved packages to devDependencies and cleaned up package.json
 
 
+## [1.1.3] - 2018-11-26
+### Updated
+ - `_openHeadersOnLoad()` updates state with method
+ - Updated NPM scripts
+
+### Fixed
+ - Issue#20: `Open()` & `Close()` methods were not correctly updating state and therefore if fired upon start the whole state object was incorrect and using the accordion was impossible.
+
+
+## [1.1.2] - 2018-8-7
+### Updated
+ - Discarding some temporary changes
+
+
 ## [1.1.1] - 2018-6-12
 ### Updated
  - LICENSE so its correct...
