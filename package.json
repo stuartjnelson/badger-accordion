@@ -9,8 +9,9 @@
     "!.DS_Store"
   ],
   "scripts": {
-    "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c",
+    "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c --watch",
     "example": "NODE_ENV=example ./node_modules/.bin/rollup -c",
+    "example-watch": "NODE_ENV=example ./node_modules/.bin/rollup -c --watch",
     "build": "NODE_ENV=production ./node_modules/.bin/rollup -c",
     "pre-publish": "NODE_ENV=develop ./node_modules/.bin/rollup -c && NODE_ENV=production ./node_modules/.bin/rollup -c && NODE_ENV=example ./node_modules/.bin/rollup -c"
   },
