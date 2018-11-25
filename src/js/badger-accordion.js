@@ -249,8 +249,6 @@ class BadgerAccordion {
      *  Renders the accordion in the DOM using the `this.states` object
      */
     _renderDom() {
-        // const states = this.getState();
-
         // Filter through all open headers and open them
         this.states.filter( (state, index) => {
             if(state.state === 'open') {
