@@ -451,17 +451,18 @@ function () {
     value: function _renderDom() {
       var _this4 = this;
 
-      // const states = this.getState();
       // Filter through all open headers and open them
       this.states.filter(function (state, index) {
         if (state.state === 'open') {
-          _this4.open(index);
+          // Opening the current panel but _NOT_ updating the state
+          _this4.open(index, false);
         }
       }); // Filter through all closed headers and closes them
 
       this.states.filter(function (state, index) {
         if (state.state === 'closed') {
-          _this4.close(index);
+          // Closing the current panel but _NOT_ updating the state
+          _this4.close(index, false);
         }
       });
     }
@@ -475,6 +476,13 @@ function () {
   }, {
     key: "open",
     value: function open(headerIndex) {
+      var setState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      // 1. If being fired directly the state needs to be updated.
+      if (setState) {
+        this.setState(headerIndex);
+      }
+
       this.togglePanel('open', headerIndex);
     }
     /**
@@ -487,6 +495,13 @@ function () {
   }, {
     key: "close",
     value: function close(headerIndex) {
+      var setState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      // 1. If being fired directly the state needs to be updated.
+      if (setState) {
+        this.setState(headerIndex);
+      }
+
       this.togglePanel('closed', headerIndex);
     }
     /**
@@ -638,7 +653,7 @@ function () {
           return header != undefined;
         });
         headers.forEach(function (header) {
-          return _this9.states[header].state = 'open';
+          _this9.setState(header);
         });
       }
     }
