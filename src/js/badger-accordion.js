@@ -206,7 +206,6 @@ class BadgerAccordion {
             // Updating states
             this.setState(headerIndex);
 
-
             // Render DOM as per the updates `this.states` object
             this._renderDom();
         }
@@ -250,19 +249,19 @@ class BadgerAccordion {
      *  Renders the accordion in the DOM using the `this.states` object
      */
     _renderDom() {
-        // const states = this.getState();
-
         // Filter through all open headers and open them
         this.states.filter( (state, index) => {
             if(state.state === 'open') {
-                this.open(index);
+                // Opening the current panel but _NOT_ updating the state
+                this.open(index, false);
             }
         });
 
         // Filter through all closed headers and closes them
         this.states.filter( (state, index) => {
             if(state.state === 'closed') {
-                this.close(index);
+                // Closing the current panel but _NOT_ updating the state
+                this.close(index, false);
             }
         });
     }
@@ -274,7 +273,12 @@ class BadgerAccordion {
      *  Closes a specific panel
      *  @param {integer} headerIndex - The header node index you want to open
      */
-    open(headerIndex) {
+    open(headerIndex, setState = true) {
+        // 1. If being fired directly the state needs to be updated.
+        if(setState) {
+            this.setState(headerIndex);
+        }
+
         this.togglePanel('open', headerIndex);
     }
 
@@ -285,7 +289,12 @@ class BadgerAccordion {
      *  Closes a specific panel
      *  @param {integer} headerIndex - The header node index you want to close
      */
-    close(headerIndex) {
+    close(headerIndex, setState = true) {
+        // 1. If being fired directly the state needs to be updated.
+        if(setState) {
+            this.setState(headerIndex);
+        }
+
         this.togglePanel('closed', headerIndex);
     }
 
@@ -418,7 +427,7 @@ class BadgerAccordion {
             let headers = headersToOpen.filter(header => header != undefined);
 
             headers.forEach(header => {
-                return (this.states[header].state = 'open');
+                this.setState(header);
             });
         }
     }
