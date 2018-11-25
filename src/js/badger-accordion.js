@@ -429,7 +429,7 @@ class BadgerAccordion {
             let headers = headersToOpen.filter(header => header != undefined);
 
             headers.forEach(header => {
-                return (this.states[header].state = 'open');
+                this.setState(header);
             });
         }
     }
