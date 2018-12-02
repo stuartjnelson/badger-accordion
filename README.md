@@ -89,7 +89,7 @@ I have created some simple CSS styles to help you with creating an accordion whi
     max-height: 0 !important;
 }
 
-.badger-accordion--initalised .badger-accordion__panel {
+.badger-accordion--initialized .badger-accordion__panel {
     transition: all ease-in-out 0.2s;
 }
 ```
@@ -146,7 +146,7 @@ Array.from(accordions).forEach((accordion) => {
 
 ## Options
 
-The accordion has a selection of options that you can overwrite. For example if you wanted to open the first and 4th panel when the accordion is initalised;
+The accordion has a selection of options that you can overwrite. For example if you wanted to open the first and 4th panel when the accordion is initialized;
 
 ```
 new BadgerAccordion('.js-badger-accordion', {
@@ -164,7 +164,7 @@ new BadgerAccordion('.js-badger-accordion', {
 | panelInnerClass    | String  | `.js-badger-accordion-panel-inner` | Class for panel inner container  |
 | hiddenClass        | String  | `-ba-is-hidden`                    | Class added to panels that are hidden  |
 | hidenClass         | @Deprecated  | @Deprecated                   | This was a spelling mistake and has been deprecated. If you have used in from version < 1.0.29 then `hiddenClass` is now equal to `hidenClass`  |
-| initalisedClass    | String  | `badger-accordion--initalised`     | Class add to accordion when it has initalised   |
+| initializedClass    | String  | `badger-accordion--initialized`     | Class add to accordion when it has initialized   |
 | headerDataAttr     | String  | `data-badger-accordion-header-id`  | Data attribute on each header   |
 | openMultiplePanels | Boolean | `false`                            | Give you the ability to have mutiple panels open at one time. By default this is disabled  |
 | headerOpenLabel    | String  | `Accordion open button`            | Value for header's `aria-label` when button is closed |

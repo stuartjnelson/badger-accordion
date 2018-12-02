@@ -12,7 +12,7 @@ import onCSSTransitionEnd from 'transition-end';
 
 /**
  * CONSTRUCTOR
- * initialises the object
+ * Initializes the object
  */
 class BadgerAccordion {
     constructor(el, options) {
@@ -31,7 +31,8 @@ class BadgerAccordion {
             hiddenClass:        '-ba-is-hidden',
             activeClass:        '-ba-is-active',
             get hidenClass() { return this.hiddenClass; },
-            initalisedClass:    'badger-accordion--initalised',
+            initializedClass:    'badger-accordion--initialized',
+            get initalisedClass() { return this.hiddenClass; },
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
             openHeadersOnLoad:  [],
@@ -102,7 +103,7 @@ class BadgerAccordion {
         this._addListeners();
 
         // Adds class to accordion for initalisation
-        this._finishInitalisation();
+        this._finishInitialization();
     }
 
     /**
@@ -159,10 +160,10 @@ class BadgerAccordion {
     /**
      *  FINISH INITALISATION
      *
-     *  Adds in `initalisedClass` to accordion
+     *  Adds in `initializedClass` to accordion
      */
-    _finishInitalisation() {
-        this.container.classList.add(this.settings.initalisedClass);
+    _finishInitialization() {
+        this.container.classList.add(this.settings.initializedClass);
         this._setRole('presentation', this.container);
     }
 
