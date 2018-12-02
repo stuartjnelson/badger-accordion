@@ -7,7 +7,12 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 
-## [1.1.2] - 2018-8-3
+## [1.1.4] - 2018-12-2
+### Updated
+ - Spelling of `initializedClass` so it is the American spelling
+
+
+## [1.1.3] - 2018-11-27
 ### Fixed
  - Fixing demo styles <p>
  - Issue #14: [seanjhulse](https://github.com/seanjhulse) created a PR and patched this so openAll/closeAll works.

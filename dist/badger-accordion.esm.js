@@ -196,7 +196,7 @@ if (!Array.from) {
 /* eslint-disable no-unused-vars */
 /**
  * CONSTRUCTOR
- * initialises the object
+ * Initializes the object
  */
 
 var BadgerAccordion =
@@ -222,7 +222,12 @@ function () {
         return this.hiddenClass;
       },
 
-      initalisedClass: 'badger-accordion--initalised',
+      initializedClass: 'badger-accordion--initialized',
+
+      get initalisedClass() {
+        return this.hiddenClass;
+      },
+
       headerDataAttr: 'data-badger-accordion-header-id',
       openMultiplePanels: false,
       openHeadersOnLoad: [],
@@ -292,7 +297,7 @@ function () {
       this._addListeners(); // Adds class to accordion for initalisation
 
 
-      this._finishInitalisation();
+      this._finishInitialization();
     }
     /**
      * CHECK ROLES ETTING
@@ -353,13 +358,13 @@ function () {
     /**
      *  FINISH INITALISATION
      *
-     *  Adds in `initalisedClass` to accordion
+     *  Adds in `initializedClass` to accordion
      */
 
   }, {
-    key: "_finishInitalisation",
-    value: function _finishInitalisation() {
-      this.container.classList.add(this.settings.initalisedClass);
+    key: "_finishInitialization",
+    value: function _finishInitialization() {
+      this.container.classList.add(this.settings.initializedClass);
 
       this._setRole('presentation', this.container);
     }
