@@ -3,6 +3,7 @@
 <br>
 An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 6.14kb and Gzipped 1.86kb!
 
+
 <br>
 
  - [Demo site](http://ba.northernbadger.co.uk)    
