@@ -2,7 +2,8 @@
   max-height: 75vh;
   overflow: hidden; }
   .badger-accordion__panel.-ba-is-hidden {
-    max-height: 0 !important; }
+    max-height: 0 !important;
+    visibility: hidden; }
   .badger-accordion--initalised .badger-accordion__panel {
     transition: max-height ease-in-out 0.2s; }
 

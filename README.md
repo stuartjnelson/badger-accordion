@@ -3,7 +3,6 @@
 <br>
 An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 6.14kb and Gzipped 1.86kb!
 
-
 <br>
 
  - [Demo site](http://ba.northernbadger.co.uk)    
@@ -88,6 +87,7 @@ I have created some simple CSS styles to help you with creating an accordion whi
 
 .badger-accordion__panel.-ba-is-hidden {
     max-height: 0 !important;
+    visibility: hidden;
 }
 
 .badger-accordion--initialized .badger-accordion__panel {

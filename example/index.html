@@ -15,6 +15,7 @@
 
         .badger-accordion__panel.-ba-is-hidden {
             max-height: 0 !important;
+            visibility: hidden;
         }
 
         .badger-accordion--initialized .badger-accordion__panel {
@@ -27,7 +28,7 @@
 </head>
 
 <body>
-    <main>
+    <main id="main">
         <section class="container">
             <header class="header">
                 <h1 class="vh">Badger Accordion</h1>
@@ -64,11 +65,12 @@
                     </button>
                 </dt>
                 <dd class="badger-accordion__panel js-badger-accordion-panel">
-                    <div class="badger-accordion__panel-inner text-module js-badger-accordion-panel-inner">
+                    <div class="badger-accordion__panel-inner text-module js-badger-accordion-panel-inner">              
                         <p>Badgers are short-legged omnivores in the family Mustelidae, which also includes otters, polecats, weasels and wolverines. They belong to the caniform suborder of carnivoran mammals.</p>
                         <p>Badgers are thought to have got their name because of the white mark – or badge – on their head, although there are other theories.</p>
                         <p>Another old name for badgers is ‘brock’, meaning grey. You can often see the word brock in street names. Brock is also the name of a character in the Pokemon TV series!</p>
                         <p>Badgers are fast – they can run up to 30km per hour (nearly 20 mph) for short periods.</p>
+                        <a href="#">I am a link to the main content of this page.</a>
                     </div>
                 </dd>
                 <dt class="badger-accordion__header">
