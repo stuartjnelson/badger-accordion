@@ -36,8 +36,8 @@ class BadgerAccordion {
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
             openHeadersOnLoad:  [],
-            headerOpenLabel:    'Open accordion panel',
-            headerCloseLabel:   'Close accordion panel',
+            headerOpenLabel:    '',
+            headerCloseLabel:   '',
             roles:              true
             // toggleEl:            // If you want to use a different element to trigger the accordion
         };
@@ -347,7 +347,6 @@ class BadgerAccordion {
 
                 // 4. Set aria attrs
                 header.setAttribute('aria-expanded', false);
-                header.setAttribute('aria-label', this.settings.headerOpenLabel);
 
                 // 5. Resetting toggling so a new event can be fired
                 panelToClose.onCSSTransitionEnd(() => this.toggling = false );
@@ -365,7 +364,6 @@ class BadgerAccordion {
 
                 // 4. Set aria attrs
                 header.setAttribute('aria-expanded', true);
-                header.setAttribute('aria-label', this.settings.headerCloseLabel);
 
                 // 5. Resetting toggling so a new event can be fired
                 panelToOpen.onCSSTransitionEnd(() => this.toggling = false );
@@ -500,7 +498,6 @@ class BadgerAccordion {
         this.headers.forEach( (header, index) => {
             header.setAttribute('id', `badger-accordion-header-${this.ids[index].id}`);
             header.setAttribute('aria-controls', `badger-accordion-panel-${this.ids[index].id}`);
-            header.setAttribute('aria-label', this.settings.headerOpenLabel);
         });
     }
 

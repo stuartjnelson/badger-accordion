@@ -253,8 +253,8 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
           headerDataAttr: 'data-badger-accordion-header-id',
           openMultiplePanels: false,
           openHeadersOnLoad: [],
-          headerOpenLabel: 'Open accordion panel',
-          headerCloseLabel: 'Close accordion panel',
+          headerOpenLabel: '',
+          headerCloseLabel: '',
           roles: true // toggleEl:            // If you want to use a different element to trigger the accordion
 
         }; // Options
@@ -583,8 +583,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
               panelToClose.classList.remove(this.settings.activeClass);
               header.classList.remove(this.settings.activeClass); // 4. Set aria attrs
 
-              header.setAttribute('aria-expanded', false);
-              header.setAttribute('aria-label', this.settings.headerOpenLabel); // 5. Resetting toggling so a new event can be fired
+              header.setAttribute('aria-expanded', false); // 5. Resetting toggling so a new event can be fired
 
               panelToClose.onCSSTransitionEnd(function () {
                 return _this7.toggling = false;
@@ -601,9 +600,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
               _header.classList.add(this.settings.activeClass); // 4. Set aria attrs
 
 
-              _header.setAttribute('aria-expanded', true);
-
-              _header.setAttribute('aria-label', this.settings.headerCloseLabel); // 5. Resetting toggling so a new event can be fired
+              _header.setAttribute('aria-expanded', true); // 5. Resetting toggling so a new event can be fired
 
 
               panelToOpen.onCSSTransitionEnd(function () {
@@ -753,7 +750,6 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
           this.headers.forEach(function (header, index) {
             header.setAttribute('id', "badger-accordion-header-".concat(_this11.ids[index].id));
             header.setAttribute('aria-controls', "badger-accordion-panel-".concat(_this11.ids[index].id));
-            header.setAttribute('aria-label', _this11.settings.headerOpenLabel);
           });
         }
         /**
