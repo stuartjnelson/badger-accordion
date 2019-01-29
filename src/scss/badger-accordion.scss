@@ -17,7 +17,10 @@
     overflow: hidden;
 
     // scss-lint:disable ImportantRule
-    &.-ba-is-hidden { max-height: 0 !important; }
+    &.-ba-is-hidden { 
+        max-height: 0 !important;
+        visibility: hidden;
+    }
 
     // transition is added via `badger-accordion--initalised` to stop animation on initalition
     .badger-accordion--initalised & { transition: max-height ease-in-out 0.2s; }
