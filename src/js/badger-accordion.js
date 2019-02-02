@@ -52,9 +52,34 @@ class BadgerAccordion {
 
         // Setting getting elements
         this.container = container;
-        this.headers = Array.from( this.container.querySelectorAll(this.settings.headerClass) );
-        this.panels = Array.from( this.container.querySelectorAll(this.settings.panelClass) );
+
+        // Selecting children of the current accordion instance
+        const children = Array.from(this.container.children);
+        
+        // Since the Accordions header button is nested inside an element with class
+        // of `badger-accordion__header` it is a grandchild of the accordion instance.
+        // In order to have nested accordions we need each to only get all the button 
+        // elements for this instance. Here an array is created to show all the children
+        // of the element `badger-accordion__header`.
+        const headerParent = children.filter(header => !header.classList.contains(this.settings.panelClass.substr(1)));
+
+        // Creating an array of all DOM nodes that are Accordion headers
+        this.headers = headerParent.reduce((acc, header) => {
+            // Gets all the elements that have the headerClass
+            const a = Array.from(header.children).filter( child => child.classList.contains( this.settings.headerClass.substr(1) ));
+            
+            // Merges the current `badger-accordion__header` accordion triggers
+            // with all the others.
+            acc = [].concat(...acc, a);
+            
+            return acc;
+        }, []);
+        
+        // Creates an array of all panel elements for this instance of the accordion
+        this.panels = children.filter(panel => panel.classList.contains( this.settings.panelClass.substr(1) ));
+
         this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers;
+
 
         // This is for managing state of the accordion. It by default sets
         // all accordion panels to be closed
