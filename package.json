@@ -9,11 +9,14 @@
     "!.DS_Store"
   ],
   "scripts": {
-    "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c --watch",
-    "example": "NODE_ENV=example ./node_modules/.bin/rollup -c",
+    "basic-styles": "sass ./src/scss/badger-accordion.scss:./src/css/badger-accordion.css --style compressed  --no-source-map",
+    "example-styles": "sass ./example/scss/badger-accordion.scss:./example/css/badger-accordion.css --style compressed  --no-source-map",
+    "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c",
+    "watch": "NODE_ENV=develop ./node_modules/.bin/rollup -c --watch",
+    "example": "npm run example-styles && NODE_ENV=example ./node_modules/.bin/rollup -c",
     "example-watch": "NODE_ENV=example ./node_modules/.bin/rollup -c --watch",
-    "build": "NODE_ENV=production ./node_modules/.bin/rollup -c",
-    "pre-publish": "NODE_ENV=develop ./node_modules/.bin/rollup -c && NODE_ENV=production ./node_modules/.bin/rollup -c && NODE_ENV=example ./node_modules/.bin/rollup -c"
+    "build": "npm run basic-styles && NODE_ENV=production ./node_modules/.bin/rollup -c",
+    "pre-publish": "npm run dev && npm run basic-styles && npm run build && npm run example-styles && npm run example"
   },
   "repository": {
     "type": "git",
@@ -46,6 +49,7 @@
     "npm": "^5.10.0",
     "rollup": "^0.52.3",
     "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-collect-sass": "^1.0.9",
     "rollup-plugin-commonjs": "^8.4.1",
     "rollup-plugin-copy": "^0.2.3",
     "rollup-plugin-eslint": "^4.0.0",
