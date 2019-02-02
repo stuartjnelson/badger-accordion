@@ -23,13 +23,13 @@
         }
     </style>
     <link rel="stylesheet" href="css/badger-accordion-demo.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:600&text=Badger%20Accordion">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:600&text=Badger%20Accordion%20Nest">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
 </head>
 
 <body>
     <main id="main">
-        <section class="container">
+        <section class="container landmark">
             <header class="header">
                 <h1 class="vh">Badger Accordion</h1>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510.5 458.89" aria-hidden="true" aria-describedby="page-title" class="logo landmark">
@@ -53,6 +53,8 @@
                     </li>
                 </ul>
             </header>
+  
+            <h2 style="margin-top: 80px" class="heading--bravo landmark">Basic Accordion</h2>    
 
             <dl class="badger-accordion js-badger-accordion">
                 <dt class="badger-accordion__header">
@@ -108,10 +110,53 @@
                     </div>
                 </dd>
             </dl>
+        </section>
 
+        <section class="container landmark--double">
+            <h2 class="heading--bravo landmark">Nested Accordion</h2>
 
-
-            <!-- <dl class="badger-accordion js-badger-accordion" style="margin-top: 50px">
+            <dl class="badger-accordion js-badger-accordion">
+                <dt class="badger-accordion__header">
+                    <button class="badger-accordion__trigger js-badger-accordion-header">
+                        <div class="badger-accordion__trigger-title">
+                            Parent
+                        </div>
+                        <div class="badger-accordion__trigger-icon">
+                        </div>
+                    </button>
+                </dt>
+                <dd class="badger-accordion__panel js-badger-accordion-panel">
+            
+                    <div class="js-badger-accordion-panel-inner">
+                        <dl class="badger-accordion js-badger-accordion">
+                            <dt class="badger-accordion__header">
+                                <button class="badger-accordion__trigger js-badger-accordion-header">
+                                    <div class="badger-accordion__trigger-title">
+                                        Child
+                                    </div>
+                                    <div class="badger-accordion__trigger-icon">
+                                    </div>
+                                </button>
+                            </dt>
+                            <dd class="badger-accordion__panel js-badger-accordion-panel">
+                                <div class="badger-accordion__panel-inner text-module js-badger-accordion-panel-inner">
+                                    <p>Badgers are short-legged omnivores in the family Mustelidae, which also includes otters,
+                                        polecats,
+                                        weasels and wolverines. They belong to the caniform suborder of carnivoran mammals.</p>
+                                    <p>Badgers are thought to have got their name because of the white mark – or badge – on their
+                                        head,
+                                        although there are other theories.</p>
+                                    <p>Another old name for badgers is ‘brock’, meaning grey. You can often see the word brock in
+                                        street names.
+                                        Brock is also the name of a character in the Pokemon TV series!</p>
+                                    <p>Badgers are fast – they can run up to 30km per hour (nearly 20 mph) for short periods.</p>
+                                    <a href="#">I am a link to the main content of this page.</a>
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+            
+                </dd>
                 <dt class="badger-accordion__header">
                     <button class="badger-accordion__trigger js-badger-accordion-header">
                         <div class="badger-accordion__trigger-title">
@@ -123,16 +168,19 @@
                 </dt>
                 <dd class="badger-accordion__panel js-badger-accordion-panel">
                     <div class="badger-accordion__panel-inner text-module js-badger-accordion-panel-inner">
-                        <p>Badgers are short-legged omnivores in the family Mustelidae, which also includes otters, polecats, weasels and wolverines. They belong to the caniform suborder of carnivoran mammals.</p>
-                        <p>Badgers are thought to have got their name because of the white mark – or badge – on their head, although there are other theories.</p>
-                        <p>Another old name for badgers is ‘brock’, meaning grey. You can often see the word brock in street names. Brock is also the name of a character in the Pokemon TV series!</p>
+                        <p>Badgers are short-legged omnivores in the family Mustelidae, which also includes otters, polecats,
+                            weasels
+                            and wolverines. They belong to the caniform suborder of carnivoran mammals.</p>
+                        <p>Badgers are thought to have got their name because of the white mark – or badge – on their head,
+                            although
+                            there are other theories.</p>
+                        <p>Another old name for badgers is ‘brock’, meaning grey. You can often see the word brock in street names.
+                            Brock is also the name of a character in the Pokemon TV series!</p>
                         <p>Badgers are fast – they can run up to 30km per hour (nearly 20 mph) for short periods.</p>
                     </div>
                 </dd>
-            </dl> -->
+            </dl>
         </section>
-
-
     </main>
 
     <script src="js/app.js" charset="utf-8"></script>
