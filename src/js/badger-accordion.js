@@ -466,7 +466,7 @@ class BadgerAccordion {
         // Adding ID & aria-controls
         this._setupHeaders();
 
-        // Adding ID & aria-labeledby
+        // Adding ID & aria-labelledby
         this._setupPanels();
 
         // Inserting data-attribute onto each `header`
@@ -533,7 +533,7 @@ class BadgerAccordion {
     _setupPanels() {
         this.panels.forEach( (panel, index) => {
             panel.setAttribute('id', `badger-accordion-panel-${this.ids[index].id}`);
-            panel.setAttribute('aria-labeledby', `badger-accordion-header-${this.ids[index].id}`);
+            panel.setAttribute('aria-labelledby', `badger-accordion-header-${this.ids[index].id}`);
             if(this.settings.roles === true || this.settings.roles.region !== false) {
                 this._setRole('region', panel);
             }
