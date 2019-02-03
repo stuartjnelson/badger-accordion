@@ -12,7 +12,8 @@ For more information about keeping good change logs please refer to [keep a chan
  - Issue#17: Removed aria-label and deprecated `headerOpenLabel` & `headerCloseLabel`
  - Created the ability to have nested accordions. For this to happen I needed to change how a single accordion instance selected its headers & panels. Now the headers & panels selected are only 1 level deep.
  - Made NPM scripts bit nicer by calling each other. Also now compiling .css
- 
+ - Merged in PR from `@micmania1` for the correct spelling of _aria-labelledby_
+
 
 ## [1.1.4] - 2018-12-2
 ### Updated

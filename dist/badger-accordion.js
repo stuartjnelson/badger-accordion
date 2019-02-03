@@ -722,7 +722,7 @@ function () {
     key: "_setupAttributes",
     value: function _setupAttributes() {
       // Adding ID & aria-controls
-      this._setupHeaders(); // Adding ID & aria-labeledby
+      this._setupHeaders(); // Adding ID & aria-labelledby
 
 
       this._setupPanels(); // Inserting data-attribute onto each `header`
@@ -796,7 +796,7 @@ function () {
 
       this.panels.forEach(function (panel, index) {
         panel.setAttribute('id', "badger-accordion-panel-".concat(_this13.ids[index].id));
-        panel.setAttribute('aria-labeledby', "badger-accordion-header-".concat(_this13.ids[index].id));
+        panel.setAttribute('aria-labelledby', "badger-accordion-header-".concat(_this13.ids[index].id));
 
         if (_this13.settings.roles === true || _this13.settings.roles.region !== false) {
           _this13._setRole('region', panel);
