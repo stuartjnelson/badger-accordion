@@ -97,8 +97,10 @@ body {
 }
 
 .container {
+    margin-top: 10vh;
+    margin-right: auto;
+    margin-left: auto;
     max-width: 720px;
-    margin: 10vh auto 0;
 }
 
 @media screen and (max-width: 767px) {
@@ -106,6 +108,12 @@ body {
         margin: 10vh auto;
         width: 90%;
     }
+}
+
+.landmark {     
+    margin-bottom: 40px; 
+
+    &--double { margin: 80px; }
 }
 
 .header {
@@ -119,6 +127,14 @@ body {
     font-family: 'Josefin Slab';
     color: $dark-blue;
     font-size: 3.25rem;
+    line-height: 1.35;
+    margin-bottom: $spacing-unit/4;
+}
+
+.heading--bravo {
+    font-family: 'Josefin Slab';
+    color: $dark-blue;
+    font-size: 2.25rem;
     line-height: 1.35;
     margin-bottom: $spacing-unit/4;
 }

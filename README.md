@@ -1,8 +1,7 @@
 # Badger Accordion
 ![Badger Accordion logo](http://ba.northernbadger.co.uk/images/badger-accordion-logo--half.png)
 <br>
-An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 6.14kb and Gzipped 1.86kb!
-
+An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.71kb and Gzipped 2.6kb!
 
 <br>
 
@@ -88,6 +87,7 @@ I have created some simple CSS styles to help you with creating an accordion whi
 
 .badger-accordion__panel.-ba-is-hidden {
     max-height: 0 !important;
+    visibility: hidden;
 }
 
 .badger-accordion--initialized .badger-accordion__panel {
@@ -143,6 +143,10 @@ Array.from(accordions).forEach((accordion) => {
 ```
 
 
+### Create a nested accordion
+With release [1.2.0](https://github.com/stuartjnelson/badger-accordion/releases/tag/1.2.0) you can now created nested accordions. You don't need to do anything for this to work. Currently is you close a parent accordion then the child accordion will retain the previous state. Eg. if your child accordion has it's second item open, you close the parent then reopen the child accordion again it will have it's second item still open.
+
+
 
 
 ## Options
@@ -164,13 +168,13 @@ new BadgerAccordion('.js-badger-accordion', {
 | panelClass         | String  | `.js-badger-accordion-panel`       | Class for panel  |
 | panelInnerClass    | String  | `.js-badger-accordion-panel-inner` | Class for panel inner container  |
 | hiddenClass        | String  | `-ba-is-hidden`                    | Class added to panels that are hidden  |
-| hidenClass         | @Deprecated  | @Deprecated                   | This was a spelling mistake and has been deprecated. If you have used in from version < 1.0.29 then `hiddenClass` is now equal to `hidenClass`  |
 | initializedClass    | String  | `badger-accordion--initialized`     | Class add to accordion when it has initialized   |
 | headerDataAttr     | String  | `data-badger-accordion-header-id`  | Data attribute on each header   |
 | openMultiplePanels | Boolean | `false`                            | Give you the ability to have mutiple panels open at one time. By default this is disabled  |
-| headerOpenLabel    | String  | `Accordion open button`            | Value for header's `aria-label` when button is closed |
-| headerCloseLabel   | String  | `Accordion close button`           | Value for header's `aria-label` when button is open  |
 | roles              | Boolean or Object | `true`                   | Controls setting `presentation` role on the container element & `region` on the panel. By using a boolean value you will set both attributes. By settings this as an object you will be explicitly setting only that role. Any roles not included in the object will not be set. In the example above only the `region` role will be set. |
+| hidenClass         | @Deprecated  | @Deprecated                   | This was a spelling mistake and has been deprecated. If you have used in from version < 1.0.29 then `hiddenClass` is now equal to `hidenClass`  |
+| headerOpenLabel    | @Deprecated  | @Deprecated            | Aria lable has been removed see `Changelog.md` 1.1.5 |
+| headerCloseLabel   | @Deprecated  | @Deprecated            | Aria lable has been removed see `Changelog.md` 1.1.5  |
 
 
 
@@ -202,6 +206,11 @@ A massive thanks to [BrowserStack](https://www.browserstack.com) for supporting 
 
 ## Contributors
 I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who created the AWESOME logo and gave my demo styles _some love_ <sup>Steve Richardson™</sup>.
+
+Also to the following awesome people who have submitted PR's
+ - [ikenfin](https://github.com/ikenfin)
+ - [micmania1](https://github.com/micmania1)
+ - [seanjhulse](https://github.com/seanjhulse)
 
 
 ## Roadmap

@@ -44,6 +44,26 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
 if (!Array.from) {
   Array.from = function () {
     var toStr = Object.prototype.toString;
@@ -209,6 +229,8 @@ var BadgerAccordion =
 /*#__PURE__*/
 function () {
   function BadgerAccordion(el, options) {
+    var _this2 = this;
+
     _classCallCheck(this, BadgerAccordion);
 
     var container = typeof el === 'string' ? document.querySelector(el) : el; // If el is not defined
@@ -237,8 +259,8 @@ function () {
       headerDataAttr: 'data-badger-accordion-header-id',
       openMultiplePanels: false,
       openHeadersOnLoad: [],
-      headerOpenLabel: 'Open accordion panel',
-      headerCloseLabel: 'Close accordion panel',
+      headerOpenLabel: '',
+      headerCloseLabel: '',
       roles: true // toggleEl:            // If you want to use a different element to trigger the accordion
 
     }; // Options
@@ -250,9 +272,34 @@ function () {
     } // Setting getting elements
 
 
-    this.container = container;
-    this.headers = Array.from(this.container.querySelectorAll(this.settings.headerClass));
-    this.panels = Array.from(this.container.querySelectorAll(this.settings.panelClass));
+    this.container = container; // Selecting children of the current accordion instance
+
+    var children = Array.from(this.container.children); // Since the Accordions header button is nested inside an element with class
+    // of `badger-accordion__header` it is a grandchild of the accordion instance.
+    // In order to have nested accordions we need each to only get all the button 
+    // elements for this instance. Here an array is created to show all the children
+    // of the element `badger-accordion__header`.
+
+    var headerParent = children.filter(function (header) {
+      return !header.classList.contains(_this2.settings.panelClass.substr(1));
+    }); // Creating an array of all DOM nodes that are Accordion headers
+
+    this.headers = headerParent.reduce(function (acc, header) {
+      var _ref;
+
+      // Gets all the elements that have the headerClass
+      var a = Array.from(header.children).filter(function (child) {
+        return child.classList.contains(_this2.settings.headerClass.substr(1));
+      }); // Merges the current `badger-accordion__header` accordion triggers
+      // with all the others.
+
+      acc = (_ref = []).concat.apply(_ref, _toConsumableArray(acc).concat([a]));
+      return acc;
+    }, []); // Creates an array of all panel elements for this instance of the accordion
+
+    this.panels = children.filter(function (panel) {
+      return panel.classList.contains(_this2.settings.panelClass.substr(1));
+    });
     this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers; // This is for managing state of the accordion. It by default sets
     // all accordion panels to be closed
 
@@ -355,10 +402,10 @@ function () {
   }, {
     key: "_insertDataAttrs",
     value: function _insertDataAttrs() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.headers.forEach(function (header, index) {
-        header.setAttribute(_this2.settings.headerDataAttr, index);
+        header.setAttribute(_this3.settings.headerDataAttr, index);
       });
     }
     /**
@@ -427,7 +474,7 @@ function () {
   }, {
     key: "setState",
     value: function setState(targetHeaderId) {
-      var _this3 = this;
+      var _this4 = this;
 
       var states = this.getState(); // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
       // be can open at once. If it is false then all panels state APART from the one that
@@ -445,7 +492,7 @@ function () {
 
       states.filter(function (state, index) {
         if (index == targetHeaderId) {
-          var newState = _this3.toggleState(state.state);
+          var newState = _this4.toggleState(state.state);
 
           return state.state = newState;
         }
@@ -460,20 +507,20 @@ function () {
   }, {
     key: "_renderDom",
     value: function _renderDom() {
-      var _this4 = this;
+      var _this5 = this;
 
       // Filter through all open headers and open them
       this.states.filter(function (state, index) {
         if (state.state === 'open') {
           // Opening the current panel but _NOT_ updating the state
-          _this4.open(index, false);
+          _this5.open(index, false);
         }
       }); // Filter through all closed headers and closes them
 
       this.states.filter(function (state, index) {
         if (state.state === 'closed') {
           // Closing the current panel but _NOT_ updating the state
-          _this4.close(index, false);
+          _this5.close(index, false);
         }
       });
     }
@@ -524,10 +571,10 @@ function () {
   }, {
     key: "openAll",
     value: function openAll() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.headers.forEach(function (header, headerIndex) {
-        _this5.togglePanel('open', headerIndex);
+        _this6.togglePanel('open', headerIndex);
       });
     }
     /**
@@ -539,10 +586,10 @@ function () {
   }, {
     key: "closeAll",
     value: function closeAll() {
-      var _this6 = this;
+      var _this7 = this;
 
       this.headers.forEach(function (header, headerIndex) {
-        _this6.togglePanel('closed', headerIndex);
+        _this7.togglePanel('closed', headerIndex);
       });
     }
     /**
@@ -556,7 +603,7 @@ function () {
   }, {
     key: "togglePanel",
     value: function togglePanel(animationAction, headerIndex) {
-      var _this7 = this;
+      var _this8 = this;
 
       if (animationAction !== undefined && headerIndex !== undefined) {
         if (animationAction === 'closed') {
@@ -569,11 +616,10 @@ function () {
           panelToClose.classList.remove(this.settings.activeClass);
           header.classList.remove(this.settings.activeClass); // 4. Set aria attrs
 
-          header.setAttribute('aria-expanded', false);
-          header.setAttribute('aria-label', this.settings.headerOpenLabel); // 5. Resetting toggling so a new event can be fired
+          header.setAttribute('aria-expanded', false); // 5. Resetting toggling so a new event can be fired
 
           panelToClose.onCSSTransitionEnd(function () {
-            return _this7.toggling = false;
+            return _this8.toggling = false;
           });
         } else if (animationAction === 'open') {
           // 1. Getting ID of panel that we want to open
@@ -587,13 +633,11 @@ function () {
           _header.classList.add(this.settings.activeClass); // 4. Set aria attrs
 
 
-          _header.setAttribute('aria-expanded', true);
-
-          _header.setAttribute('aria-label', this.settings.headerCloseLabel); // 5. Resetting toggling so a new event can be fired
+          _header.setAttribute('aria-expanded', true); // 5. Resetting toggling so a new event can be fired
 
 
           panelToOpen.onCSSTransitionEnd(function () {
-            return _this7.toggling = false;
+            return _this8.toggling = false;
           });
         }
       }
@@ -618,13 +662,13 @@ function () {
   }, {
     key: "getState",
     value: function getState() {
-      var _this8 = this;
+      var _this9 = this;
 
       var headerIds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
       if (headerIds.length && Array.isArray(headerIds)) {
         var states = headerIds.map(function (header) {
-          return _this8.states[header];
+          return _this9.states[header];
         });
         return states;
       } else {
@@ -655,7 +699,7 @@ function () {
   }, {
     key: "_openHeadersOnLoad",
     value: function _openHeadersOnLoad() {
-      var _this9 = this;
+      var _this10 = this;
 
       var headersToOpen = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
@@ -664,7 +708,7 @@ function () {
           return header != undefined;
         });
         headers.forEach(function (header) {
-          _this9.setState(header);
+          _this10.setState(header);
         });
       }
     }
@@ -678,7 +722,7 @@ function () {
     key: "_setupAttributes",
     value: function _setupAttributes() {
       // Adding ID & aria-controls
-      this._setupHeaders(); // Adding ID & aria-labeledby
+      this._setupHeaders(); // Adding ID & aria-labelledby
 
 
       this._setupPanels(); // Inserting data-attribute onto each `header`
@@ -721,10 +765,10 @@ function () {
   }, {
     key: "calculateAllPanelsHeight",
     value: function calculateAllPanelsHeight() {
-      var _this10 = this;
+      var _this11 = this;
 
       this.panels.forEach(function (panel) {
-        _this10.calculatePanelHeight(panel);
+        _this11.calculatePanelHeight(panel);
       });
     }
     /**
@@ -734,12 +778,11 @@ function () {
   }, {
     key: "_setupHeaders",
     value: function _setupHeaders() {
-      var _this11 = this;
+      var _this12 = this;
 
       this.headers.forEach(function (header, index) {
-        header.setAttribute('id', "badger-accordion-header-".concat(_this11.ids[index].id));
-        header.setAttribute('aria-controls', "badger-accordion-panel-".concat(_this11.ids[index].id));
-        header.setAttribute('aria-label', _this11.settings.headerOpenLabel);
+        header.setAttribute('id', "badger-accordion-header-".concat(_this12.ids[index].id));
+        header.setAttribute('aria-controls', "badger-accordion-panel-".concat(_this12.ids[index].id));
       });
     }
     /**
@@ -749,14 +792,14 @@ function () {
   }, {
     key: "_setupPanels",
     value: function _setupPanels() {
-      var _this12 = this;
+      var _this13 = this;
 
       this.panels.forEach(function (panel, index) {
-        panel.setAttribute('id', "badger-accordion-panel-".concat(_this12.ids[index].id));
-        panel.setAttribute('aria-labeledby', "badger-accordion-header-".concat(_this12.ids[index].id));
+        panel.setAttribute('id', "badger-accordion-panel-".concat(_this13.ids[index].id));
+        panel.setAttribute('aria-labelledby', "badger-accordion-header-".concat(_this13.ids[index].id));
 
-        if (_this12.settings.roles === true || _this12.settings.roles.region !== false) {
-          _this12._setRole('region', panel);
+        if (_this13.settings.roles === true || _this13.settings.roles.region !== false) {
+          _this13._setRole('region', panel);
         }
       });
     }
