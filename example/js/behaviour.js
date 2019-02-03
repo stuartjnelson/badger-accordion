@@ -5,12 +5,12 @@ import BadgerAccordion from 'dist/badger-accordion';
 
 // Creating a new instance of the accordion usign DOM node
 // ================================
-const accordionDomNode = document.querySelector('.js-badger-accordion');
+// const accordionDomNode = document.querySelector('.js-badger-accordion');
 
-const accordion = new BadgerAccordion(accordionDomNode);
+// const accordion = new BadgerAccordion(accordionDomNode);
 
 /* eslint-disable no-console */
-console.log(accordion.getState([0]));
+// console.log(accordion.getState([0]));
 // accordion.open(0); // Opens the first accordion panel
 
 
@@ -18,14 +18,14 @@ console.log(accordion.getState([0]));
 
 // Creating a new instance of the accordion usign DOM node
 // ================================
-// const accordions = document.querySelectorAll('.js-badger-accordion');
+const accordions = document.querySelectorAll('.js-badger-accordion');
 
-// Array.from(accordions).forEach((accordion) => {
-//     const ba = new BadgerAccordion(accordion);
-//
-//     /* eslint-disable no-console */
-//     console.log(ba.getState([0]));
-// });
+Array.from(accordions).forEach((accordion) => {
+    const ba = new BadgerAccordion(accordion);
+
+    /* eslint-disable no-console */
+    console.log(ba.getState([0]));
+});
 
 
 

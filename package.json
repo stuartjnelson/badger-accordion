@@ -1,6 +1,6 @@
 {
   "name": "badger-accordion",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "An accessible vanilla JS accordion with extensible API.",
   "main": "dist/badger-accordion.js",
   "module": "dist/badger-accordion.esm.js",
@@ -9,11 +9,14 @@
     "!.DS_Store"
   ],
   "scripts": {
-    "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c --watch",
-    "example": "NODE_ENV=example ./node_modules/.bin/rollup -c",
+    "basic-styles": "sass ./src/scss/badger-accordion.scss:./src/css/badger-accordion.css --style compressed  --no-source-map",
+    "example-styles": "sass ./example/scss/badger-accordion.scss:./example/css/badger-accordion.css --style compressed  --no-source-map",
+    "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c",
+    "watch": "NODE_ENV=develop ./node_modules/.bin/rollup -c --watch",
+    "example": "npm run example-styles && NODE_ENV=example ./node_modules/.bin/rollup -c",
     "example-watch": "NODE_ENV=example ./node_modules/.bin/rollup -c --watch",
-    "build": "NODE_ENV=production ./node_modules/.bin/rollup -c",
-    "pre-publish": "NODE_ENV=develop ./node_modules/.bin/rollup -c && NODE_ENV=production ./node_modules/.bin/rollup -c && NODE_ENV=example ./node_modules/.bin/rollup -c"
+    "build": "npm run basic-styles && NODE_ENV=production ./node_modules/.bin/rollup -c",
+    "pre-publish": "npm run dev && npm run basic-styles && npm run build && npm run example-styles && npm run example"
   },
   "repository": {
     "type": "git",
@@ -34,24 +37,25 @@
   },
   "homepage": "https://github.com/stuartjnelson/badger-accordion#readme",
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.55",
-    "@babel/plugin-transform-object-assign": "^7.0.0-beta.55",
-    "@babel/preset-env": "^7.0.0-beta.55",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.7.0",
-    "debug": "^3.1.0",
+    "debug": "^3.2.6",
     "install": "^0.10.4",
     "npm": "^5.10.0",
     "rollup": "^0.52.3",
-    "rollup-plugin-babel": "^4.0.0-beta.7",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-collect-sass": "^1.0.9",
     "rollup-plugin-commonjs": "^8.4.1",
     "rollup-plugin-copy": "^0.2.3",
     "rollup-plugin-eslint": "^4.0.0",
     "rollup-plugin-includepaths": "^0.2.3",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-uglify-es": "0.0.1"
   },
   "dependencies": {}
