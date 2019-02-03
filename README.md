@@ -1,7 +1,7 @@
 # Badger Accordion
 ![Badger Accordion logo](http://ba.northernbadger.co.uk/images/badger-accordion-logo--half.png)
 <br>
-An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 6.14kb and Gzipped 1.86kb!
+An accessible light weight, vanilla JavaScript accordion with an extensible API. Just 8.71kb and Gzipped 2.6kb!
 
 <br>
 
@@ -143,6 +143,10 @@ Array.from(accordions).forEach((accordion) => {
 ```
 
 
+### Create a nested accordion
+With release [1.2.0](https://github.com/stuartjnelson/badger-accordion/releases/tag/1.2.0) you can now created nested accordions. You don't need to do anything for this to work. Currently is you close a parent accordion then the child accordion will retain the previous state. Eg. if your child accordion has it's second item open, you close the parent then reopen the child accordion again it will have it's second item still open.
+
+
 
 
 ## Options
@@ -202,6 +206,11 @@ A massive thanks to [BrowserStack](https://www.browserstack.com) for supporting 
 
 ## Contributors
 I've had some awesome people help me out building the accordion. I worked in part on this while working at [Mr B & Friends](https://www.mrbandfriends.co.uk/) big shout out to the digital team there. This wouldn't be anywhere near as good if it wasn't for the wise words of [Dave Smith](https://github.com/getdave). Finally my favourite digital designer [Taavi Kelle](https://twitter.com/taavetkelle) who created the AWESOME logo and gave my demo styles _some love_ <sup>Steve Richardson™</sup>.
+
+Also to the following awesome people who have submitted PR's
+ - [ikenfin](https://github.com/ikenfin)
+ - [micmania1](https://github.com/micmania1)
+ - [seanjhulse](https://github.com/seanjhulse)
 
 
 ## Roadmap
