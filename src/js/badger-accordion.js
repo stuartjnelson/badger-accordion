@@ -32,7 +32,7 @@ class BadgerAccordion {
             activeClass:        '-ba-is-active',
             get hidenClass() { return this.hiddenClass; },
             initializedClass:    'badger-accordion--initialized',
-            get initalisedClass() { return this.hiddenClass; },
+            get initalisedClass() { return this.initializedClass; },
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
             openHeadersOnLoad:  [],
@@ -44,11 +44,6 @@ class BadgerAccordion {
 
         // Options
         this.settings = Object.assign({}, defaults, options);
-
-        // Deprecating `settings.hidenClass` but adding fallback for older versions
-        if(this.settings.hidenClass !== this.settings.hiddenClass) {
-            this.settings.hiddenClass = this.settings.hidenClass;
-        }
 
         // Setting getting elements
         this.container = container;
