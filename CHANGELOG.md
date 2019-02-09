@@ -6,6 +6,11 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
+## [1.2.1] - 2019-2-9
+### Fixed
+ - Issue#24: Fixing setting for `hiddenClass` and `initializedClass`
+
+
 ## [1.2.0] - 2019-1-29
 ### Fixed
  - Issue#16: Properly hiding accordion content for all users
