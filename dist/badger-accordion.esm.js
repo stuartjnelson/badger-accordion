@@ -247,7 +247,7 @@ function () {
       initializedClass: 'badger-accordion--initialized',
 
       get initalisedClass() {
-        return this.hiddenClass;
+        return this.initializedClass;
       },
 
       headerDataAttr: 'data-badger-accordion-header-id',
@@ -259,12 +259,7 @@ function () {
 
     }; // Options
 
-    this.settings = _extends({}, defaults, options); // Deprecating `settings.hidenClass` but adding fallback for older versions
-
-    if (this.settings.hidenClass !== this.settings.hiddenClass) {
-      this.settings.hiddenClass = this.settings.hidenClass;
-    } // Setting getting elements
-
+    this.settings = _extends({}, defaults, options); // Setting getting elements
 
     this.container = container; // Selecting children of the current accordion instance
 
