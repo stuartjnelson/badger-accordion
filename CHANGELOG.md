@@ -6,6 +6,12 @@ For more information about keeping good change logs please refer to [keep a chan
 
 ## Changelog
 
+
+## [1.2.2] - 2019-2-12
+### Fixed
+ - Running NPM audit to fix vulnerabilities
+
+
 ## [1.2.1] - 2019-2-9
 ### Fixed
  - Issue#24: Fixing setting for `hiddenClass` and `initializedClass`
