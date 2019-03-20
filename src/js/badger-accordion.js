@@ -36,6 +36,7 @@ class BadgerAccordion {
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
             openHeadersOnLoad:  [],
+            headersClickable:   true,
             headerOpenLabel:    '',
             headerCloseLabel:   '',
             roles:              true
@@ -50,10 +51,10 @@ class BadgerAccordion {
 
         // Selecting children of the current accordion instance
         const children = Array.from(this.container.children);
-        
+
         // Since the Accordions header button is nested inside an element with class
         // of `badger-accordion__header` it is a grandchild of the accordion instance.
-        // In order to have nested accordions we need each to only get all the button 
+        // In order to have nested accordions we need each to only get all the button
         // elements for this instance. Here an array is created to show all the children
         // of the element `badger-accordion__header`.
         const headerParent = children.filter(header => !header.classList.contains(this.settings.panelClass.substr(1)));
@@ -62,14 +63,14 @@ class BadgerAccordion {
         this.headers = headerParent.reduce((acc, header) => {
             // Gets all the elements that have the headerClass
             const a = Array.from(header.children).filter( child => child.classList.contains( this.settings.headerClass.substr(1) ));
-            
+
             // Merges the current `badger-accordion__header` accordion triggers
             // with all the others.
             acc = [].concat(...acc, a);
-            
+
             return acc;
         }, []);
-        
+
         // Creates an array of all panel elements for this instance of the accordion
         this.panels = children.filter(panel => panel.classList.contains( this.settings.panelClass.substr(1) ));
 
@@ -194,6 +195,8 @@ class BadgerAccordion {
      *  Adds click event to each header
      */
     _addListeners() {
+        if (! this.settings.headersClickable) return;
+
         // So we can reference the badger-accordion object inside out eventListener
         const _this = this;
 
