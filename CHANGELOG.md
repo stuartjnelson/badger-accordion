@@ -7,6 +7,14 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 
+## [1.2.3] - 2019-5-7
+### UPDATED
+ - Security issue with `tar` package
+
+### ADDED
+ - Option `addListenersOnInit`
+
+
 ## [1.2.2] - 2019-2-12
 ### Fixed
  - Running NPM audit to fix vulnerabilities
