@@ -36,7 +36,7 @@ class BadgerAccordion {
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
             openHeadersOnLoad:  [],
-            headersClickable:   true,
+            addListenersOnInit: true,
             headerOpenLabel:    '',
             headerCloseLabel:   '',
             roles:              true
@@ -195,7 +195,7 @@ class BadgerAccordion {
      *  Adds click event to each header
      */
     _addListeners() {
-        if (! this.settings.headersClickable) return;
+        if (!this.settings.addListenersOnInit) return;
 
         // So we can reference the badger-accordion object inside out eventListener
         const _this = this;
