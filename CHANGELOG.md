@@ -7,6 +7,29 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 
+## [1.2.2] - 2019-2-12
+### Fixed
+ - Running NPM audit to fix vulnerabilities
+
+
+## [1.2.1] - 2019-2-9
+### Fixed
+ - Issue#24: Fixing setting for `hiddenClass` and `initializedClass`
+
+
+## [1.2.0] - 2019-1-29
+### Fixed
+ - Issue#16: Properly hiding accordion content for all users
+ - Issue#17: Removed aria-label and deprecated `headerOpenLabel` & `headerCloseLabel`
+ - Merged in PR from `@micmania1` for the correct spelling of _aria-labelledby_
+
+### Updated
+ - Made NPM scripts bit nicer by calling each other. Also now compiling .css
+
+### Added
+ - Created the ability to have nested accordions. For this to happen I needed to change how a single accordion instance selected its headers & panels. Now the headers & panels selected are only 1 level deep.
+
+
 ## [1.1.4] - 2018-12-2
 ### Updated
  - Spelling of `initializedClass` so it is the American spelling
