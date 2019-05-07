@@ -12,7 +12,7 @@ For more information about keeping good change logs please refer to [keep a chan
  - Security issue with `tar` package
 
 ### ADDED
- - Option `addListenersOnInit`
+ - Option `addListenersOnInit`. See [PR 26](https://github.com/stuartjnelson/badger-accordion/pull/26) for more info
 
 
 ## [1.2.2] - 2019-2-12

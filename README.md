@@ -212,6 +212,7 @@ Also to the following awesome people who have submitted PR's
  - [ikenfin](https://github.com/ikenfin)
  - [micmania1](https://github.com/micmania1)
  - [seanjhulse](https://github.com/seanjhulse)
+ - [elbojoloco](https://github.com/elbojoloco)
 
 
 ## Roadmap
