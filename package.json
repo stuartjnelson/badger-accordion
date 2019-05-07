@@ -47,7 +47,7 @@
     "debug": "^3.2.6",
     "install": "^0.10.4",
     "lodash": ">=4.17.11",
-    "npm": "^6.7.0",
+    "npm": "^6.9.0",
     "rollup": "^0.52.3",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-collect-sass": "^1.0.9",
@@ -57,7 +57,8 @@
     "rollup-plugin-includepaths": "^0.2.3",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-replace": "^2.1.0",
-    "rollup-plugin-uglify-es": "0.0.1"
+    "rollup-plugin-uglify-es": "0.0.1",
+    "tar": "^4.4.8"
   },
   "dependencies": {}
 }

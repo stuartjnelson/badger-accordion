@@ -172,6 +172,7 @@ new BadgerAccordion('.js-badger-accordion', {
 | headerDataAttr     | String  | `data-badger-accordion-header-id`  | Data attribute on each header   |
 | openMultiplePanels | Boolean | `false`                            | Give you the ability to have mutiple panels open at one time. By default this is disabled  |
 | roles              | Boolean or Object | `true`                   | Controls setting `presentation` role on the container element & `region` on the panel. By using a boolean value you will set both attributes. By settings this as an object you will be explicitly setting only that role. Any roles not included in the object will not be set. In the example above only the `region` role will be set. |
+| addListenersOnInit   | Boolean  | `false`            | If set to `true` _EventListeners_ will not be added to each accordion header on initialization |
 | hidenClass         | @Deprecated  | @Deprecated                   | This was a spelling mistake and has been deprecated. If you have used in from version < 1.0.29 then `hiddenClass` is now equal to `hidenClass`  |
 | headerOpenLabel    | @Deprecated  | @Deprecated            | Aria lable has been removed see `Changelog.md` 1.1.5 |
 | headerCloseLabel   | @Deprecated  | @Deprecated            | Aria lable has been removed see `Changelog.md` 1.1.5  |
@@ -195,8 +196,8 @@ accordion.closeAll();
 | `togglePanel()` | animationAction, headerIndex | Toggles panel into opening or closing. `animationAction` is either `open` or `closed` ||
 | `openAll()`     |                      | Opens all accordion panels   ||
 | `closeAll()`    |                      | Closes all accordion panels  ||
-| `calculateAllPanelsHeight()` |         | Calculates and sets all panels height      ||
 | `calculatePanelHeight()` |             | Calculates and sets a single panels height ||
+| `calculateAllPanelsHeight()` |         | Calculates and sets all panels height      ||
 
 
 ## Sponsors
@@ -211,6 +212,7 @@ Also to the following awesome people who have submitted PR's
  - [ikenfin](https://github.com/ikenfin)
  - [micmania1](https://github.com/micmania1)
  - [seanjhulse](https://github.com/seanjhulse)
+ - [elbojoloco](https://github.com/elbojoloco)
 
 
 ## Roadmap
