@@ -32,12 +32,12 @@ class BadgerAccordion {
             activeClass:        '-ba-is-active',
             get hidenClass() { return this.hiddenClass; },
             initializedClass:    'badger-accordion--initialized',
-            get initalisedClass() { return this.hiddenClass; },
+            get initalisedClass() { return this.initializedClass; },
             headerDataAttr:     'data-badger-accordion-header-id',
             openMultiplePanels: false,
             openHeadersOnLoad:  [],
-            headerOpenLabel:    'Open accordion panel',
-            headerCloseLabel:   'Close accordion panel',
+            headerOpenLabel:    '',
+            headerCloseLabel:   '',
             roles:              true
             // toggleEl:            // If you want to use a different element to trigger the accordion
         };
@@ -45,16 +45,36 @@ class BadgerAccordion {
         // Options
         this.settings = Object.assign({}, defaults, options);
 
-        // Deprecating `settings.hidenClass` but adding fallback for older versions
-        if(this.settings.hidenClass !== this.settings.hiddenClass) {
-            this.settings.hiddenClass = this.settings.hidenClass;
-        }
-
         // Setting getting elements
         this.container = container;
-        this.headers = Array.from( this.container.querySelectorAll(this.settings.headerClass) );
-        this.panels = Array.from( this.container.querySelectorAll(this.settings.panelClass) );
+
+        // Selecting children of the current accordion instance
+        const children = Array.from(this.container.children);
+        
+        // Since the Accordions header button is nested inside an element with class
+        // of `badger-accordion__header` it is a grandchild of the accordion instance.
+        // In order to have nested accordions we need each to only get all the button 
+        // elements for this instance. Here an array is created to show all the children
+        // of the element `badger-accordion__header`.
+        const headerParent = children.filter(header => !header.classList.contains(this.settings.panelClass.substr(1)));
+
+        // Creating an array of all DOM nodes that are Accordion headers
+        this.headers = headerParent.reduce((acc, header) => {
+            // Gets all the elements that have the headerClass
+            const a = Array.from(header.children).filter( child => child.classList.contains( this.settings.headerClass.substr(1) ));
+            
+            // Merges the current `badger-accordion__header` accordion triggers
+            // with all the others.
+            acc = [].concat(...acc, a);
+            
+            return acc;
+        }, []);
+        
+        // Creates an array of all panel elements for this instance of the accordion
+        this.panels = children.filter(panel => panel.classList.contains( this.settings.panelClass.substr(1) ));
+
         this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers;
+
 
         // This is for managing state of the accordion. It by default sets
         // all accordion panels to be closed
@@ -347,7 +367,6 @@ class BadgerAccordion {
 
                 // 4. Set aria attrs
                 header.setAttribute('aria-expanded', false);
-                header.setAttribute('aria-label', this.settings.headerOpenLabel);
 
                 // 5. Resetting toggling so a new event can be fired
                 panelToClose.onCSSTransitionEnd(() => this.toggling = false );
@@ -365,7 +384,6 @@ class BadgerAccordion {
 
                 // 4. Set aria attrs
                 header.setAttribute('aria-expanded', true);
-                header.setAttribute('aria-label', this.settings.headerCloseLabel);
 
                 // 5. Resetting toggling so a new event can be fired
                 panelToOpen.onCSSTransitionEnd(() => this.toggling = false );
@@ -443,7 +461,7 @@ class BadgerAccordion {
         // Adding ID & aria-controls
         this._setupHeaders();
 
-        // Adding ID & aria-labeledby
+        // Adding ID & aria-labelledby
         this._setupPanels();
 
         // Inserting data-attribute onto each `header`
@@ -500,7 +518,6 @@ class BadgerAccordion {
         this.headers.forEach( (header, index) => {
             header.setAttribute('id', `badger-accordion-header-${this.ids[index].id}`);
             header.setAttribute('aria-controls', `badger-accordion-panel-${this.ids[index].id}`);
-            header.setAttribute('aria-label', this.settings.headerOpenLabel);
         });
     }
 
@@ -511,7 +528,7 @@ class BadgerAccordion {
     _setupPanels() {
         this.panels.forEach( (panel, index) => {
             panel.setAttribute('id', `badger-accordion-panel-${this.ids[index].id}`);
-            panel.setAttribute('aria-labeledby', `badger-accordion-header-${this.ids[index].id}`);
+            panel.setAttribute('aria-labelledby', `badger-accordion-header-${this.ids[index].id}`);
             if(this.settings.roles === true || this.settings.roles.region !== false) {
                 this._setRole('region', panel);
             }
