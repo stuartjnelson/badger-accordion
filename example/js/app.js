@@ -277,6 +277,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
           headerDataAttr: 'data-badger-accordion-header-id',
           openMultiplePanels: false,
           openHeadersOnLoad: [],
+          addListenersOnInit: true,
           headerOpenLabel: '',
           headerCloseLabel: '',
           roles: true // toggleEl:            // If you want to use a different element to trigger the accordion
@@ -289,7 +290,7 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
 
         var children = Array.from(this.container.children); // Since the Accordions header button is nested inside an element with class
         // of `badger-accordion__header` it is a grandchild of the accordion instance.
-        // In order to have nested accordions we need each to only get all the button 
+        // In order to have nested accordions we need each to only get all the button
         // elements for this instance. Here an array is created to show all the children
         // of the element `badger-accordion__header`.
 
@@ -443,7 +444,8 @@ var badgerAccordion = createCommonjsModule(function (module, exports) {
       }, {
         key: "_addListeners",
         value: function _addListeners() {
-          // So we can reference the badger-accordion object inside out eventListener
+          if (!this.settings.addListenersOnInit) return; // So we can reference the badger-accordion object inside out eventListener
+
           var _this = this; // Adding click event to accordion
 
 

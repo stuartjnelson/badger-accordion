@@ -7,3 +7,4 @@ badger-accordion-demo.css.map
 /src/.sass-cache
 *.map
 /offline-issues
+/audit-resolve.json
