@@ -12,7 +12,7 @@
     "basic-styles": "sass ./src/scss/badger-accordion.scss:./src/css/badger-accordion.css --style compressed  --no-source-map",
     "example-styles": "sass ./example/scss/badger-accordion.scss:./example/css/badger-accordion.css --style compressed  --no-source-map",
     "dev": "NODE_ENV=develop ./node_modules/.bin/rollup -c",
-    "watch": "NODE_ENV=develop ./node_modules/.bin/rollup -c --watch",
+    "watch": "NODE_ENV=develop ./node_modules/.bin/rollup -c --watch & php -S 127.0.0.1:3000",
     "example": "npm run example-styles && NODE_ENV=example ./node_modules/.bin/rollup -c",
     "example-watch": "NODE_ENV=example ./node_modules/.bin/rollup -c --watch",
     "build": "npm run basic-styles && NODE_ENV=production ./node_modules/.bin/rollup -c",
