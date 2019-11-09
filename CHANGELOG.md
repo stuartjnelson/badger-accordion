@@ -7,6 +7,15 @@ For more information about keeping good change logs please refer to [keep a chan
 ## Changelog
 
 
+## [1.2.4] - 2019-11-9
+### UPDATED
+ - All dependancies package
+
+### FIXED
+ - Some package security vunerabilities
+ - NPM package release to include fix for [issue 26](https://github.com/stuartjnelson/badger-accordion/issues/26)
+
+
 ## [1.2.3] - 2019-5-7
 ### UPDATED
  - Security issue with `tar` package
